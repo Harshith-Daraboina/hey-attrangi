@@ -22,15 +22,31 @@ model User {
 }
 
 model Blog {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  slug        String   @unique
+  slug        String    @unique
   content     String
   excerpt     String?
   image       String?
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  published   Boolean   @default(false)
+  featured    Boolean   @default(false)
+  likes       Int       @default(0)
+  views       Int       @default(0)
+  author      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  reviews     Review[]
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  blogId    String   @db.ObjectId
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  comment   String
+  rating    Int      @default(5)
+  createdAt DateTime @default(now())
 }
 
 model Product {
