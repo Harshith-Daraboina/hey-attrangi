@@ -22,8 +22,8 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentQuote, setCurrentQuote] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [randomVideo, setRandomVideo] = useState<string>('');
   const [isClient, setIsClient] = useState(false);
 
   const quotes = [
@@ -35,13 +35,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchFeaturedBlogs();
-    
-    // Only set random video on client side after hydration
-    const videos = ['vid1.mp4', 'vid2.mp4'];
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    const selectedVideo = videos[randomIndex];
-    console.log('Selected video:', selectedVideo); // Debug log
-    setRandomVideo(selectedVideo);
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
@@ -57,19 +51,17 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle video loading when randomVideo changes
-  useEffect(() => {
-    if (randomVideo) {
-      console.log('Video changed to:', randomVideo);
-    }
-  }, [randomVideo]);
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {
-      setCurrentQuote((prev) => (prev + 1) % quotes.length);
+      if (!isAnimating) {
+        setIsAnimating(true);
+        setCurrentQuote((prev) => (prev + 1) % quotes.length);
+        setTimeout(() => setIsAnimating(false), 600);
+      }
     }, 4000); // Change quote every 4 seconds
     return () => clearInterval(quoteInterval);
-  }, []);
+  }, [isAnimating]);
 
   useEffect(() => {
     if (featuredBlogs.length > 0) {
@@ -133,11 +125,17 @@ export default function Home() {
   };
 
   const nextQuote = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentQuote((prev) => (prev + 1) % quotes.length);
+    setTimeout(() => setIsAnimating(false), 600);
   };
 
-  const prevQuote = () => {
+  const prevQuoteFunc = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentQuote((prev) => (prev - 1 + quotes.length) % quotes.length);
+    setTimeout(() => setIsAnimating(false), 600);
   };
 
   return (
@@ -234,25 +232,25 @@ export default function Home() {
                       className="absolute top-full left-0 pt-1 w-52 z-50"
                     >
                       <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="#services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
+                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           Therapy Services
                           <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
-                        <Link href="#services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
+                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           Assessment & Diagnosis
                           <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
-                        <Link href="#services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
+                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           Online Consultations
                           <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
-                        <Link href="#services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
+                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           Group Sessions
                           <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -291,7 +289,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Previous Button */}
           <button
-            onClick={prevQuote}
+            onClick={prevQuoteFunc}
             className="flex items-center justify-center w-6 h-6 hover:bg-gray-700 rounded transition-all duration-200"
           >
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -300,8 +298,11 @@ export default function Home() {
           </button>
 
           {/* Quote Content */}
-          <div className="flex items-center flex-1 justify-center mx-4">
-            <p className="text-xs font-medium transition-all duration-500 fade-in text-center">
+          <div className="flex items-center flex-1 justify-center mx-4 overflow-hidden relative h-8">
+            <p 
+              key={currentQuote}
+              className={`text-xs font-medium text-center absolute w-full ${isAnimating ? 'animate-train-slide' : ''}`}
+            >
               "{quotes[currentQuote]}"
             </p>
           </div>
@@ -525,13 +526,13 @@ export default function Home() {
                 <img
                   src="/images/assets2.png"
                   alt="Background blob"
-                  className="w-[500px] h-[400px] object-contain opacity-70 blur-sm translate-x-8 translate-y-8"
+                  className="w-[900px] h-[800px] object-contain opacity-85 translate-x-40 translate-y-12 "
                 />
               </div>
               
               {/* --- Video Card --- */}
-              <div className="bg-white rounded-xl shadow-xl overflow-hidden w-[420px] h-[240px] border border-gray-200 relative z-20">
-                {randomVideo && randomVideo !== '' ? (
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden w-[500px] h-[300px] border border-gray-200 relative z-20">
+                {isClient ? (
                   <video
                     className="w-full h-full object-cover"
                     autoPlay
@@ -539,9 +540,8 @@ export default function Home() {
                     muted
                     playsInline
                     preload="auto"
-                    key={randomVideo}
                   >
-                    <source src={`/videos/${randomVideo}`} type="video/mp4" />
+                    <source src="/videos/vid1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
@@ -642,12 +642,11 @@ export default function Home() {
             {/* Right Side - Content */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
                   Real care adapts to your life, your people, your pace.
                 </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Care that's rooted in your everyday life, speaks your language, and sees your world. 
-                  Because mental health support should feel natural, not clinical.
+                <p className="text-base text-gray-600 leading-relaxed mb-6">
+                  Care rooted in your everyday life that feels natural, not clinical.
               </p>
             </div>
 
@@ -769,8 +768,7 @@ export default function Home() {
                   {/* Vision Description */}
                   <div className="border-l-4 border-orange-500 pl-6">
                     <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Our founder's vision drives everything we do at Attrangi. We believe that every individual deserves 
-                      access to compassionate, evidence-based mental healthcare that respects their unique journey and needs.
+                      We believe everyone deserves compassionate, evidence-based care that honors their unique journey.
                     </p>
                   </div>
                 </div>

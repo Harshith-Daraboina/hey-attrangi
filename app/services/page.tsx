@@ -1,45 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import Footer from "@/components/Footer";
 
-export default function BlogsPage() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function Services() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const fetchBlogs = async () => {
-    try {
-      const response = await fetch("/api/blogs/public");
-      if (response.ok) {
-        const data = await response.json();
-        setBlogs(data);
-      }
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    } finally {
-      setLoading(false);
+  const services = [
+    {
+      title: "Individual Therapy",
+      description: "One-on-one sessions with licensed therapists tailored to your specific needs and goals.",
+      icon: "🧠",
+      features: ["Cognitive Behavioral Therapy", "Mindfulness-Based Therapy", "Trauma-Informed Care", "Anxiety & Depression Support"]
+    },
+    {
+      title: "Family Therapy",
+      description: "Strengthen family bonds and improve communication through guided family sessions.",
+      icon: "👨‍👩‍👧‍👦",
+      features: ["Family Systems Therapy", "Communication Skills", "Conflict Resolution", "Parenting Support"]
+    },
+    {
+      title: "Group Therapy",
+      description: "Connect with others facing similar challenges in a supportive group environment.",
+      icon: "👥",
+      features: ["Peer Support Groups", "Skill-Building Workshops", "Social Anxiety Groups", "Recovery Support"]
+    },
+    {
+      title: "Online Consultations",
+      description: "Access mental health support from the comfort of your home via secure video sessions.",
+      icon: "💻",
+      features: ["Video Therapy Sessions", "Phone Consultations", "Secure Messaging", "Flexible Scheduling"]
+    },
+    {
+      title: "Assessment & Diagnosis",
+      description: "Comprehensive evaluations to understand your mental health needs and create treatment plans.",
+      icon: "📋",
+      features: ["Psychological Assessments", "ADHD Evaluations", "Learning Disability Testing", "Treatment Planning"]
+    },
+    {
+      title: "Crisis Intervention",
+      description: "24/7 support for mental health emergencies and crisis situations.",
+      icon: "🚨",
+      features: ["Emergency Hotline", "Crisis Counseling", "Safety Planning", "Immediate Support"]
     }
-  };
+  ];
 
   return (
     <div className="min-h-screen bg-orange-50">
@@ -58,7 +65,7 @@ export default function BlogsPage() {
               </div>
             </div>
             
-            {/* Navigation - Centered */}
+            {/* Navigation */}
             <nav className="hidden md:flex items-center justify-center flex-1">
               <div className="flex space-x-1">
                 <Link 
@@ -116,14 +123,13 @@ export default function BlogsPage() {
                   )}
                 </div>
 
-                {/* Services Dropdown */}
                 <div 
                   className="relative"
                   onMouseEnter={() => setActiveDropdown('services')}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center"
+                    className="text-orange-600 bg-orange-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center"
                   >
                     Services
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,14 +172,14 @@ export default function BlogsPage() {
 
                 <Link 
                   href="/blogs" 
-                  className="text-orange-600 bg-orange-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
+                  className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
                   Insights
                 </Link>
               </div>
             </nav>
             
-            {/* Special View Products Button */}
+            {/* View Products Button */}
             <Link 
               href="/aids" 
               className="hidden md:flex bg-orange-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg items-center gap-2"
@@ -186,50 +192,79 @@ export default function BlogsPage() {
           </div>
         </div>
       </header>
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-orange-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Our Insights
+              Our Services
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Evidence-based articles and expert guidance from our mental health professionals
+              Comprehensive mental healthcare services designed to support you at every stage of your wellness journey.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Blogs Section */}
+      {/* Services Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-            </div>
-          ) : blogs.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-xl">No insights available yet. Check back soon!</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogs.map((blog: any) => (
-                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border border-gray-100 h-full">
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      {blog.title}
-                    </h2>
-                    {blog.excerpt && (
-                      <p className="text-gray-600 mb-4 leading-relaxed">{blog.excerpt}</p>
-                    )}
-                    <div className="text-sm text-gray-500">
-                      {new Date(blog.createdAt).toLocaleDateString()}
-                    </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-3xl">{service.icon}</span>
                   </div>
-                </Link>
-              ))}
-            </div>
-          )}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                    What's Included:
+                  </h4>
+                  {service.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
+                      <span className="text-sm text-gray-600">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <button className="w-full bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition-colors">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="bg-orange-500 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{fontFamily: 'Poppins, sans-serif'}}>
+            Ready to Get Started?
+          </h2>
+          <p className="text-xl text-orange-100 mb-8 max-w-3xl mx-auto">
+            Take the first step towards better mental health. Our team of experienced professionals is here to support you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-orange-500 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors">
+              Book a Consultation
+            </button>
+            <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-orange-500 transition-colors">
+              Learn More
+            </button>
+          </div>
         </div>
       </section>
 
