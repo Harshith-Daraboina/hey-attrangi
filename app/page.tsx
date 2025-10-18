@@ -24,6 +24,7 @@ export default function Home() {
   const [currentQuote, setCurrentQuote] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [randomVideo, setRandomVideo] = useState<string>('');
+  const [isClient, setIsClient] = useState(false);
 
   const quotes = [
     "We've just launched our new mental health platform",
@@ -34,7 +35,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchFeaturedBlogs();
-    // Randomly select between vid1 and vid2
+    
+    // Only set random video on client side after hydration
     const videos = ['vid1.mp4', 'vid2.mp4'];
     const randomIndex = Math.floor(Math.random() * videos.length);
     const selectedVideo = videos[randomIndex];
@@ -80,13 +82,45 @@ export default function Home() {
 
   const fetchFeaturedBlogs = async () => {
     try {
-      const response = await fetch("/api/blogs/featured");
-      if (response.ok) {
-        const data = await response.json();
-        setFeaturedBlogs(data);
+      // First try to get featured blogs
+      const featuredResponse = await fetch("/api/blogs/featured");
+      if (featuredResponse.ok) {
+        const featuredData = await featuredResponse.json();
+        console.log("Fetched featured blogs:", featuredData);
+        if (featuredData.length > 0) {
+          setFeaturedBlogs(featuredData);
+          return;
+        }
       }
+      
+      // If no featured blogs, try public blogs
+      const publicResponse = await fetch("/api/blogs/public");
+      if (publicResponse.ok) {
+        const publicData = await publicResponse.json();
+        console.log("Fetched public blogs:", publicData);
+        if (publicData.length > 0) {
+          setFeaturedBlogs(publicData.slice(0, 4));
+          return;
+        }
+      }
+      
+      // If still no blogs, try the main blogs route
+      const allBlogsResponse = await fetch("/api/blogs");
+      if (allBlogsResponse.ok) {
+        const allBlogs = await allBlogsResponse.json();
+        console.log("Fetched all blogs:", allBlogs);
+        if (allBlogs.length > 0) {
+          setFeaturedBlogs(allBlogs.slice(0, 4));
+          return;
+        }
+      }
+      
+      console.log("No blogs found in any route");
+      setFeaturedBlogs([]);
+      
     } catch (error) {
-      console.error("Error fetching featured blogs:", error);
+      console.error("Error fetching blogs:", error);
+      setFeaturedBlogs([]);
     }
   };
 
@@ -485,173 +519,209 @@ export default function Home() {
             </div>
 
             {/* Right Content - Video */}
-            <div className="relative flex justify-center">
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden max-w-lg w-full">
-                <div className="aspect-video">
-                  {randomVideo && (
-                    <video 
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      key={randomVideo}
-                      onLoadStart={() => console.log('Video loading started:', randomVideo)}
-                      onCanPlay={() => console.log('Video can play:', randomVideo)}
-                      onError={(e) => console.error('Video error:', e)}
-                    >
-                      <source src={`/videos/${randomVideo}`} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
-                </div>
+            <div className="relative flex justify-center items-center h-[400px]">
+              {/* --- Image Blob Behind the Video --- */}
+              <div className="absolute inset-0 flex justify-center items-center z-10">
+                <img
+                  src="/images/assets2.png"
+                  alt="Background blob"
+                  className="w-[500px] h-[400px] object-contain opacity-70 blur-sm translate-x-8 translate-y-8"
+                />
               </div>
               
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-500 rounded-full opacity-20 blur-xl"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-orange-300 rounded-full opacity-15 blur-2xl"></div>
+              {/* --- Video Card --- */}
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden w-[420px] h-[240px] border border-gray-200 relative z-20">
+                {randomVideo && randomVideo !== '' ? (
+                  <video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    key={randomVideo}
+                  >
+                    <source src={`/videos/${randomVideo}`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                    <div className="text-gray-400">Loading video...</div>
+                  </div>
+                )}
+              </div>
             </div>
+
           </div>
         </div>
 
-        {/* Featured Blogs Section */}
-        {featuredBlogs.length > 0 && (
-          <div className="mb-20 fade-in">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-gray-900 mb-6">Latest Insights</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover evidence-based articles, personal stories, and expert guidance 
-                from our mental health professionals
-              </p>
-            </div>
-            
-            {/* Featured Blog Cards Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {featuredBlogs.slice(0, 3).map((blog, index) => (
-                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                  <article className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-                    {/* Image */}
-                    <div className="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100">
-                      {blog.image ? (
-                        <Image
-                          src={blog.image}
-                          alt={blog.title}
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <span className="text-white text-2xl">📝</span>
-                          </div>
-                        </div>
-                      )}
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium">
-                          Featured
-                        </span>
-                      </div>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                        {blog.title}
-                      </h3>
-                      {blog.excerpt && (
-                        <p className="text-gray-600 mb-4 line-clamp-3">
-                          {blog.excerpt}
-                        </p>
-                      )}
-                      <div className="flex items-center justify-between text-sm text-gray-500">
-                        <div className="flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                          </svg>
-                          {blog.views}
-                        </div>
-                        <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
-                      </div>
-                      {blog.author && (
-                        <div className="mt-3 text-sm text-gray-600">
-                          By {blog.author}
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
 
-            {/* View All Blogs Button */}
-            <div className="text-center">
-              <Link
-                href="/blogs"
-                className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg btn-primary breathe"
-              >
-                View All Insights
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-              
-          </div>
-        )}
 
       </main>
 
-      {/* About Section */}
-      <section id="about" className="bg-white py-16">
+      {/* Personalized Care Section */}
+      <section className="bg-white py-20 pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">About Hey Attrangi</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Learn more about our mission, team, and commitment to supporting neurodivergent individuals.
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Main Image with Cards */}
+            <div className="relative min-h-[700px] flex justify-center items-center">
+              {/* Main Image - src4.png */}
+              <div className="relative w-[500px] h-[600px]">
+                <Image
+                  src="/images/src4.png"
+                  alt="Mental healthcare platform interface"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Agenda</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Promoting awareness, accessibility, and inclusion for neurodivergent individuals 
-                through evidence-based psychological support and community building.
+              {/* Notification Cards positioned around the image */}
+              {/* GLAD Journal Card - Top Left */}
+              <div className="absolute -top-8 -left-16 bg-white rounded-xl shadow-xl p-4 w-64 border border-gray-100 z-10">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-green-100 rounded-lg flex items-center justify-center">
+                      <span className="text-green-600 text-sm">📓</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 text-sm">GLAD Journal</h4>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600 mb-2">Assignment due: Tomorrow</p>
+                <p className="text-xs text-gray-500 mb-3">Complete by: Oct 15, 2024</p>
+                <button className="w-full bg-green-500 text-white text-xs py-2 rounded-lg font-medium hover:bg-green-600 transition-colors">
+                  OPEN
+                </button>
+              </div>
+
+              {/* Therapy Session Card - Top Right */}
+              <div className="absolute top-8 -right-16 bg-white rounded-xl shadow-xl p-4 w-64 border border-gray-100 z-10">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <span className="text-blue-600 text-sm">📹</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 text-sm">Therapy Session</h4>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600 mb-1">Dr Pratistha Trivedi Mirza</p>
+                <p className="text-xs text-gray-500 mb-1">14 Oct 2024, 10:00 AM</p>
+                <p className="text-xs text-gray-500 mb-3">60 min • JOIN button appears 5 min before</p>
+                <button className="w-full bg-blue-500 text-white text-xs py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                  JOIN
+                </button>
+              </div>
+
+              {/* Chat Message Card - Middle Left */}
+              <div className="absolute top-64 -left-20 bg-white rounded-xl shadow-xl p-3 w-56 border border-gray-100 z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-4 h-4 bg-gray-200 rounded-full"></div>
+                  <span className="text-xs text-gray-500">10:14 AM</span>
+                </div>
+                <p className="text-xs text-gray-700">"Hi Gauri! Could you remind me the name of the journal you had recommended?"</p>
+              </div>
+
+              {/* Prescription Card - Bottom Left */}
+              <div className="absolute -bottom-8 -left-12 bg-white rounded-xl shadow-xl p-4 w-64 border border-gray-100 z-10">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <span className="text-purple-600 text-sm">📋</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 text-sm">Prescription</h4>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600 mb-1">Dr. Divya G Nallur</p>
+                <p className="text-xs text-gray-500 mb-3">25 Apr 2024, 06:30 PM</p>
+                <button className="w-full bg-purple-500 text-white text-xs py-2 rounded-lg font-medium hover:bg-purple-600 transition-colors">
+                  VIEW
+                </button>
+              </div>
+            </div>
+
+            {/* Right Side - Content */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
+                  Real care adapts to your life, your people, your pace.
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Care that's rooted in your everyday life, speaks your language, and sees your world. 
+                  Because mental health support should feel natural, not clinical.
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Founder's Note</h3>
+              {/* Feature Cards */}
+              <div className="space-y-6">
+                {/* Support Shaped Around You */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Support shaped around you
+                    </h3>
               <p className="text-gray-600 leading-relaxed">
-                Created by individuals who understand the unique challenges faced by 
-                neurodivergent people, with a vision to make psychological support accessible to all.
+                      Connect with someone who truly understands your needs, challenges, and goals. 
+                      Personalized care that fits your unique journey.
               </p>
+                  </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Team Info</h3>
+                {/* Supporting Those Who Support You */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Supporting those who support you
+                    </h3>
               <p className="text-gray-600 leading-relaxed">
-                Our diverse team includes licensed therapists, neurodivergent advocates, 
-                and technology specialists committed to creating inclusive solutions.
+                      Involve your loved ones through joint sessions, family resources, and 
+                      communication tools that strengthen your support network.
               </p>
+                  </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Collaborators</h3>
+                {/* Care in Your Language */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="text-green-600 font-bold text-lg">A अ</div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Care in your language, and for your context
+                    </h3>
               <p className="text-gray-600 leading-relaxed">
-                Partnering with leading psychological institutions, advocacy groups, 
-                and technology companies to deliver comprehensive support services.
+                      Fluent in 15+ Indian languages with deep cultural understanding. 
+                      Care that respects your background and speaks to your experiences.
               </p>
+                  </div>
+                </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Social Links</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="text-blue-600 hover:text-blue-700">Twitter</a>
-                <a href="#" className="text-blue-600 hover:text-blue-700">LinkedIn</a>
-                <a href="#" className="text-blue-600 hover:text-blue-700">Facebook</a>
+              {/* CTA Section */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+                  Find support that fits you
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Get personalized suggestions for finding the right therapist or psychiatrist for your needs.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button className="flex-1 bg-orange-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-orange-600 transition-colors">
+                    FIND A THERAPIST
+                  </button>
+                  <button className="flex-1 bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-colors">
+                    FIND A PSYCHIATRIST
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -659,82 +729,197 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-orange-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive support services designed specifically for neurodivergent individuals.
-            </p>
+      <section id="services" className="bg-orange-50 py-16 relative">
+        {/* Founder Message Section - Floating Card */}
+        <div className="relative -mt-32 mb-20 z-40">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-orange-200">
+              {/* Grid Layout: Photo Left, Content Right */}
+              <div className="grid md:grid-cols-[300px_1fr] gap-8 md:gap-12 items-center">
+                {/* Left Side - Founder Image */}
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden shadow-xl border-4 border-orange-500 mb-4">
+                    <Image
+                      src="/images/founder2.png"
+                      alt="Dr. Attrangi Founder"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="text-center md:text-left">
+                    <div className="text-xl md:text-2xl font-bold text-orange-600 mb-1" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Dr. Attrangi Founder
+                    </div>
+                    <div className="text-sm md:text-base text-gray-700 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Clinical Psychologist & Mental Health Advocate
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right Side - Content */}
+                <div className="space-y-8">
+                  {/* Main Quote */}
+                  <div>
+                    <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 italic leading-tight mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      "Mental health is not a destination, but a journey of understanding, growth, and self-compassion."
+                    </p>
+                  </div>
+                  
+                  {/* Vision Description */}
+                  <div className="border-l-4 border-orange-500 pl-6">
+                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Our founder's vision drives everything we do at Attrangi. We believe that every individual deserves 
+                      access to compassionate, evidence-based mental healthcare that respects their unique journey and needs.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-              <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl">📚</span>
+        {/* Featured Blogs Section */}
+        {featuredBlogs.length > 0 && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200 mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>Latest Insights</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto" style={{fontFamily: 'Poppins, sans-serif'}}>
+                  Discover evidence-based articles, personal stories, and expert guidance 
+                  from our mental health professionals
+                </p>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Self-Help Library</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Access curated resources, articles, and tools designed specifically for 
-                neurodivergent individuals. Evidence-based strategies for managing daily challenges.
-              </p>
-              <Link 
-                href="#library" 
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Explore Library →
-              </Link>
+              
+              {/* Featured Blog Cards Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                {featuredBlogs.slice(0, 3).map((blog, index) => (
+                  <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
+                    <article className="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 h-full">
+                      {/* Image */}
+                      <div className="relative h-40 bg-gradient-to-br from-blue-100 to-purple-100">
+                        {blog.image ? (
+                          <Image
+                            src={blog.image}
+                            alt={blog.title}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center h-full">
+                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                              <span className="text-white text-xl">📝</span>
+                            </div>
+                          </div>
+                        )}
+                        <div className="absolute top-3 left-3">
+                          <span className="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-xs font-semibold">
+                            Featured
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-5">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                          {blog.title}
+                        </h3>
+                        {blog.excerpt && (
+                          <p className="text-sm text-gray-600 mb-3 line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                            {blog.excerpt}
+                          </p>
+                        )}
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          <div className="flex items-center gap-2">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                            </svg>
+                            <span>{blog.views}</span>
+                          </div>
+                          <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                        </div>
+                        {blog.author && (
+                          <div className="mt-2 text-xs text-gray-600 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
+                            By {blog.author}
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+
+              {/* View All Blogs Button */}
+              <div className="text-center">
+                <Link
+                  href="/blogs"
+                  className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3 rounded-xl font-semibold text-base hover:bg-orange-600 transition-colors shadow-lg"
+                  style={{fontFamily: 'Poppins, sans-serif'}}
+                >
+                  View All Insights
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Neurodiversity Education Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                <span className="text-lg">🎯</span>
+                Educational Content
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+                What Is Neurodiversity & Neurodivergence?
+              </h2>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Someone who is <strong>neurodivergent</strong> means their brain works in a way that diverges from what is considered "typical." 
+                  Examples include people diagnosed (or self-identifying) with autism, ADHD, dyslexia, dyspraxia, Tourette's, and others.
+                </p>
+                
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-6">
+                  <p className="text-gray-700 italic">
+                    <strong>Important Note:</strong> Neurodiversity and neurodivergence are not clinical diagnoses themselves — 
+                    they're concepts used by communities, advocates, and scholars to shift how we talk about brain, learning, and behavioural differences.
+                  </p>
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-              <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl">🤝</span>
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Neurodiversity</h3>
+                    <p className="text-gray-600">
+                      The natural variation in human brain function and behavioral traits. It recognizes that neurological differences 
+                      are normal variations of the human genome.
+                    </p>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Therapy Connect</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Connect with licensed therapists who specialize in working with 
-                neurodivergent individuals. Professional support tailored to your needs.
-              </p>
-              <Link 
-                href="#therapy" 
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Find Therapist →
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl">👥</span>
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Neurodivergence</h3>
+                    <p className="text-gray-600">
+                      Refers to individuals whose neurological development and functioning differ from what is considered typical. 
+                      This includes conditions like autism, ADHD, dyslexia, and more.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <p className="text-sm text-gray-500">
+                    <strong>Sources:</strong> St. Augustine University, AAHA, and neurodiversity advocacy communities
+                  </p>
+                  <p className="text-xs text-gray-400 mt-2">Last updated: 10/17/2025</p>
+                </div>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Community</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Join a supportive community of neurodivergent individuals and allies. 
-                Share experiences, get peer support, and build meaningful connections.
-              </p>
-              <Link 
-                href="#community" 
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Join Community →
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-              <div className="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl">💡</span>
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Awareness Content</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Educational content about neurodivergence, mental health awareness, 
-                and inclusive practices. Stay informed and help spread understanding.
-              </p>
-              <Link 
-                href="#awareness" 
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Learn More →
-              </Link>
             </div>
           </div>
         </div>
