@@ -1,17 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 
-export default function BlogsPage() {
-  const [blogs, setBlogs] = useState([]);
+interface Resource {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  type: string;
+  url?: string;
+  fileUrl?: string;
+  category?: string;
+  tags: string[];
+  published: boolean;
+  featured: boolean;
+  views: number;
+  createdAt: string;
+}
+
+export default function ResourcesPage() {
+  const [resources, setResources] = useState<Resource[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedType, setSelectedType] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   useEffect(() => {
-    fetchBlogs();
+    fetchResources();
   }, []);
 
   useEffect(() => {
@@ -27,19 +45,50 @@ export default function BlogsPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const fetchBlogs = async () => {
+  const fetchResources = async () => {
     try {
-      const response = await fetch("/api/blogs/public");
+      const response = await fetch("/api/resources/public");
       if (response.ok) {
         const data = await response.json();
-        setBlogs(data);
+        setResources(data);
       }
     } catch (error) {
-      console.error("Error fetching blogs:", error);
+      console.error("Error fetching resources:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case "video": return "🎥";
+      case "link": return "🔗";
+      case "document": return "📄";
+      case "reference": return "📚";
+      case "material": return "📋";
+      default: return "📄";
+    }
+  };
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case "video": return "bg-red-100 text-red-800";
+      case "link": return "bg-blue-100 text-blue-800";
+      case "document": return "bg-green-100 text-green-800";
+      case "reference": return "bg-purple-100 text-purple-800";
+      case "material": return "bg-orange-100 text-orange-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  const filteredResources = resources.filter(resource => {
+    const typeMatch = selectedType === "all" || resource.type === selectedType;
+    const categoryMatch = selectedCategory === "all" || resource.category === selectedCategory;
+    return typeMatch && categoryMatch;
+  });
+
+  const categories = Array.from(new Set(resources.map(r => r.category).filter(Boolean)));
+  const types = Array.from(new Set(resources.map(r => r.type)));
 
   return (
     <div className="min-h-screen bg-orange-50">
@@ -58,7 +107,7 @@ export default function BlogsPage() {
               </div>
             </div>
             
-            {/* Navigation - Centered */}
+            {/* Navigation */}
             <nav className="hidden md:flex items-center justify-center flex-1">
               <div className="flex space-x-1">
                 <Link 
@@ -83,9 +132,7 @@ export default function BlogsPage() {
                     </svg>
                   </button>
                   {activeDropdown === 'about' && (
-                    <div 
-                      className="absolute top-full left-0 pt-1 w-52 z-50"
-                    >
+                    <div className="absolute top-full left-0 pt-1 w-52 z-50">
                       <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
                         <Link href="/about" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           About Attrangi
@@ -131,9 +178,7 @@ export default function BlogsPage() {
                     </svg>
                   </button>
                   {activeDropdown === 'services' && (
-                    <div 
-                      className="absolute top-full left-0 pt-1 w-52 z-50"
-                    >
+                    <div className="absolute top-full left-0 pt-1 w-52 z-50">
                       <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
                         <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
                           Therapy Services
@@ -159,6 +204,12 @@ export default function BlogsPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
+                        <Link href="/resources" className="px-4 py-2.5 text-sm text-orange-600 bg-orange-50 flex items-center transition-colors block">
+                          Resources
+                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -166,14 +217,14 @@ export default function BlogsPage() {
 
                 <Link 
                   href="/blogs" 
-                  className="text-orange-600 bg-orange-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
+                  className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
                   Insights
                 </Link>
               </div>
             </nav>
             
-            {/* Special View Products Button */}
+            {/* View Products Button */}
             <Link 
               href="/aids" 
               className="hidden md:flex bg-orange-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg items-center gap-2"
@@ -186,71 +237,142 @@ export default function BlogsPage() {
           </div>
         </div>
       </header>
-      {/* Header Section */}
-      <section className="bg-gradient-to-br from-orange-50 via-white to-orange-50 py-16 border-b border-gray-100">
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-orange-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Mental Health Insights
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6" style={{fontFamily: 'Poppins, sans-serif'}}>
+              Mental Health Resources
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Expert articles, research-backed tips, and practical guidance for your mental health journey.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
+              Access curated materials, videos, documents, and references to support your mental health journey.
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-10">
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-              <div className="text-2xl font-bold text-orange-600 mb-1">{blogs.length}+</div>
-              <div className="text-xs text-gray-600">Articles</div>
+      {/* Filters */}
+      <section className="py-8 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex items-center space-x-2">
+              <label className="text-sm font-medium text-gray-700">Type:</label>
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="all">All Types</option>
+                {types.map(type => (
+                  <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                ))}
+              </select>
             </div>
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-              <div className="text-2xl font-bold text-orange-600 mb-1">Expert</div>
-              <div className="text-xs text-gray-600">Written</div>
-            </div>
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-              <div className="text-2xl font-bold text-orange-600 mb-1">Free</div>
-              <div className="text-xs text-gray-600">Access</div>
-            </div>
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-              <div className="text-2xl font-bold text-orange-600 mb-1">24/7</div>
-              <div className="text-xs text-gray-600">Available</div>
+            <div className="flex items-center space-x-2">
+              <label className="text-sm font-medium text-gray-700">Category:</label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="all">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Blogs Section */}
+      {/* Resources Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-          </div>
-        ) : blogs.length === 0 ? (
-            <div className="text-center py-20">
-          <p className="text-gray-500 text-xl">No insights available yet. Check back soon!</p>
             </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog: any) => (
-                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border border-gray-100 h-full">
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      {blog.title}
-                    </h2>
-                {blog.excerpt && (
-                      <p className="text-gray-600 mb-4 leading-relaxed">{blog.excerpt}</p>
-                )}
-                <div className="text-sm text-gray-500">
-                  {new Date(blog.createdAt).toLocaleDateString()}
-                </div>
-              </div>
+          ) : filteredResources.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="text-gray-400 text-6xl mb-4">📚</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No resources found</h3>
+              <p className="text-gray-600">Try adjusting your filters or check back later for new content.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredResources.map((resource) => (
+                <Link 
+                  key={resource.id} 
+                  href={`/resources/${resource.slug}`}
+                  className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all border border-gray-100 hover:border-orange-200 cursor-pointer group"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-2xl">{getTypeIcon(resource.type)}</span>
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getTypeColor(resource.type)}`}>
+                        {resource.type}
+                      </span>
+                    </div>
+                    {resource.featured && (
+                      <span className="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors" style={{fontFamily: 'Poppins, sans-serif'}}>
+                    {resource.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                    {resource.description}
+                  </p>
+                  
+                  {resource.category && (
+                    <div className="mb-4">
+                      <span className="text-sm text-gray-500">Category: </span>
+                      <span className="text-sm font-medium text-orange-600">{resource.category}</span>
+                    </div>
+                  )}
+                  
+                  {resource.tags.length > 0 && (
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-1">
+                        {resource.tags.slice(0, 3).map((tag, index) => (
+                          <span key={index} className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
+                            #{tag}
+                          </span>
+                        ))}
+                        {resource.tags.length > 3 && (
+                          <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
+                            +{resource.tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="text-sm text-gray-500 flex items-center">
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      {resource.views} views
+                    </div>
+                    <div className="text-orange-600 font-semibold text-sm flex items-center group-hover:text-orange-700">
+                      Read More
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
                 </Link>
-            ))}
-          </div>
-        )}
-      </div>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Footer */}
