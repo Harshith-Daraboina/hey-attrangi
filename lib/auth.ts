@@ -14,7 +14,8 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         try {
           if (!credentials?.email || !credentials?.password) {
-            throw new Error("Invalid credentials");
+            console.error("Missing credentials");
+            return null;
           }
 
           const user = await prisma.user.findUnique({
@@ -24,7 +25,8 @@ export const authOptions: NextAuthOptions = {
           });
 
           if (!user || !user.password) {
-            throw new Error("Invalid credentials");
+            console.error("User not found or no password");
+            return null;
           }
 
           const isCorrectPassword = await bcrypt.compare(
@@ -33,7 +35,8 @@ export const authOptions: NextAuthOptions = {
           );
 
           if (!isCorrectPassword) {
-            throw new Error("Invalid credentials");
+            console.error("Invalid password");
+            return null;
           }
 
           return {
@@ -53,23 +56,31 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;
+        token.id = user.id;
       }
       return token;
     },
     async session({ session, token }) {
-      if (session?.user) {
+      if (session?.user && token) {
         session.user.role = token.role as string;
+        session.user.id = token.id as string;
       }
       return session;
     }
   },
   pages: {
     signIn: "/admin/login",
+    error: "/admin/login",
   },
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-for-development",
+  jwt: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
+  trustHost: true, // Important for Vercel deployment
 };
 
