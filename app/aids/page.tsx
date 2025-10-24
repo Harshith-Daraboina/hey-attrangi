@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 import Footer from "@/components/Footer";
 
 export default function AidsPage() {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const aids = [
     {
       id: 1,
