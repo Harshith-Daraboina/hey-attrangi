@@ -10,6 +10,7 @@ interface Resource {
   title: string;
   slug: string;
   description: string;
+  thumbnail?: string;
   type: string;
   category?: string;
   published: boolean;
@@ -132,6 +133,9 @@ export default function AdminResources() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Thumbnail
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Resource
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -157,6 +161,27 @@ export default function AdminResources() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {resources.map((resource) => (
                     <tr key={resource.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {resource.thumbnail ? (
+                          <img 
+                            src={resource.thumbnail} 
+                            alt={resource.title}
+                            className="h-12 w-12 rounded-lg object-cover"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="h-12 w-12 rounded-lg bg-gray-200 flex items-center justify-center">
+                            <span className="text-gray-400 text-lg">
+                              {resource.type === 'video' ? '🎥' :
+                               resource.type === 'link' ? '🔗' :
+                               resource.type === 'document' ? '📄' :
+                               resource.type === 'reference' ? '📚' : '📋'}
+                            </span>
+                          </div>
+                        )}
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
                           <div className="text-sm font-medium text-gray-900">

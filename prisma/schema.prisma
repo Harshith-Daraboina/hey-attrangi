@@ -69,6 +69,7 @@ model Resource {
   slug        String   @unique
   description String
   content     String?
+  thumbnail   String?  // Added thumbnail field
   type        String   // "video", "link", "document", "reference", "material"
   url         String?
   fileUrl     String?

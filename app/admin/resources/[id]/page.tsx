@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
-export default function CreateResource() {
+export default function EditResource() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const params = useParams();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
+  
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -22,18 +26,46 @@ export default function CreateResource() {
     featured: false,
   });
 
-  if (status === "loading") {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (status === "loading") return;
+    if (!session) {
+      router.push("/admin/login");
+      return;
+    }
+    if (id) {
+      fetchResource();
+    }
+  }, [session, status, router, id]);
 
-  if (!session) {
-    router.push("/admin/login");
-    return null;
-  }
+  const fetchResource = async () => {
+    try {
+      const response = await fetch(`/api/resources/${id}`);
+      if (response.ok) {
+        const resource = await response.json();
+        setFormData({
+          title: resource.title || "",
+          description: resource.description || "",
+          content: resource.content || "",
+          thumbnail: resource.thumbnail || "",
+          type: resource.type || "link",
+          url: resource.url || "",
+          fileUrl: resource.fileUrl || "",
+          category: resource.category || "",
+          tags: resource.tags ? resource.tags.join(", ") : "",
+          published: resource.published || false,
+          featured: resource.featured || false,
+        });
+      } else {
+        console.error("Error fetching resource");
+        router.push("/admin/resources");
+      }
+    } catch (error) {
+      console.error("Error fetching resource:", error);
+      router.push("/admin/resources");
+    } finally {
+      setFetching(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +74,8 @@ export default function CreateResource() {
     try {
       const tagsArray = formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag);
       
-      const response = await fetch("/api/resources", {
-        method: "POST",
+      const response = await fetch(`/api/resources/${id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,10 +88,10 @@ export default function CreateResource() {
       if (response.ok) {
         router.push("/admin/resources");
       } else {
-        console.error("Error creating resource");
+        console.error("Error updating resource");
       }
     } catch (error) {
-      console.error("Error creating resource:", error);
+      console.error("Error updating resource:", error);
     } finally {
       setLoading(false);
     }
@@ -73,6 +105,19 @@ export default function CreateResource() {
     }));
   };
 
+  if (status === "loading" || fetching) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    router.push("/admin/login");
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -81,8 +126,8 @@ export default function CreateResource() {
           <div className="py-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Create New Resource</h1>
-                <p className="text-gray-600 mt-1">Add a new mental health resource</p>
+                <h1 className="text-3xl font-bold text-gray-900">Edit Resource</h1>
+                <p className="text-gray-600 mt-1">Update resource information</p>
               </div>
               <button
                 onClick={() => router.back()}
@@ -292,7 +337,7 @@ export default function CreateResource() {
               disabled={loading}
               className="px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:opacity-50"
             >
-              {loading ? "Creating..." : "Create Resource"}
+              {loading ? "Updating..." : "Update Resource"}
             </button>
           </div>
         </form>

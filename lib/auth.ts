@@ -68,6 +68,10 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async redirect({ url, baseUrl }) {
+      // Handle admin dashboard redirects
+      if (url.includes('/admin/dashboard')) {
+        return `${baseUrl}/admin/dashboard`;
+      }
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       // Allows callback URLs on the same origin

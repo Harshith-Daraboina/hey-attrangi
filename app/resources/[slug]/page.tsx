@@ -12,6 +12,7 @@ interface Resource {
   slug: string;
   description: string;
   content: string;
+  thumbnail?: string;
   type: string;
   url?: string;
   fileUrl?: string;
@@ -156,6 +157,20 @@ export default function ResourceDetailPage() {
           <div className="lg:col-span-2">
             {/* Resource Header */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+              {/* Thumbnail Image */}
+              {resource.thumbnail && (
+                <div className="mb-6 rounded-lg overflow-hidden">
+                  <img 
+                    src={resource.thumbnail} 
+                    alt={resource.title}
+                    className="w-full h-64 object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
+              
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-2">
                   <span className="text-2xl">{getTypeIcon(resource.type)}</span>

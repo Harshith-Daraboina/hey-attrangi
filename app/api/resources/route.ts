@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, description, content, type, url, fileUrl, category, tags, published, featured } = body;
+    const { title, description, content, thumbnail, type, url, fileUrl, category, tags, published, featured } = body;
 
     // Generate base slug from title
     let baseSlug = title
@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
         slug,
         description,
         content,
+        thumbnail,
         type,
         url,
         fileUrl,
