@@ -371,7 +371,7 @@ export default function Home() {
       <div className="relative w-full h-[80vh] bg-gray-900">
   {/* Background Image */}
   <img
-    src="/images/src3.jpg"
+    src="/images/src6-2.png"
     alt="Modern mental health facility with calming, professional environment"
     className="absolute inset-0 w-full h-full object-cover z-0"
   />
@@ -479,6 +479,37 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Mission Statement Section */}
+      {/* <section className="bg-gradient-to-br from-orange-50 to-pink-50 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
+              <span className="text-lg">💪</span>
+              Our Bold Mission
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8" style={{fontFamily: 'Poppins, sans-serif'}}>
+              We Won't Take 'OK' as an Answer
+            </h2>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-orange-100">
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
+                  Attrangi started as a small mental health support initiative, aiming to help neurodivergent individuals navigate the challenges of traditional mental health services. It soon became obvious that it would make sense to help our clients see beyond their diagnoses and limitations, and be there with them from the very beginning of their mental health journey.
+                </p>
+                
+                <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
+                  Currently, we offer therapy services, mental health resources, and community support in order to help our clients find their path to mental wellness as seamlessly and effectively as possible. We value our clients above everything else, meaning that we won't take 'OK' as an answer when it comes to their mental health and wellbeing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+
+
       {/* Hero Section */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* WHO IT'S FOR Section */}
@@ -574,7 +605,7 @@ export default function Home() {
                 <img
                   src="/images/assets2.png"
                   alt="Background blob"
-                  className="w-[900px] h-[800px] object-contain opacity-85 translate-x-40 translate-y-12 "
+                  className="w-[900px] h-[800px] object-contain opacity-85 translate-x-50 translate-y-12 "
                 />
               </div>
               
@@ -588,8 +619,11 @@ export default function Home() {
                     muted
                     playsInline
                     preload="auto"
+                    style={{
+                      filter: 'sepia(0.3) saturate(1.2) hue-rotate(15deg) brightness(0.9)'
+                    }}
                   >
-                    <source src="/videos/vid1.mp4" type="video/mp4" />
+                    <source src="/videos/doc2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
@@ -597,6 +631,9 @@ export default function Home() {
                     <div className="text-gray-400">Loading video...</div>
                   </div>
                 )}
+                
+                {/* Subtle Pink Tint Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-400/10 to-pink-600/5 pointer-events-none z-10"></div>
               </div>
             </div>
 
@@ -698,60 +735,21 @@ export default function Home() {
               </p>
             </div>
 
-              {/* Feature Cards */}
-              <div className="space-y-6">
-                {/* Support Shaped Around You */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Support shaped around you
-                    </h3>
-              <p className="text-gray-600 leading-relaxed">
-                      Connect with someone who truly understands your needs, challenges, and goals. 
-                      Personalized care that fits your unique journey.
-              </p>
-                  </div>
-            </div>
-
-                {/* Supporting Those Who Support You */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Supporting those who support you
-                    </h3>
-              <p className="text-gray-600 leading-relaxed">
-                      Involve your loved ones through joint sessions, family resources, and 
-                      communication tools that strengthen your support network.
-              </p>
-                  </div>
-            </div>
-
-                {/* Care in Your Language */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <div className="text-green-600 font-bold text-lg">A अ</div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Care in your language, and for your context
-                    </h3>
-              <p className="text-gray-600 leading-relaxed">
-                      Fluent in 15+ Indian languages with deep cultural understanding. 
-                      Care that respects your background and speaks to your experiences.
-              </p>
-                  </div>
+              {/* Simple Feature Points */}
+              <div className="space-y-4">
+                <div className="flex items-center text-gray-700">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                  <span className="font-medium">Support shaped around you</span>
                 </div>
-            </div>
+                <div className="flex items-center text-gray-700">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                  <span className="font-medium">Supporting those who support you</span>
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                  <span className="font-medium">Care in your language, and for your context</span>
+                </div>
+              </div>
 
               {/* CTA Section */}
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
