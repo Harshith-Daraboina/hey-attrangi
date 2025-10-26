@@ -628,7 +628,7 @@ export default function Home() {
                 </video>
                 
                 {/* Subtle Pink Tint Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-400/10 to-pink-600/5 pointer-events-none z-10"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-br from-pink-400/10 to-pink-600/5 pointer-events-none z-10"></div> */}
               </div>
             </div>
 
