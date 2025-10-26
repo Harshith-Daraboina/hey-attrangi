@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/components/SessionProvider";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Hey Attrangi - Support for Neurodivergent Individuals | Psychological Resources",
@@ -20,8 +29,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className={poppins.variable}>
+      <body className={`antialiased ${poppins.className}`}>
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
+        
         <SessionProvider>
           {children}
         </SessionProvider>

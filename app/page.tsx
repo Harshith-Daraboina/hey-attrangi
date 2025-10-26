@@ -24,7 +24,6 @@ export default function Home() {
   const [currentQuote, setCurrentQuote] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
   const quotes = [
     "We've just launched our new mental health platform",
@@ -35,7 +34,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchFeaturedBlogs();
-    setIsClient(true);
   }, []);
 
   useEffect(() => {
@@ -370,10 +368,11 @@ export default function Home() {
       {/* Hero Section with Background Image */}
       <div className="relative w-full h-[80vh] bg-gray-900">
   {/* Background Image */}
-  <img
-    src="/images/src6-2.png"
+  <Image
+    src="/images/src3.jpg"
     alt="Modern mental health facility with calming, professional environment"
-    className="absolute inset-0 w-full h-full object-cover z-0"
+    fill
+    className="object-cover z-0"
   />
   
   {/* Enhanced Gradient Overlay for better text readability */}
@@ -602,35 +601,31 @@ export default function Home() {
             <div className="relative flex justify-center items-center h-[400px]">
               {/* --- Image Blob Behind the Video --- */}
               <div className="absolute inset-0 flex justify-center items-center z-10">
-                <img
+                <Image
                   src="/images/assets2.png"
                   alt="Background blob"
-                  className="w-[900px] h-[800px] object-contain opacity-85 translate-x-50 translate-y-12 "
+                  width={900}
+                  height={800}
+                  className="object-contain opacity-85 translate-x-50 translate-y-12"
                 />
               </div>
               
               {/* --- Video Card --- */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden w-[500px] h-[300px] border border-gray-200 relative z-20">
-                {isClient ? (
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    style={{
-                      filter: 'sepia(0.3) saturate(1.2) hue-rotate(15deg) brightness(0.9)'
-                    }}
-                  >
-                    <source src="/videos/doc2.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                    <div className="text-gray-400">Loading video...</div>
-                  </div>
-                )}
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  style={{
+                    filter: 'sepia(0.3) saturate(1.2) hue-rotate(15deg) brightness(0.9)'
+                  }}
+                >
+                  <source src="/videos/vid2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
                 
                 {/* Subtle Pink Tint Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-400/10 to-pink-600/5 pointer-events-none z-10"></div>
