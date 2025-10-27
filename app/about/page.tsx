@@ -8,8 +8,10 @@ import Footer from "@/components/Footer";
 export default function AboutPage() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsScrolled(true);
@@ -23,9 +25,13 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-orange-50">
+    <div className="min-h-screen bg-orange-50 relative">
       {/* Header Navigation */}
-      <header className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'}`}>
+      <header 
+        className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${
+          mounted && isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
@@ -280,15 +286,16 @@ export default function AboutPage() {
 
         </div>
 
-        <div className="absolute top-90 -right-10 w-280 h-280 opacity-80 z-0">
-          <Image
-            src="/images/assets2.png"
-            alt="Background decoration"
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 200px, 320px"
-          />
-        </div>
+       {/* Background decoration image - Outside card */}
+       <div className="absolute right-20 top-[600px] w-[560px] h-[560px] md:w-[800px] md:h-[800px] opacity-80 z-0 hidden lg:block pointer-events-none">
+         <Image
+           src="/images/assets2.png"
+           alt="Background decoration"
+           fill
+           className="object-contain"
+           sizes="(max-width: 1024px) 0px, 800px"
+         />
+       </div>
 
        {/* Founder Message Section - Floating Design */}
        <div className="relative mt-48 mb-20 z-40">
@@ -422,8 +429,8 @@ export default function AboutPage() {
 
       {/* Quote Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-br from-orange-50 to-pink-50 rounded-2xl p-8 md:p-12 shadow-lg relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-gradient-to-br from-orange-50 to-pink-50 border-2 border-orange-200 rounded-2xl p-8 md:p-12 shadow-lg relative">
             {/* Large opening quote mark */}
             <div className="absolute left-4 top-4 text-8xl md:text-9xl font-bold text-orange-600 opacity-20 leading-none" style={{fontFamily: 'Georgia, serif'}}>
               "
@@ -444,7 +451,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Mission Section */}
-      <section id="mission" className="py-16 bg-gradient-to-br from-orange-50 to-pink-50">
+      <section id="mission" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             {/* <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
@@ -460,7 +467,7 @@ export default function AboutPage() {
             {/* Left Side - Image */}
             <div className="relative w-full h-[800px] lg:h-[900px]">
               <Image
-                src="/images/src10.png"
+                src="/images/src12.jpg"
                 alt="Our Bold Mission - We Won't Take 'OK' as an Answer"
                 fill
                 className="object-contain"
@@ -491,71 +498,139 @@ export default function AboutPage() {
       </section>
 
       {/* Our Team Section */}
-      <section id="team" className="py-16 bg-gradient-to-br from-orange-50 to-white">
+      <section id="team" className="py-20 bg-gradient-to-br from-orange-50 to-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Our Team
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+              We've got an <span className="relative inline-block">
+                
+                <span className="relative text-orange-600">entire</span>
+              </span> team dedicated to supporting you
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Passionate professionals dedicated to supporting the neurodivergent community
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mt-4">
+              Get help 24/7, with our award-winning support network of mental health experts.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Team Member 1 */}
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-3xl text-white">👨‍⚕️</span>
+          {/* Team Members Grid */}
+          <div className="relative w-full">
+            <div className="flex flex-wrap justify-center gap-6 px-4">
+              {/* Team Member 1 - Dr. Sandesh Palhke */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/founder2.png" 
+                      alt="Dr. Sandesh Palhke" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Dr. Sandesh Palhke</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Child Psychologist | Proffesor UI & UX</p>
+                    <p className="text-xs text-gray-500 mt-1">Founder & Lead Therapist</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Clinical Team</h3>
-              <p className="text-sm text-gray-600 mb-3">Licensed therapists and psychologists</p>
-              <p className="text-xs text-gray-500">
-                Specialized in ADHD, autism, and neurodivergent support
-              </p>
-            </div>
 
-            {/* Team Member 2 */}
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-3xl text-white">💡</span>
+              {/* Team Member 2 */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/team2.png" 
+                      alt="Research Team" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">M.Bharat Reddy</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Tech Expert | Researcher</p>
+                    <p className="text-xs text-gray-500 mt-1">CEO & Co-Founder</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Research Team</h3>
-              <p className="text-sm text-gray-600 mb-3">Neuroscientists and researchers</p>
-              <p className="text-xs text-gray-500">
-                Advancing understanding of neurodivergent conditions
-              </p>
-            </div>
 
-            {/* Team Member 3 */}
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-3xl text-white">🤝</span>
+              {/* Team Member 3 */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/team4.png" 
+                      alt="Support Team" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Charan</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Frontend Developer & UI/UX Designer</p>
+                    <p className="text-xs text-gray-500 mt-1">Creating seamless user experiences</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Advocacy Team</h3>
-              <p className="text-sm text-gray-600 mb-3">Neurodivergent advocates and educators</p>
-              <p className="text-xs text-gray-500">
-                Lived experience and community leadership
-              </p>
-            </div>
+              
 
-            {/* Team Member 4 */}
-            <div className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-3xl text-white">💻</span>
+              {/* Team Member 4 */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/team3.png" 
+                      alt="Tech Team" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Lakshmi Prasad</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Developers & UX</p>
+                    <p className="text-xs text-gray-500 mt-1">Creating accessible platforms</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Tech Team</h3>
-              <p className="text-sm text-gray-600 mb-3">Developers and UX specialists</p>
-              <p className="text-xs text-gray-500">
-                Creating accessible and intuitive platforms
-              </p>
+
+              {/* Team Member 5 */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/team1.jpeg" 
+                      alt="Advocacy Team" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">D.Harshith</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Tech Lead</p>
+                    <p className="text-xs text-gray-500 mt-1">Lived experience leadership</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+            <button className="bg-white text-gray-900 px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-lg">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Book a Call
+            </button>
+            <button className="bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-orange-700 transition-colors shadow-lg">
+              Get in Touch
+            </button>
+          </div>
         </div>
+
       </section>
 
       {/* Contact Us Section */}
-      <section id="contact" className="py-16 bg-white">
+      <section id="contact" className="py-16 bg-gradient-to-br from-orange-100/50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
@@ -609,20 +684,20 @@ export default function AboutPage() {
           </div>
         </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-8">
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
               <form className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                  <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                  <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900 bg-white" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+                  <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900 bg-white" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                  <textarea rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"></textarea>
+                  <textarea rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900 bg-white resize-none"></textarea>
                 </div>
                 <button type="submit" className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors font-semibold">
                   Send Message

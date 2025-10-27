@@ -200,3 +200,21 @@ a, button {
     transform: translateY(-10px) rotate(-2deg); 
   }
 }
+
+/* Team carousel scroll animation - seamless infinite loop */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}

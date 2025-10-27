@@ -626,9 +626,7 @@ export default function Home() {
                   <source src="/videos/vid2.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                
-                {/* Subtle Pink Tint Overlay */}
-                {/* <div className="absolute inset-0 bg-gradient-to-br from-pink-400/10 to-pink-600/5 pointer-events-none z-10"></div> */}
+              
               </div>
             </div>
 
