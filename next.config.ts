@@ -53,10 +53,13 @@ const nextConfig: NextConfig = {
   },
   // Configure image optimization and CDN
   images: {
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
+    // Reduce memory usage by limiting concurrency
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -86,6 +89,15 @@ const nextConfig: NextConfig = {
   },
   // Optimize production builds
   compress: true,
+  // Reduce memory usage during build
+  experimental: {
+    // Optimize memory usage
+    optimizePackageImports: ['lucide-react', '@use-gesture/react'],
+  },
+  // Reduce bundle size and memory usage
+  swcMinify: true,
+  // Limit memory usage for Next.js
+  reactStrictMode: false, // Can help reduce memory in development
 };
 
 export default nextConfig;

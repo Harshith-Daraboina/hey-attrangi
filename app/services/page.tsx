@@ -1,414 +1,209 @@
 "use client";
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
+// Lazy load DomeGallery to reduce initial memory usage
+const DomeGallery = lazy(() => import("@/components/DomeGallery"));
 
 export default function Services() {
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Custom images for therapy services - memoized to prevent recreation
+  const therapyImages = useMemo(() => [
+    {
+      src: "/images/founder2.png",
+      alt: "Cognitive Behavioral Therapy Session"
+    },
+    {
+      src: "/images/src4.png", 
+      alt: "Individual Counseling"
+    },
+    {
+      src: "/images/service1.jpg",
+      alt: "Family Therapy"
+    },
+    {
+      src: "/images/team2.png",
+      alt: "Couples Therapy"
+    },
+    {
+      src: "/images/src12.jpg",
+      alt: "Psychological Assessment"
+    },
+    {
+      src: "/images/founder2.png",
+      alt: "Online Consultations"
+    },
+    {
+      src: "/images/founder2.png",
+      alt: "Group Therapy Session"
+    }
+  ], []); // Empty dependency array means this is created only once
 
   return (
-    <div className="min-h-screen bg-orange-50">
-      {/* Header Navigation */}
-      <header className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${mounted && isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'}`}>
+    <div className="min-h-screen bg-orange-50" suppressHydrationWarning>
+      {/* Navigation Component */}
+      <Navigation currentPath="/services" />
+
+      {/* Mobile Mockup Section */}
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-orange-50 to-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl">A</span>
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center min-h-[500px] sm:min-h-[600px]">
+            {/* Left Side - Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Accessible Anywhere
               </div>
-              <div className="hidden md:block">
-                <h1 className="text-xl font-bold text-orange-600" style={{ fontFamily: 'Poppins, sans-serif' }}>Attrangi</h1>
-                <p className="text-xs text-gray-600 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>Mental Healthcare</p>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Your Mental Health Journey in Your <span className="text-orange-600">Pocket</span>
+              </h2>
+
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                Experience seamless access to therapy services, resources, and support through our intuitive platform. Book sessions, track progress, and access tools - all from your mobile device.
+              </p>
+
+              <div className="space-y-4 pt-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Book Sessions Instantly</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Schedule therapy sessions with certified professionals at your convenience</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Track Your Progress</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Monitor your mental health journey with interactive tools and insights</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Access Resources 24/7</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Browse articles, worksheets, and self-help guides anytime, anywhere</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <button className="bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-orange-700 transition-colors shadow-lg inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                  Get Started
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
               </div>
             </div>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center justify-center flex-1">
-              <div className="flex space-x-1">
-                <Link 
-                  href="/" 
-                  className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
-                >
-                  Home
-                </Link>
+
+            {/* Right Side - Mobile Mockup */}
+            <div className="relative flex justify-center items-center py-4 sm:py-8">
+              {/* Mobile Phone Frame */}
+              <div className="relative w-[240px] h-[480px] sm:w-[280px] sm:h-[560px] md:w-[320px] md:h-[640px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] p-2 shadow-2xl mx-auto">
+                {/* Phone Notch */}
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-3xl z-10"></div>
                 
-                {/* About Us Dropdown */}
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown('about')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <button
-                    className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center"
-                  >
-                    About Us
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'about' && (
-                    <div 
-                      className="absolute top-full left-0 pt-1 w-52 z-50"
-                    >
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/about" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          About Attrangi
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#team" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Our Team
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#mission" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Our Mission
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#contact" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Contact Us
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
+                {/* Screen Content */}
+                <div className="bg-white rounded-[2.5rem] h-full overflow-hidden relative">
+                  {/* Image inside the phone frame */}
+                  <Image
+                    src="/images/service1.jpg"
+                    alt="Attrangi Mental Health Services"
+                    width={320}
+                    height={640}
+                    className="object-cover w-full h-full"
+                    sizes="(max-width: 768px) 280px, 320px"
+                    loading="lazy"
+                    quality={60}
+                    unoptimized={false}
+                  />
                 </div>
-
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown('services')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <button
-                    className="text-orange-600 bg-orange-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center"
-                  >
-                    Services
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'services' && (
-                    <div 
-                      className="absolute top-full left-0 pt-1 w-52 z-50"
-                    >
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Therapy Services
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Assessment & Diagnosis
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Online Consultations
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Group Sessions
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Resources
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <Link 
-                  href="/blogs" 
-                  className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
-                >
-                  Insights
-                </Link>
-
-                {/* Resources Dropdown */}
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown('resources')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <button
-                    className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center"
-                  >
-                    Resources
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'resources' && (
-                    <div 
-                      className="absolute top-full left-0 pt-1 w-52 z-50"
-                    >
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/resources" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          All Resources
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#self-help" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Self-Help Guides
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#tools" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Mental Health Tools
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#worksheets" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Worksheets & Activities
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                
+                {/* Home Indicator */}
+                <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full z-10"></div>
               </div>
-            </nav>
-            
-            {/* View Products Button */}
-            <Link 
-              href="/aids" 
-              className="hidden md:flex bg-orange-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              View Products
-            </Link>
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* Main Content Area */}
-      <section className="py-20 bg-orange-50">
+      {/* Interactive Therapy Services Gallery */}
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Our Services
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+              Explore Our Therapy Services
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Comprehensive mental health services tailored to your needs
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+              Interact with our 3D gallery to discover the comprehensive mental health services we offer
             </p>
           </div>
+          
+          {/* DomeGallery Component - Lazy loaded */}
+          <div className="h-[400px] sm:h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+            <Suspense fallback={
+              <div className="w-full h-full bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+                  <p className="text-gray-600 font-medium">Loading gallery...</p>
+                </div>
+              </div>
+            }>
+              <DomeGallery 
+                images={therapyImages}
+                fit={0.8}
+                minRadius={400}
+                maxRadius={800}
+                dragSensitivity={25}
+                enlargeTransitionMs={400}
+                openedImageWidth="300px"
+                openedImageHeight="400px"
+                imageBorderRadius="15px"
+                openedImageBorderRadius="20px"
+                grayscale={false}
+                overlayBlurColor="#ffedd5"
+              />
+            </Suspense>
+          </div>
+        </div>
+      </section>
 
-          {/* Services Masonry Grid */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-            {/* Therapy Services */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Therapy Services
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Individual and personalized therapy sessions with licensed professionals to help you navigate life's challenges.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Cognitive Behavioral Therapy</li>
-                <li>• Individual Counseling</li>
-                <li>• Family Therapy</li>
-                <li>• Couples Therapy</li>
-              </ul>
-            </div>
 
-            {/* Assessment & Diagnosis */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Assessment & Diagnosis
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Comprehensive mental health evaluations to understand your needs and develop an effective treatment plan. Our assessments are conducted by licensed professionals using evidence-based tools and methodologies.
-              </p>
-              <div className="mt-6 p-4 bg-orange-50 rounded-lg">
-                <p className="text-sm font-semibold text-orange-700 mb-2">Assessment Types:</p>
-                <ul className="text-sm text-orange-700 space-y-1">
-                  <li>• Psychological Testing</li>
-                  <li>• Diagnostic Evaluation</li>
-                  <li>• Clinical Interviews</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Online Consultations */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Online Consultations
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Secure video consultations from the comfort of your home with our certified mental health professionals.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Confidential & Secure</li>
-                <li>• Flexible Scheduling</li>
-                <li>• No Travel Required</li>
-                <li>• Same Quality Care</li>
-              </ul>
-            </div>
-
-            {/* Group Sessions */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Group Sessions
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Therapeutic group sessions where you can connect with others facing similar challenges in a supportive environment. These sessions provide a space for shared experiences, mutual support, and collective healing.
-              </p>
-              <div className="mt-6 p-4 bg-orange-50 rounded-lg">
-                <p className="text-sm font-semibold text-orange-700 mb-2">Group Types:</p>
-                <ul className="text-sm text-orange-700 space-y-1">
-                  <li>• Support Groups</li>
-                  <li>• Therapeutic Groups</li>
-                  <li>• Skill-Building Groups</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Resources */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Resources
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Access our library of self-help guides, worksheets, tools, and activities to support your mental wellness journey.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Articles & Guides</li>
-                <li>• Interactive Worksheets</li>
-                <li>• Mindfulness Tools</li>
-                <li>• Crisis Resources</li>
-              </ul>
-            </div>
-
-            {/* Emergency Support */}
-            <div className="bg-orange-600 rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow  text-white">
-              <div className="w-16 h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Emergency Support
-              </h3>
-              <p className="leading-relaxed mb-4 opacity-95">
-                Immediate support and crisis intervention services available 24/7 for urgent mental health needs.
-              </p>
-              <div className="bg-white bg-opacity-20 rounded-lg p-4 mt-4">
-                <p className="text-sm font-semibold mb-2">24/7 Crisis Hotline</p>
-                <p className="text-2xl font-bold">+1 (800) 555-HELP</p>
-              </div>
-            </div>
-
-            {/* Wellness Programs */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow ">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Wellness Programs
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Holistic wellness programs designed to improve your overall mental health and wellbeing through structured activities and support.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>• Mindfulness Training</li>
-                <li>• Stress Management</li>
-                <li>• Sleep Hygiene Programs</li>
-                <li>• Lifestyle Coaching</li>
-              </ul>
-            </div>
-
-            {/* Specialized Treatment */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow md:row-span-2">
-              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Specialized Treatment
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Expert treatment for specific conditions including trauma, addiction, depression, anxiety, and more. Our specialized therapists provide targeted interventions based on evidence-based practices.
-              </p>
-              <div className="mt-6 space-y-2">
-                <p className="text-sm font-semibold text-gray-900">Conditions We Treat:</p>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• PTSD & Trauma</li>
-                  <li>• Substance Use Disorders</li>
-                  <li>• Eating Disorders</li>
-                  <li>• Mood Disorders</li>
-                </ul>
-              </div>
-            </div>
+      {/* Call to Action */}
+      <section className="py-12 sm:py-16 bg-orange-500">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+            Ready to Start Your Journey?
+          </h2>
+          <p className="text-base sm:text-lg text-orange-100 mb-8 max-w-2xl mx-auto">
+            Take the first step towards better mental health today. Our team of professionals is here to support you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-orange-50 transition-colors shadow-lg">
+              Book a Consultation
+            </button>
+            <button className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-white hover:bg-opacity-10 transition-colors">
+              Learn More
+            </button>
           </div>
         </div>
       </section>
@@ -418,4 +213,3 @@ export default function Services() {
     </div>
   );
 }
-

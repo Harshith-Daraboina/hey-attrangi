@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
 
 export default function AidsPage() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
