@@ -1,39 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 
 export default function Services() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const services = [
-    {
-      title: "Online Consultations",
-      description: "Access mental health support from the comfort of your home via secure video sessions.",
-      icon: "💻",
-      features: ["Video Therapy Sessions", "Phone Consultations", "Secure Messaging", "Flexible Scheduling"]
-    },
-    {
-      title: "Assessment & Diagnosis",
-      description: "Comprehensive evaluations to understand your mental health needs and create treatment plans.",
-      icon: "📋",
-      features: ["Psychological Assessments", "ADHD Evaluations", "Learning Disability Testing", "Treatment Planning"]
-    },
-    {
-      title: "Crisis Intervention",
-      description: "24/7 support for mental health emergencies and crisis situations.",
-      icon: "🚨",
-      features: ["Emergency Hotline", "Crisis Counseling", "Safety Planning", "Immediate Support"]
-    }
-  ];
+  useEffect(() => {
+    setMounted(true);
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-orange-50">
       {/* Header Navigation */}
-      <header className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'}`}>
+      <header className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${mounted && isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
@@ -229,331 +223,192 @@ export default function Services() {
         </div>
       </header>
 
-      {/* Hero Section - Two Column Layout (50vh) */}
-      <section className="relative overflow-hidden h-[50vh]">
-        <div className="flex h-full">
-          {/* Left Section - Book Appointments */}
-          <div className="w-full lg:w-1/2 bg-gradient-to-br from-orange-500 to-orange-400 flex items-center justify-center px-8 lg:px-12 relative">
-            <div className="max-w-lg text-white">
-              <h1 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Your Mental Health, Our Expertise. Trusted Therapists at Your Fingertips.
-              </h1>
-              
-              <p className="text-base lg:text-lg mb-8 leading-relaxed opacity-95" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Whether in person or online, Attrangi connects you with certified, compassionate mental health professionals.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-white text-orange-600 px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Book Appointment
-                </button>
-                <button className="border-2 border-white text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-white hover:text-orange-600 transition-colors flex items-center justify-center gap-2">
-                  See How It Works
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          {/* Right Section - Video Call Interface */}
-          <div className="w-full lg:w-1/2 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center relative p-8 lg:p-12">
-            {/* Video Call Window */}
-            <div className="relative w-full max-w-lg">
-              {/* Doctor Profiles Grid */}
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                {/* Dr. Smith Card */}
-                <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow">
-                  <div className="text-center">
-                    {/* Photo Placeholder */}
-                    <div className="w-full aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 flex items-center justify-center shadow-md overflow-hidden">
-                      <span className="text-7xl">👨‍⚕️</span>
-                    </div>
-                    <h3 className="text-base font-bold text-gray-900 mb-1" style={{fontFamily: 'Poppins, sans-serif'}}>Dr. Smith</h3>
-                    <p className="text-sm text-gray-600">Psychologist</p>
-                  </div>
-                </div>
-                
-                {/* Dr. Johnson Card */}
-                <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow">
-                  <div className="text-center">
-                    {/* Photo Placeholder */}
-                    <div className="w-full aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 flex items-center justify-center shadow-md overflow-hidden">
-                      <span className="text-7xl">👩‍⚕️</span>
-                    </div>
-                    <h3 className="text-base font-bold text-gray-900 mb-1" style={{fontFamily: 'Poppins, sans-serif'}}>Dr. Johnson</h3>
-                    <p className="text-sm text-gray-600">Therapist</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Video Call Controls */}
-              <div className="bg-gray-900 rounded-2xl shadow-2xl p-6">
-                <div className="flex justify-center gap-4 mb-4">
-                  {/* Video Button */}
-                  <button className="w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-50 transition-all hover:scale-110">
-                    <svg className="w-7 h-7 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
-                    </svg>
-                  </button>
-                  
-                  {/* Call Button */}
-                  <button className="w-20 h-20 bg-white rounded-full shadow-2xl flex items-center justify-center hover:bg-gray-50 transition-all hover:scale-110">
-                    <svg className="w-10 h-10 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                    </svg>
-                  </button>
-                  
-                  {/* Microphone Button */}
-                  <button className="w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-50 transition-all hover:scale-110">
-                    <svg className="w-7 h-7 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                    </svg>
-                  </button>
-                </div>
-                
-                <p className="text-center text-white text-sm font-medium">Connect with Professional Therapists</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-3xl">{service.icon}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-                
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                    What's Included:
-                  </h4>
-                  {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-sm text-gray-600">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <button className="w-full bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600 transition-colors">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Educational Content Section */}
-      <section className="py-20 bg-white">
+      {/* Main Content Area */}
+      <section className="py-20 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Mental Health Education & Awareness
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+              Our Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Understanding mental health is the first step towards wellness. Learn about common conditions, self-care tips, and ways to support others.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Comprehensive mental health services tailored to your needs
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Understanding Mental Health */}
-            <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg p-8 border border-orange-100">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mr-4">
-                  <span className="text-2xl">🧠</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'Poppins, sans-serif'}}>
-                  Understanding Mental Health
-                </h3>
+          {/* Services Masonry Grid */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+            {/* Therapy Services */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
               </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also determines how we handle stress, relate to others, and make choices.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-sm text-gray-600">Mental health is important at every stage of life, from childhood and adolescence through adulthood.</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-sm text-gray-600">Over the course of your life, if you experience mental health problems, your thinking, mood, and behavior could be affected.</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-sm text-gray-600">Many factors contribute to mental health problems, including biological factors, life experiences, and family history.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Common Conditions */}
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg p-8 border border-blue-100">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
-                  <span className="text-2xl">📊</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'Poppins, sans-serif'}}>
-                  Common Mental Health Conditions
-                </h3>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <h4 className="font-semibold text-gray-900 mb-2">Anxiety Disorders</h4>
-                  <p className="text-sm text-gray-600">Excessive worry, fear, or nervousness that interferes with daily activities.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <h4 className="font-semibold text-gray-900 mb-2">Depression</h4>
-                  <p className="text-sm text-gray-600">Persistent feelings of sadness, hopelessness, and loss of interest in activities.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <h4 className="font-semibold text-gray-900 mb-2">PTSD</h4>
-                  <p className="text-sm text-gray-600">Post-traumatic stress disorder from experiencing or witnessing traumatic events.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <h4 className="font-semibold text-gray-900 mb-2">OCD</h4>
-                  <p className="text-sm text-gray-600">Obsessive-compulsive disorder characterized by recurring thoughts and repetitive behaviors.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mental Health Tips */}
-          <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-lg p-8 mb-12 border border-green-100">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
-                <span className="text-2xl">💚</span>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Tips for Better Mental Health
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Therapy Services
               </h3>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">🏃‍♀️</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Stay Active</h4>
-                <p className="text-sm text-gray-600">Regular physical activity can help reduce anxiety and improve mood. Aim for at least 30 minutes of exercise most days.</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">🧘‍♂️</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Practice Mindfulness</h4>
-                <p className="text-sm text-gray-600">Meditation, deep breathing, and yoga can help reduce stress and increase awareness of the present moment.</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">😴</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Get Quality Sleep</h4>
-                <p className="text-sm text-gray-600">Aim for 7-9 hours of sleep per night. Good sleep hygiene supports mental and physical health.</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">👨‍👩‍👧‍👦</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Connect with Others</h4>
-                <p className="text-sm text-gray-600">Build and maintain strong relationships. Social connections are vital for mental well-being.</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">🍎</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Eat Well</h4>
-                <p className="text-sm text-gray-600">A balanced diet with plenty of fruits, vegetables, and whole grains supports brain health.</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-green-100">
-                <div className="text-3xl mb-3">🙏</div>
-                <h4 className="font-semibold text-gray-900 mb-2">Seek Help When Needed</h4>
-                <p className="text-sm text-gray-600">Don't hesitate to reach out to mental health professionals. Asking for help is a sign of strength.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Warning Signs */}
-          <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl shadow-lg p-8 border border-purple-100">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
-                <span className="text-2xl">⚠️</span>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily: 'Poppins, sans-serif'}}>
-                Warning Signs to Watch For
-              </h3>
-            </div>
-            <p className="text-gray-700 mb-6">
-              If you or someone you know experiences any of the following for more than two weeks, consider seeking professional help:
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Persistent sad, anxious, or "empty" mood</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Loss of interest in activities once enjoyed</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Significant changes in appetite or weight</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Difficulty sleeping or oversleeping</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Decreased energy or fatigue</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Feelings of worthlessness or excessive guilt</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Difficulty thinking, concentrating, or making decisions</p>
-              </div>
-              <div className="flex items-start space-x-3 bg-white rounded-lg p-4 border border-purple-100">
-                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-sm text-gray-700">Thoughts of death or suicide</p>
-              </div>
-            </div>
-            <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
-              <p className="text-sm text-red-800 font-semibold">
-                <strong>Emergency Help:</strong> If you or someone you know is in crisis, please call emergency services or contact a crisis hotline immediately.
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Individual and personalized therapy sessions with licensed professionals to help you navigate life's challenges.
               </p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Cognitive Behavioral Therapy</li>
+                <li>• Individual Counseling</li>
+                <li>• Family Therapy</li>
+                <li>• Couples Therapy</li>
+              </ul>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Call to Action Section */}
-      <section className="bg-orange-500 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{fontFamily: 'Poppins, sans-serif'}}>
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-orange-100 mb-8 max-w-3xl mx-auto">
-            Take the first step towards better mental health. Our team of experienced professionals is here to support you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-orange-500 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors">
-              Book a Consultation
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-orange-500 transition-colors">
-              Learn More
-            </button>
+            {/* Assessment & Diagnosis */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Assessment & Diagnosis
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Comprehensive mental health evaluations to understand your needs and develop an effective treatment plan. Our assessments are conducted by licensed professionals using evidence-based tools and methodologies.
+              </p>
+              <div className="mt-6 p-4 bg-orange-50 rounded-lg">
+                <p className="text-sm font-semibold text-orange-700 mb-2">Assessment Types:</p>
+                <ul className="text-sm text-orange-700 space-y-1">
+                  <li>• Psychological Testing</li>
+                  <li>• Diagnostic Evaluation</li>
+                  <li>• Clinical Interviews</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Online Consultations */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Online Consultations
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Secure video consultations from the comfort of your home with our certified mental health professionals.
+              </p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Confidential & Secure</li>
+                <li>• Flexible Scheduling</li>
+                <li>• No Travel Required</li>
+                <li>• Same Quality Care</li>
+              </ul>
+            </div>
+
+            {/* Group Sessions */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Group Sessions
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Therapeutic group sessions where you can connect with others facing similar challenges in a supportive environment. These sessions provide a space for shared experiences, mutual support, and collective healing.
+              </p>
+              <div className="mt-6 p-4 bg-orange-50 rounded-lg">
+                <p className="text-sm font-semibold text-orange-700 mb-2">Group Types:</p>
+                <ul className="text-sm text-orange-700 space-y-1">
+                  <li>• Support Groups</li>
+                  <li>• Therapeutic Groups</li>
+                  <li>• Skill-Building Groups</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Resources */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow break-inside-avoid mb-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Resources
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Access our library of self-help guides, worksheets, tools, and activities to support your mental wellness journey.
+              </p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Articles & Guides</li>
+                <li>• Interactive Worksheets</li>
+                <li>• Mindfulness Tools</li>
+                <li>• Crisis Resources</li>
+              </ul>
+            </div>
+
+            {/* Emergency Support */}
+            <div className="bg-orange-600 rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow  text-white">
+              <div className="w-16 h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Emergency Support
+              </h3>
+              <p className="leading-relaxed mb-4 opacity-95">
+                Immediate support and crisis intervention services available 24/7 for urgent mental health needs.
+              </p>
+              <div className="bg-white bg-opacity-20 rounded-lg p-4 mt-4">
+                <p className="text-sm font-semibold mb-2">24/7 Crisis Hotline</p>
+                <p className="text-2xl font-bold">+1 (800) 555-HELP</p>
+              </div>
+            </div>
+
+            {/* Wellness Programs */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow ">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Wellness Programs
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Holistic wellness programs designed to improve your overall mental health and wellbeing through structured activities and support.
+              </p>
+              <ul className="text-sm text-gray-600 space-y-2">
+                <li>• Mindfulness Training</li>
+                <li>• Stress Management</li>
+                <li>• Sleep Hygiene Programs</li>
+                <li>• Lifestyle Coaching</li>
+              </ul>
+            </div>
+
+            {/* Specialized Treatment */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow md:row-span-2">
+              <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Specialized Treatment
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Expert treatment for specific conditions including trauma, addiction, depression, anxiety, and more. Our specialized therapists provide targeted interventions based on evidence-based practices.
+              </p>
+              <div className="mt-6 space-y-2">
+                <p className="text-sm font-semibold text-gray-900">Conditions We Treat:</p>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• PTSD & Trauma</li>
+                  <li>• Substance Use Disorders</li>
+                  <li>• Eating Disorders</li>
+                  <li>• Mood Disorders</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
