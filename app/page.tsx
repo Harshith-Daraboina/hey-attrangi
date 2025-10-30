@@ -591,19 +591,23 @@ export default function Home() {
                   <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden shadow-xl border-4 border-orange-500 mb-4">
                     <Image
                       src="/images/founder2.png"
-                      alt="Dr. Attrangi Founder"
+                      alt="Dr.Sandesh Palhke"
                       fill
                       className="object-cover"
                       priority
                     />
                   </div>
                   <div className="text-center md:text-left">
-                    <div className="text-xl md:text-2xl font-bold text-orange-600 mb-1" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Dr. Attrangi Founder
-                    </div>
-                    <div className="text-sm md:text-base text-gray-700 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
-                      Clinical Psychologist & Mental Health Advocate
-                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
+                      Dr Sandesh Sanjeev Phalke
+                      </h2>
+                      <p
+                        className="text-base md:text-lg text-gray-700 font-medium"
+                        style={{ fontFamily: 'Poppins, sans-serif' }}
+                      >
+                        Founder | Researcher 
+                      </p>
+                      
                   </div>
                 </div>
                 
@@ -611,14 +615,14 @@ export default function Home() {
                 <div className="space-y-8">
                   {/* Main Quote */}
                   <div>
-                    <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 italic leading-tight mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+                    <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 italic leading-tight mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
                       "Mental health is not a destination, but a journey of understanding, growth, and self-compassion."
                     </p>
                   </div>
                   
                   {/* Vision Description */}
                   <div className="border-l-4 border-orange-500 pl-6">
-                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
                       We believe everyone deserves compassionate, evidence-based care that honors their unique journey.
                     </p>
                   </div>

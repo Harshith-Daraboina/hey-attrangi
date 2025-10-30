@@ -96,12 +96,18 @@ export default function AboutPage() {
                {/* Founder Name and Title */}
                <div className="relative z-10">
                  <h2 className="text-3xl md:text-4xl font-bold text-orange-600 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>
-                   Dr. Sandesh Palhke
+                 Dr. Sandesh Sanjeev Phalke
                  </h2>
-                 <p className="text-lg md:text-xl text-gray-700 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
-                   Assistant Professor, Clinical Psychologist & Mental Health Advocate
-                   Department of Psychology, Indian Institute of Information Technology, Dharwad
-                 </p>
+                 <p
+                  className="text-lg md:text-xl text-gray-700 font-medium"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                >
+                  Founder | Research | Department of Arts, Science & Design
+                </p>
+                <div className="text-gray-600 text-base md:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  Ph.D., Indian Institute of Technology Guwahati, India
+                </div>
+
                </div>
                
                {/* Quote */}
