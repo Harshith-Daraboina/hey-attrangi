@@ -23,6 +23,10 @@ export default function BlogsPage() {
     }
   };
 
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
   return (
     <div className="min-h-screen bg-orange-50">
       {/* Navigation Component */}

@@ -178,10 +178,10 @@ export default function Home() {
       </div>
 
       {/* Hero Section with Background Image */}
-      <div className="relative w-full h-[80vh] bg-gray-900">
+      <div className="relative w-full min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] bg-gray-900">
   {/* Background Image */}
   <Image
-    src="/images/src3.jpg"
+    src="/images/src6-3.jpeg"
     alt="Modern mental health facility with calming, professional environment"
     fill
     className="object-cover z-0"
@@ -198,8 +198,8 @@ export default function Home() {
   {/* Text Overlay with improved positioning and spacing */}
   <div className="absolute inset-0 flex flex-col justify-between z-10">
     {/* Main Content - Centered Vertically */}
-    <div className="flex-1 flex flex-col justify-center px-8 md:px-16">
-      <div className="max-w-xl space-y-4">
+    <div className="flex-1 flex flex-col justify-center items-center px-8 md:px-16">
+      <div className="max-w-xl w-full space-y-6 text-left md:-translate-x-64">
         {/* Main Heading with text shadow */}
         <h1
           className="text-white text-3xl md:text-4xl font-bold leading-tight drop-shadow-lg"
@@ -250,11 +250,12 @@ export default function Home() {
 
 
 
-      {/* Floating Statistics Box */}
-      <div className="relative -mt-16 mb-20 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-orange-100">
-            <div className="flex flex-col md:flex-row md:divide-x md:divide-gray-200 gap-8 md:gap-0">
+      <div className="bg-[#fff3e7]">
+        {/* Floating Statistics Box */}
+        <div className="relative -mt-16 mb-20 z-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-orange-100">
+              <div className="flex flex-col md:flex-row md:divide-x md:divide-gray-200 gap-8 md:gap-0">
               {/* Stat 1 */}
               <div className="text-center flex-1 md:px-6">
                 <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-3" style={{fontFamily: 'Poppins, sans-serif'}}>500+</div>
@@ -322,23 +323,24 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* WHO IT'S FOR Section */}
-        <div className="mb-20">
-          {/* Centered Heading */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
-              Hey Attrangi supports everyone on their journey
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Get comprehensive mental health support anytime, anywhere — with the Attrangi platform.
-            </p>
-          </div>
+      <main className="relative pt-20 pb-40 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* WHO IT'S FOR Section */}
+          <div className="mb-20">
+            {/* Centered Heading */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>
+                Hey Attrangi supports everyone on their journey
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Get comprehensive mental health support anytime, anywhere — with the Attrangi platform.
+              </p>
+            </div>
 
-          {/* Content Grid - Features and Video Side by Side */}
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left Content - Feature List */}
-            <div className="space-y-6">
+            {/* Content Grid - Features and Video Side by Side */}
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Left Content - Feature List */}
+              <div className="space-y-6">
               {/* For Students */}
               <div className="flex items-start space-x-4">
                 <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -409,45 +411,75 @@ export default function Home() {
 
             </div>
 
-            {/* Right Content - Video */}
-            <div className="relative flex justify-center items-center h-[400px] overflow-hidden w-full">
-              {/* --- Image Blob Behind the Video --- */}
-              <div className="absolute inset-0 flex justify-center items-center z-10">
-                <Image
-                  src="/images/assets2.png"
-                  alt="Background blob"
-                  width={600}
-                  height={500}
-                  className="object-contain opacity-85 max-w-full max-h-full"
-                />
-              </div>
-              
-              {/* --- Video Card --- */}
-              <div className="bg-white rounded-xl shadow-xl overflow-hidden w-full max-w-[500px] h-[300px] border border-gray-200 relative z-20">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
-                  style={{
-                    filter: 'sepia(0.3) saturate(1.2) hue-rotate(15deg) brightness(0.9)'
-                  }}
-                >
-                  <source src="/videos/vid2.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              
+            {/* Right Content - Hero Video Presentation */}
+            <div className="relative flex justify-center items-center w-full h-[420px]">
+              {/* Decorative background accents */}
+              {/* <div className="absolute -top-16 -left-6 w-24 h-24 rounded-full bg-orange-100 opacity-80"></div> */}
+              {/* <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-gradient-to-tr from-orange-200/80 via-orange-100/60 to-transparent rounded-full mix-blend-multiply"></div> */}
+              {/* <div className="absolute inset-0 translate-x-10 translate-y-8 w-[110%] h-[110%] rounded-[120px] bg-gradient-to-br from-orange-200/40 via-orange-100/30 to-transparent"></div> */}
+
+              {/* Content Card */}
+              <div className="relative w-full max-w-[560px]">
+                {/* <div className="absolute -inset-8 bg-gradient-to-br from-orange-200 via-white to-orange-100 rounded-[36px] opacity-90"></div> */}
+                <div className="relative bg-white rounded-[30px] shadow-[0_35px_70px_rgba(17,24,39,0.25)] overflow-hidden border border-orange-100">
+                  {/* Badge */}
+                  <div className="absolute top-6 left-6 flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full shadow-sm z-20">
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                    <span className="text-xs font-semibold tracking-wide text-green-600 uppercase">Live session</span>
+                  </div>
+
+                  {/* Video */}
+                  <video
+                    className="w-full h-[320px] object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                    style={{
+                      filter: 'brightness(0.95) contrast(1.05)'
+                    }}
+                  >
+                    <source src="/videos/vid3.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+
+                  {/* Overlay info */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <h3 className="text-white text-lg font-semibold leading-tight" style={{fontFamily: 'Poppins, sans-serif'}}>
+                        Therapy that feels the emptiness
+                      </h3>
+                      <p className="text-white/85 text-sm mt-1" style={{fontFamily: 'Poppins, sans-serif'}}>
+                        Guided sessions tailored to your goals, pace, and everyday life.
+                      </p>
+                    </div>
+                    <button className="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-white text-sm font-medium hover:bg-white/35 transition-all">
+                      INSTALL NOW
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
-
-
-
+      </div>
+      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 lg:h-40 text-[#ffe8d9] pointer-events-none">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="currentColor"
+            d="M0,192L48,170.7C96,149,192,107,288,106.7C384,107,480,149,576,170.7C672,192,768,192,864,176C960,160,1056,128,1152,106.7C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          />
+        </svg>
+      </div>
       </main>
+      </div>
 
       {/* Personalized Care Section */}
       <section className="bg-white py-20 pb-32 overflow-x-hidden">

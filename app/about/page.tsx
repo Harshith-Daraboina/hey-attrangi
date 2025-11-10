@@ -393,7 +393,7 @@ export default function AboutPage() {
                 <div className="relative w-full h-full">
                   <div className="relative w-full h-64 overflow-hidden">
                     <Image 
-                      src="/images/team1.jpeg" 
+                      src="/images/team1-2.jpg" 
                       alt="Advocacy Team" 
                       fill
                       className="object-cover"
@@ -403,6 +403,25 @@ export default function AboutPage() {
                     <h3 className="text-lg font-bold text-gray-900 mb-1">D.Harshith</h3>
                     <p className="text-sm text-orange-600 font-semibold">Tech Lead</p>
                     <p className="text-xs text-gray-500 mt-1">Lived experience leadership</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Team Member 6 */}
+              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+                <div className="relative w-full h-full">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <Image 
+                      src="/images/team5.jpg" 
+                      alt="Media Outreach and Research Lead" 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">Kalyan Jakkoju</h3>
+                    <p className="text-sm text-orange-600 font-semibold">Media Outreach & Research Lead</p>
+                    <p className="text-xs text-gray-500 mt-1">Driving awareness through evidence-based storytelling</p>
                   </div>
                 </div>
               </div>
@@ -461,7 +480,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+91 95523 24069</p>
                   </div>
             </div>
 
@@ -477,6 +496,44 @@ export default function AboutPage() {
                     <p className="text-gray-600">123 Mental Health Ave<br />San Francisco, CA 94102</p>
                   </div>
             </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">LinkedIn</h4>
+                    <a
+                      href="https://www.linkedin.com/company/heyattrangi/?viewAsMember=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-700 transition-colors break-all"
+                    >
+                      linkedin.com/company/heyattrangi
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M7.5 2h9A5.5 5.5 0 0122 7.5v9A5.5 5.5 0 0116.5 22h-9A5.5 5.5 0 012 16.5v-9A5.5 5.5 0 017.5 2zm0 2A3.5 3.5 0 004 7.5v9A3.5 3.5 0 007.5 20h9a3.5 3.5 0 003.5-3.5v-9A3.5 3.5 0 0016.5 4h-9zm9.75 1.5a1 1 0 11-.002 2 1 1 0 01.002-2zM12 7a5 5 0 015 5 5 5 0 11-5-5zm0 2a3 3 0 100 6 3 3 0 000-6z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Instagram</h4>
+                    <a
+                      href="https://www.instagram.com/hey_attrangi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-700 transition-colors break-all"
+                    >
+                      instagram.com/hey_attrangi
+                    </a>
+                  </div>
+                </div>
           </div>
         </div>
 
