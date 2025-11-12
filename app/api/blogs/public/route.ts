@@ -14,6 +14,7 @@ export async function GET() {
         id: true,
         title: true,
         slug: true,
+        content: true,
         excerpt: true,
         image: true,
         author: true,
@@ -21,6 +22,7 @@ export async function GET() {
         views: true,
         createdAt: true,
         published: true,
+        tumblineQuestion: true,
       },
     });
     return NextResponse.json(blogs);

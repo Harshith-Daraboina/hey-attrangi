@@ -493,7 +493,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Office</h4>
-                    <p className="text-gray-600">123 Mental Health Ave<br />San Francisco, CA 94102</p>
+                    <p className="text-gray-600">Jai Jinendra Banglow, 580009<br />Hubli - Dharwad Rd, KHB Colony<br />Narayanpura, Dharwad, Karnataka 580009<br />Sattur</p>
                   </div>
             </div>
 

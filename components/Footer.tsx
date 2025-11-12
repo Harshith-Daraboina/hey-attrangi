@@ -44,6 +44,12 @@ export default function Footer() {
             <ul className="space-y-2 text-sm mb-4">
               <li><a href="mailto:support@attrangi.com" className="text-gray-400 hover:text-white transition-colors">support@attrangi.com</a></li>
               <li><a href="tel:+919552324069" className="text-gray-400 hover:text-white transition-colors">+91 95523 24069</a></li>
+              <li className="text-gray-400">
+                Jai Jinendra Banglow, 580009<br />
+                Hubli - Dharwad Rd, KHB Colony<br />
+                Narayanpura, Dharwad, Karnataka 580009<br />
+                Sattur
+              </li>
             </ul>
             <div className="flex space-x-4">
               <a

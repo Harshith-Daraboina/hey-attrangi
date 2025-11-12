@@ -25,14 +25,32 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Focus indicators for better accessibility */
-a:focus,
+/* Remove focus outline and blue selection on buttons and links */
+button,
+a {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Remove focus outline on form inputs but allow text selection */
+input,
+textarea,
+select {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove blue selection border on click/focus */
 button:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+a:focus,
+button:active,
+a:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Reduced motion preferences */
@@ -217,4 +235,14 @@ a, button {
 
 .animate-scroll-left:hover {
   animation-play-state: paused;
+}
+
+/* Hide scrollbar for horizontal scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }

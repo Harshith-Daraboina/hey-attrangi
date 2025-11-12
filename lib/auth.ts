@@ -24,8 +24,14 @@ export const authOptions: NextAuthOptions = {
             }
           });
 
-          if (!user || !user.password) {
-            console.error("User not found or no password");
+          if (!user) {
+            console.error(`User not found: ${credentials.email}`);
+            return null;
+          }
+
+          if (!user.password) {
+            console.error(`User found but no password set for: ${credentials.email}`);
+            console.error("Please reset the password using the create-admin script or signup page");
             return null;
           }
 

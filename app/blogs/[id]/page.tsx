@@ -46,9 +46,9 @@ interface RecentBlog {
   createdAt: string;
 }
 
-export default function BlogSlugPage() {
+export default function BlogIdPage() {
   const params = useParams();
-  const slug = params.slug as string;
+  const id = params.id as string;
   
   const [blog, setBlog] = useState<Blog | null>(null);
   const [recentBlogs, setRecentBlogs] = useState<RecentBlog[]>([]);
@@ -77,22 +77,22 @@ export default function BlogSlugPage() {
   };
 
   useEffect(() => {
-    if (slug) {
+    if (id) {
       // Fetch blog and recent blogs in parallel for faster loading
       Promise.all([fetchBlog(), fetchRecentBlogs()]).finally(() => {
         setLoading(false);
       });
       
-      // Increment view count asynchronously (non-blocking)
-      fetch(`/api/blogs/slug/${slug}/view`, {
+      // Increment view count asynchronously (non-blocking) - using ID
+      fetch(`/api/blogs/${id}/view`, {
         method: "POST",
       }).catch(err => console.error("Error incrementing views:", err));
     }
-  }, [slug]);
+  }, [id]);
 
   const fetchBlog = async () => {
     try {
-      const response = await fetch(`/api/blogs/slug/${slug}`);
+      const response = await fetch(`/api/blogs/${id}`);
       if (response.ok) {
         const data = await response.json();
         setBlog(data);
@@ -119,7 +119,7 @@ export default function BlogSlugPage() {
     if (!blog || liked) return;
     
     try {
-      const response = await fetch(`/api/blogs/slug/${slug}/like`, {
+      const response = await fetch(`/api/blogs/${id}/like`, {
         method: "POST",
       });
       
@@ -138,7 +138,7 @@ export default function BlogSlugPage() {
     
     setSubmittingReview(true);
     try {
-      const response = await fetch(`/api/blogs/slug/${slug}/review`, {
+      const response = await fetch(`/api/blogs/${id}/review`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -187,7 +187,7 @@ export default function BlogSlugPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation currentPath={`/blogs/${slug}`} />
+      <Navigation currentPath={`/blogs/${id}`} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-3 gap-8">
@@ -425,7 +425,7 @@ export default function BlogSlugPage() {
                   {recentBlogs.map((recentBlog) => (
                     <Link
                       key={recentBlog.id}
-                      href={`/blogs/${recentBlog.slug}`}
+                      href={`/blogs/${recentBlog.id}`}
                       className="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors"
                     >
                       <div className="relative w-20 h-20 flex-shrink-0 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg overflow-hidden">
@@ -577,3 +577,4 @@ export default function BlogSlugPage() {
     </div>
   );
 }
+

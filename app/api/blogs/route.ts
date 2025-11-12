@@ -26,7 +26,24 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, slug, content, excerpt, image, author, published, featured } = body;
+    const { 
+      title, 
+      slug, 
+      content, 
+      excerpt, 
+      image, 
+      author, 
+      published, 
+      featured,
+      tumblineQuestion,
+      tumblineLine,
+      mainContent,
+      disorderRelation,
+      question,
+      subquestions,
+      summary,
+      sourceLink
+    } = body;
 
     // Check if slug already exists
     const existingBlog = await prisma.blog.findUnique({
@@ -45,6 +62,14 @@ export async function POST(request: NextRequest) {
         excerpt: excerpt || null,
         image: image || null,
         author: author || null,
+        tumblineQuestion: tumblineQuestion || null,
+        tumblineLine: tumblineLine || null,
+        mainContent: mainContent || null,
+        disorderRelation: disorderRelation || null,
+        question: question || null,
+        subquestions: subquestions || [],
+        summary: summary || null,
+        sourceLink: sourceLink || null,
         published: published || false,
         featured: featured || false,
       },

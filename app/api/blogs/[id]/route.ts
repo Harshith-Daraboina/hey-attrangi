@@ -11,9 +11,17 @@ export async function GET(
     const { id } = await params;
     const blog = await prisma.blog.findUnique({
       where: { id },
+      include: {
+        reviews: {
+          orderBy: {
+            createdAt: "desc",
+          },
+          take: 50, // Limit reviews to improve performance
+        },
+      },
     });
 
-    if (!blog) {
+    if (!blog || !blog.published) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
 
@@ -37,7 +45,24 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
-    const { title, slug, content, excerpt, image, published } = body;
+    const { 
+      title, 
+      slug, 
+      content, 
+      excerpt, 
+      image, 
+      author,
+      published,
+      featured,
+      tumblineQuestion,
+      tumblineLine,
+      mainContent,
+      disorderRelation,
+      question,
+      subquestions,
+      summary,
+      sourceLink
+    } = body;
 
     const blog = await prisma.blog.update({
       where: { id },
@@ -47,7 +72,17 @@ export async function PUT(
         content,
         excerpt: excerpt || null,
         image: image || null,
+        author: author || null,
+        tumblineQuestion: tumblineQuestion || null,
+        tumblineLine: tumblineLine || null,
+        mainContent: mainContent || null,
+        disorderRelation: disorderRelation || null,
+        question: question || null,
+        subquestions: subquestions || [],
+        summary: summary || null,
+        sourceLink: sourceLink || null,
         published: published || false,
+        featured: featured !== undefined ? featured : false,
       },
     });
 
