@@ -9,6 +9,8 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
+    console.log("Fetching blog with ID:", id);
+    
     const blog = await prisma.blog.findUnique({
       where: { id },
       include: {
@@ -21,14 +23,23 @@ export async function GET(
       },
     });
 
-    if (!blog || !blog.published) {
-      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+    console.log("Blog found:", blog ? "Yes" : "No");
+    if (blog) {
+      console.log("Blog published:", blog.published);
+    }
+
+    if (!blog) {
+      return NextResponse.json({ error: "Blog not found - no blog with this ID exists" }, { status: 404 });
+    }
+
+    if (!blog.published) {
+      return NextResponse.json({ error: "Blog not found - blog exists but is not published" }, { status: 404 });
     }
 
     return NextResponse.json(blog);
   } catch (error) {
     console.error("Error fetching blog:", error);
-    return NextResponse.json({ error: "Failed to fetch blog" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch blog", details: error instanceof Error ? error.message : String(error) }, { status: 500 });
   }
 }
 

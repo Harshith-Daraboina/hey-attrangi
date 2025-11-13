@@ -123,8 +123,8 @@ export default function BlogsPage() {
             <div className="mb-3 p-3 bg-orange-50 rounded border-l-4 border-orange-500">
               <p className="text-xs font-semibold text-orange-900 italic line-clamp-2 leading-relaxed" style={{fontFamily: 'Poppins, sans-serif'}}>
                 "{blog.tumblineQuestion}"
-              </p>
-            </div>
+            </p>
+          </div>
           )}
 
           {/* Title */}
@@ -164,18 +164,18 @@ export default function BlogsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>{calculateReadingTime(blog.content)}</span>
-              </div>
+            </div>
               <div className="flex items-center gap-1">
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
                 <span>{blog.views || 0} views</span>
-              </div>
+            </div>
+            </div>
             </div>
           </div>
         </div>
-      </div>
     </Link>
   ));
   
@@ -187,10 +187,10 @@ export default function BlogsPage() {
       <Navigation currentPath="/blogs" />
       
       {/* All Articles Section */}
-      {loading ? (
+        {loading ? (
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
           </div>
         </section>
       ) : allBlogs.length > 0 ? (
@@ -202,9 +202,9 @@ export default function BlogsPage() {
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900" style={{fontFamily: 'Poppins, sans-serif'}}>
                 LATEST ARTICLES
-              </h2>
-            </div>
-          </div>
+                    </h2>
+                </div>
+              </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -216,16 +216,16 @@ export default function BlogsPage() {
                   formatDate={formatDate}
                   getCategories={getCategories}
                 />
-              ))}
-            </div>
+            ))}
+          </div>
           </div>
         </section>
       ) : (
         <section className="py-12 md:py-16 lg:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-gray-500 text-xl">No articles available yet. Check back soon!</p>
-          </div>
-        </section>
+      </div>
+      </section>
       )}
 
       {/* Footer */}

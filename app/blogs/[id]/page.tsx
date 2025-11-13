@@ -54,6 +54,7 @@ export default function BlogIdPage() {
   const [recentBlogs, setRecentBlogs] = useState<RecentBlog[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   
@@ -78,6 +79,7 @@ export default function BlogIdPage() {
 
   useEffect(() => {
     if (id) {
+      console.log("Fetching blog with ID:", id);
       // Fetch blog and recent blogs in parallel for faster loading
       Promise.all([fetchBlog(), fetchRecentBlogs()]).finally(() => {
         setLoading(false);
@@ -92,14 +94,44 @@ export default function BlogIdPage() {
 
   const fetchBlog = async () => {
     try {
+      console.log("Attempting to fetch blog with ID:", id);
+      console.log("ID type:", typeof id);
+      console.log("ID length:", id?.length);
+      
       const response = await fetch(`/api/blogs/${id}`);
+      console.log("Response status:", response.status);
+      
       if (response.ok) {
         const data = await response.json();
+        console.log("Blog fetched successfully:", data.title);
         setBlog(data);
         setReviews(data.reviews || []);
+        setError(null);
+      } else {
+        const errorData = await response.json().catch(() => ({ error: "Failed to fetch blog" }));
+        console.error("Error response:", errorData);
+        console.error("Status:", response.status);
+        setError(errorData.error || "Blog not found");
+        
+        // If ID fetch fails, try to get all blogs and see if we can find a match
+        // This is just for debugging
+        try {
+          const allBlogsResponse = await fetch("/api/blogs/public");
+          if (allBlogsResponse.ok) {
+            const allBlogs = await allBlogsResponse.json();
+            console.log("Available blog IDs:", allBlogs.map((b: Blog) => b.id));
+            const matchingBlog = allBlogs.find((b: Blog) => b.id === id);
+            if (matchingBlog) {
+              console.log("Found matching blog in public list:", matchingBlog);
+            }
+          }
+        } catch (e) {
+          console.error("Error fetching all blogs:", e);
+        }
       }
     } catch (error) {
       console.error("Error fetching blog:", error);
+      setError("Failed to load blog. Please try again.");
     }
   };
 
@@ -172,17 +204,26 @@ export default function BlogIdPage() {
     );
   }
 
-  if (!blog) {
+  if (!blog && !loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Navigation currentPath={`/blogs/${id}`} />
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Blog not found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            {error || "Blog not found"}
+          </h1>
+          <p className="text-gray-600 mb-4">ID: {id}</p>
           <Link href="/blogs" className="text-orange-600 hover:text-orange-700">
             ← Back to all blogs
           </Link>
         </div>
+        <Footer />
       </div>
     );
+  }
+
+  if (!blog) {
+    return null;
   }
 
   return (
