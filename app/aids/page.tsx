@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/Footer";
@@ -89,9 +90,14 @@ export default function AidsPage() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">A</span>
-                </div>
+                <Image
+                  src="/images/logo-main.png"
+                  alt="Hey Attrangi logo"
+                  width={56}
+                  height={56}
+                  priority
+                  className="w-14 h-14 rounded-xl object-contain shadow-lg bg-white p-1"
+                />
               </Link>
             </div>
             

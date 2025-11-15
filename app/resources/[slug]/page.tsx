@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "@/components/Footer";
 import ReactMarkdown from 'react-markdown';
 
@@ -131,9 +132,13 @@ export default function ResourceDetailPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">A</span>
-              </div>
+              <Image
+                src="/images/logo-main.png"
+                alt="Hey Attrangi logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 rounded-xl object-contain shadow bg-white p-1"
+              />
               <span className="text-lg font-bold text-gray-900 hidden sm:block">Attrangi</span>
             </Link>
             

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -36,9 +37,14 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
           <div className="flex justify-between items-center h-20 w-full">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 flex-shrink-0">
-              <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
-                <span className="text-white font-bold text-2xl">A</span>
-              </div>
+              <Image
+                src="/images/logo-main.png"
+                alt="Hey Attrangi logo"
+                width={56}
+                height={56}
+                priority
+                className="w-14 h-14 rounded-xl shadow-lg object-contain bg-white p-1"
+              />
               <div className="hidden md:block">
                 <h1 className="text-xl font-bold text-orange-600" style={{ fontFamily: 'Poppins, sans-serif' }}>Attrangi</h1>
                 <p className="text-xs text-gray-600 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>Mental Healthcare</p>

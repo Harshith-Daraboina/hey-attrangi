@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -7,9 +8,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
-              <span className="text-white font-bold text-xl">A</span>
-            </div>
+            <Image
+              src="/images/logo-main.png"
+              alt="Hey Attrangi logo"
+              width={56}
+              height={56}
+              className="w-14 h-14 rounded-xl mb-4 object-contain bg-white p-1 shadow-lg"
+            />
             <h3 className="text-xl font-semibold mb-2">Hey Attrangi</h3>
             <p className="text-gray-400 text-sm">
               Supporting neurodivergent individuals with comprehensive psychological resources and community support.

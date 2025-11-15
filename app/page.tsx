@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
@@ -16,7 +16,61 @@ interface FeaturedBlog {
   likes: number;
   views: number;
   createdAt: string;
+  isPlaceholder?: boolean;
 }
+
+const formatDate = (dateString: string) => {
+  if (!dateString) return "";
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      timeZone: "UTC",
+    }).format(new Date(dateString));
+  } catch {
+    return dateString;
+  }
+};
+
+const fallbackInsights: FeaturedBlog[] = [
+  {
+    id: "placeholder-1",
+    title: "Navigating Neurodivergence: First Steps for Families",
+    slug: "",
+    excerpt: "Practical guidance for parents and caregivers who want to create supportive home environments for neurodivergent loved ones.",
+    image: "/images/src12.jpg",
+    author: "Hey Attrangi Team",
+    likes: 0,
+    views: 1200,
+    createdAt: "2025-01-01T00:00:00.000Z",
+    isPlaceholder: true,
+  },
+  {
+    id: "placeholder-2",
+    title: "Building Daily Routines That Reduce Overwhelm",
+    slug: "",
+    excerpt: "Small, science-backed habits that improve focus, emotional regulation, and energy for adults with ADHD and autism.",
+    image: "/images/src6-3.jpeg",
+    author: "Clinical Psychology Desk",
+    likes: 0,
+    views: 980,
+    createdAt: "2025-01-02T00:00:00.000Z",
+    isPlaceholder: true,
+  },
+  {
+    id: "placeholder-3",
+    title: "How Therapy & Community Support Work Together",
+    slug: "",
+    excerpt: "Why combining professional therapy with peer-led spaces accelerates healing for neurodivergent individuals.",
+    image: "/images/src6-2.png",
+    author: "Hey Attrangi Experts",
+    likes: 0,
+    views: 860,
+    createdAt: "2025-01-03T00:00:00.000Z",
+    isPlaceholder: true,
+  },
+];
 
 export default function Home() {
   const [featuredBlogs, setFeaturedBlogs] = useState<FeaturedBlog[]>([]);
@@ -136,6 +190,20 @@ export default function Home() {
     setCurrentQuote((prev) => (prev - 1 + quotes.length) % quotes.length);
     setTimeout(() => setIsAnimating(false), 600);
   };
+
+  const insightsToShow = useMemo(() => {
+    if (featuredBlogs.length >= 3) {
+      return featuredBlogs.slice(0, 3);
+    }
+
+    if (featuredBlogs.length === 0) {
+      return fallbackInsights;
+    }
+
+    const needed = 3 - featuredBlogs.length;
+    const additional = fallbackInsights.slice(0, needed);
+    return [...featuredBlogs, ...additional];
+  }, [featuredBlogs]);
 
   return (
     <div className="min-h-screen bg-orange-50 overflow-x-hidden">
@@ -665,7 +733,7 @@ export default function Home() {
         </div>
 
         {/* Featured Blogs Section */}
-        {featuredBlogs.length > 0 && (
+        {insightsToShow.length > 0 && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200 mb-16">
               <div className="text-center mb-12">
@@ -678,61 +746,65 @@ export default function Home() {
               
               {/* Featured Blog Cards Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                {featuredBlogs.slice(0, 3).map((blog, index) => (
-                  <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                    <article className="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 h-full">
-                      {/* Image */}
-                      <div className="relative h-40 bg-gradient-to-br from-blue-100 to-purple-100">
-                        {blog.image ? (
-                          <Image
-                            src={blog.image}
-                            alt={blog.title}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex items-center justify-center h-full">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                              <span className="text-white text-xl">📝</span>
+                {insightsToShow.map((blog, index) => {
+                  const isPlaceholder = blog.isPlaceholder;
+                  const href = blog.slug ? `/blogs/${blog.slug}` : "/blogs";
+                  return (
+                    <Link key={`${blog.id}-${index}`} href={href} className="group">
+                      <article className="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 h-full">
+                        {/* Image */}
+                        <div className="relative h-40 bg-gradient-to-br from-blue-100 to-purple-100">
+                          {blog.image ? (
+                            <Image
+                              src={blog.image}
+                              alt={blog.title}
+                              fill
+                              className="object-cover"
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center h-full">
+                              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                <span className="text-white text-xl">📝</span>
+                              </div>
                             </div>
+                          )}
+                          <div className="absolute top-3 left-3">
+                            <span className={`inline-block px-3 py-1 text-white rounded-full text-xs font-semibold ${isPlaceholder ? 'bg-orange-500' : 'bg-blue-600'}`}>
+                              {isPlaceholder ? "Coming Soon" : "Featured"}
+                            </span>
                           </div>
-                        )}
-                        <div className="absolute top-3 left-3">
-                          <span className="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-xs font-semibold">
-                            Featured
-                          </span>
                         </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="p-5">
-                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
-                          {blog.title}
-                        </h3>
-                        {blog.excerpt && (
-                          <p className="text-sm text-gray-600 mb-3 line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
-                            {blog.excerpt}
-                          </p>
-                        )}
-                        <div className="flex items-center justify-between text-xs text-gray-500">
-                          <div className="flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                            </svg>
-                            <span>{blog.views}</span>
+                        
+                        {/* Content */}
+                        <div className="p-5">
+                          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                            {blog.title}
+                          </h3>
+                          {blog.excerpt && (
+                            <p className="text-sm text-gray-600 mb-3 line-clamp-2" style={{fontFamily: 'Poppins, sans-serif'}}>
+                              {blog.excerpt}
+                            </p>
+                          )}
+                          <div className="flex items-center justify-between text-xs text-gray-500">
+                            <div className="flex items-center gap-2">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                              </svg>
+                              <span>{blog.views}</span>
+                            </div>
+                          <span>{formatDate(blog.createdAt)}</span>
                           </div>
-                          <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                          {blog.author && (
+                            <div className="mt-2 text-xs text-gray-600 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
+                              By {blog.author}
+                            </div>
+                          )}
                         </div>
-                        {blog.author && (
-                          <div className="mt-2 text-xs text-gray-600 font-medium" style={{fontFamily: 'Poppins, sans-serif'}}>
-                            By {blog.author}
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  </Link>
-                ))}
+                      </article>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* View All Blogs Button */}
