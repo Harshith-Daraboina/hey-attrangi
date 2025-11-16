@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
@@ -79,6 +79,8 @@ export default function Home() {
   const [currentQuote, setCurrentQuote] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isAnimatingRef = useRef(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const quotes = [
     "We've just launched our new mental health platform",
@@ -92,29 +94,40 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
 
   useEffect(() => {
     const quoteInterval = setInterval(() => {
-      if (!isAnimating) {
+      if (!isAnimatingRef.current) {
+        isAnimatingRef.current = true;
         setIsAnimating(true);
         setCurrentQuote((prev) => (prev + 1) % quotes.length);
-        setTimeout(() => setIsAnimating(false), 600);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+          isAnimatingRef.current = false;
+          setIsAnimating(false);
+        }, 600);
       }
     }, 4000); // Change quote every 4 seconds
-    return () => clearInterval(quoteInterval);
-  }, [isAnimating]);
+    return () => {
+      clearInterval(quoteInterval);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (featuredBlogs.length > 0) {
@@ -178,17 +191,27 @@ export default function Home() {
   };
 
   const nextQuote = () => {
-    if (isAnimating) return;
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     setIsAnimating(true);
     setCurrentQuote((prev) => (prev + 1) % quotes.length);
-    setTimeout(() => setIsAnimating(false), 600);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      isAnimatingRef.current = false;
+      setIsAnimating(false);
+    }, 600);
   };
 
   const prevQuoteFunc = () => {
-    if (isAnimating) return;
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     setIsAnimating(true);
     setCurrentQuote((prev) => (prev - 1 + quotes.length) % quotes.length);
-    setTimeout(() => setIsAnimating(false), 600);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      isAnimatingRef.current = false;
+      setIsAnimating(false);
+    }, 600);
   };
 
   const insightsToShow = useMemo(() => {

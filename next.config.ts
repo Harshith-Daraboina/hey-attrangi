@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   // Disable output file tracing for OneDrive compatibility
-  output: 'standalone',
+  // output: 'standalone', // Commented out to fix build issues
   // Configure CDN and caching
   async headers() {
     return [
@@ -95,7 +95,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@use-gesture/react'],
   },
   // Reduce bundle size and memory usage
-  swcMinify: true,
+  // swcMinify: true, // Removed - deprecated in Next.js 15
   // Limit memory usage for Next.js
   reactStrictMode: false, // Can help reduce memory in development
 };
