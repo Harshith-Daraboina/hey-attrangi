@@ -17,9 +17,18 @@ export const metadata: Metadata = {
   keywords: "neurodivergent, psychological support, therapy, autism, ADHD, mental health, self-help, community support, psychological resources, neurodivergent-friendly",
   authors: [{ name: "Hey Attrangi Team" }],
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      {
+        url: "/favicon.png",
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicon.png",
+      },
+    ],
   },
   openGraph: {
     title: "Hey Attrangi - Support for Neurodivergent Individuals",
