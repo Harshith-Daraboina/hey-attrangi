@@ -798,7 +798,6 @@ export default function Home() {
           )}
         </section>
 
-
         <section className="bg-[#ffffff] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -818,6 +817,8 @@ export default function Home() {
                 personal, never clinical.
               </p>
             </div>
+
+
 
             {/* Premium Cards */}
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -866,13 +867,17 @@ export default function Home() {
                 </p>
               </div>
 
+
             </div>
 
             {/* Footer Statement */}
             <div className="text-center mt-20">
             </div>
 
+
+
           </div>
+
         </section>
 
 
