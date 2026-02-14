@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import VariableProximity from './VariableProximity';
@@ -121,7 +123,7 @@ const MentalHealthConcerns = () => {
                 <div className="max-w-7xl mx-auto">
                     {/* HayatEngi Vision Card - Floating over wave */}
                     <div className="relative -mt-32 md:-mt-48 mb-24 z-20">
-                        
+
                         <div className="relative bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-orange-100">
                             <div className="flex flex-col md:flex-row gap-8 items-center">
                                 <div className="flex-1 space-y-4">

@@ -1,0 +1,2218 @@
+[
+    {
+        "id": "num_019",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "1, 3, 5, 7, ?",
+        "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+        ],
+        "answer": "9"
+    },
+    {
+        "id": "num_020",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "12, 14, 16, 18, ?",
+        "choices": [
+            "19",
+            "20",
+            "21",
+            "22"
+        ],
+        "answer": "20"
+    },
+    {
+        "id": "num_021",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "11, 22, 33, 44, ?",
+        "choices": [
+            "54",
+            "55",
+            "56",
+            "66"
+        ],
+        "answer": "55"
+    },
+    {
+        "id": "num_022",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "20, 18, 16, 14, ?",
+        "choices": [
+            "12",
+            "13",
+            "10",
+            "11"
+        ],
+        "answer": "12"
+    },
+    {
+        "id": "num_023",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "100, 90, 80, 70, ?",
+        "choices": [
+            "50",
+            "60",
+            "65",
+            "55"
+        ],
+        "answer": "60"
+    },
+    {
+        "id": "num_024",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "1, 4, 7, 10, ?",
+        "choices": [
+            "12",
+            "13",
+            "14",
+            "15"
+        ],
+        "answer": "13"
+    },
+    {
+        "id": "num_025",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "3, 8, 13, 18, ?",
+        "choices": [
+            "22",
+            "23",
+            "24",
+            "25"
+        ],
+        "answer": "23"
+    },
+    {
+        "id": "num_026",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "0, 2, 4, 6, ?",
+        "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "answer": "8"
+    },
+    {
+        "id": "num_027",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "13, 26, 39, 52, ?",
+        "choices": [
+            "65",
+            "64",
+            "63",
+            "62"
+        ],
+        "answer": "65"
+    },
+    {
+        "id": "num_028",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "30, 27, 24, 21, ?",
+        "choices": [
+            "19",
+            "18",
+            "17",
+            "16"
+        ],
+        "answer": "18"
+    },
+    {
+        "id": "num_029",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "1, 1, 2, 3, 5, 8, ?",
+        "choices": [
+            "11",
+            "12",
+            "13",
+            "14"
+        ],
+        "answer": "13"
+    },
+    {
+        "id": "num_030",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "2, 3, 5, 9, 17, ?",
+        "choices": [
+            "31",
+            "32",
+            "33",
+            "34"
+        ],
+        "answer": "33"
+    },
+    {
+        "id": "num_031",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "5, 6, 8, 11, 15, ?",
+        "choices": [
+            "19",
+            "20",
+            "21",
+            "22"
+        ],
+        "answer": "20"
+    },
+    {
+        "id": "num_032",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "1, 5, 9, 13, 17, ?",
+        "choices": [
+            "20",
+            "21",
+            "22",
+            "23"
+        ],
+        "answer": "21"
+    },
+    {
+        "id": "num_033",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "128, 64, 32, 16, ?",
+        "choices": [
+            "4",
+            "6",
+            "8",
+            "10"
+        ],
+        "answer": "8"
+    },
+    {
+        "id": "num_034",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "81, 27, 9, 3, ?",
+        "choices": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ],
+        "answer": "1"
+    },
+    {
+        "id": "num_035",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "7, 9, 12, 16, 21, ?",
+        "choices": [
+            "26",
+            "27",
+            "28",
+            "29"
+        ],
+        "answer": "27"
+    },
+    {
+        "id": "num_036",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "4, 12, 36, 108, ?",
+        "choices": [
+            "216",
+            "324",
+            "432",
+            "540"
+        ],
+        "answer": "324"
+    },
+    {
+        "id": "num_037",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "15, 14, 12, 9, 5, ?",
+        "choices": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ],
+        "answer": "0"
+    },
+    {
+        "id": "num_038",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "11, 15, 20, 26, 33, ?",
+        "choices": [
+            "40",
+            "41",
+            "42",
+            "43"
+        ],
+        "answer": "41"
+    },
+    {
+        "id": "num_039",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "13, 17, 25, 32, 37, ?",
+        "choices": [
+            "40",
+            "41",
+            "47",
+            "52"
+        ],
+        "answer": "47"
+    },
+    {
+        "id": "num_040",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "2, 10, 30, 68, 130, ?",
+        "choices": [
+            "180",
+            "200",
+            "222",
+            "250"
+        ],
+        "answer": "222"
+    },
+    {
+        "id": "num_041",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "7, 26, 63, 124, 215, ?",
+        "choices": [
+            "342",
+            "343",
+            "344",
+            "345"
+        ],
+        "answer": "342"
+    },
+    {
+        "id": "num_042",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "1, 8, 27, 64, 125, ?",
+        "choices": [
+            "169",
+            "196",
+            "216",
+            "256"
+        ],
+        "answer": "216"
+    },
+    {
+        "id": "num_043",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "4, 18, 48, 100, 180, ?",
+        "choices": [
+            "270",
+            "288",
+            "294",
+            "300"
+        ],
+        "answer": "294"
+    },
+    {
+        "id": "num_044",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "5, 13, 29, 61, 125, ?",
+        "choices": [
+            "251",
+            "252",
+            "253",
+            "254"
+        ],
+        "answer": "253"
+    },
+    {
+        "id": "num_045",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "11, 24, 50, 102, 206, ?",
+        "choices": [
+            "410",
+            "414",
+            "420",
+            "424"
+        ],
+        "answer": "414"
+    },
+    {
+        "id": "num_046",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "1, 3, 4, 7, 11, 18, ?",
+        "choices": [
+            "26",
+            "27",
+            "28",
+            "29"
+        ],
+        "answer": "29"
+    },
+    {
+        "id": "num_047",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "2, 6, 12, 20, 30, ?",
+        "choices": [
+            "40",
+            "41",
+            "42",
+            "43"
+        ],
+        "answer": "42"
+    },
+    {
+        "id": "num_048",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "8, 24, 12, 36, 18, 54, ?",
+        "choices": [
+            "27",
+            "28",
+            "108",
+            "162"
+        ],
+        "answer": "27"
+    },
+    {
+        "id": "num_049",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "9, 16, 25, 36, ?",
+        "choices": [
+            "47",
+            "48",
+            "49",
+            "50"
+        ],
+        "answer": "49"
+    },
+    {
+        "id": "num_050",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "17, 27, 37, 47, ?",
+        "choices": [
+            "55",
+            "56",
+            "57",
+            "58"
+        ],
+        "answer": "57"
+    },
+    {
+        "id": "num_051",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "33, 30, 27, 24, ?",
+        "choices": [
+            "20",
+            "21",
+            "22",
+            "23"
+        ],
+        "answer": "21"
+    },
+    {
+        "id": "num_052",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "6, 11, 16, 21, ?",
+        "choices": [
+            "25",
+            "26",
+            "27",
+            "28"
+        ],
+        "answer": "26"
+    },
+    {
+        "id": "num_053",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "45, 40, 35, 30, ?",
+        "choices": [
+            "20",
+            "25",
+            "24",
+            "26"
+        ],
+        "answer": "25"
+    },
+    {
+        "id": "num_054",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "2, 4, 8, 16, ?",
+        "choices": [
+            "24",
+            "30",
+            "32",
+            "36"
+        ],
+        "answer": "32"
+    },
+    {
+        "id": "num_055",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "1, 10, 100, 1000, ?",
+        "choices": [
+            "10000",
+            "100000",
+            "1000",
+            "1000000"
+        ],
+        "answer": "10000"
+    },
+    {
+        "id": "num_056",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "50, 45, 40, 35, ?",
+        "choices": [
+            "25",
+            "30",
+            "20",
+            "32"
+        ],
+        "answer": "30"
+    },
+    {
+        "id": "num_057",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "19, 23, 29, 31, 37, ?",
+        "choices": [
+            "39",
+            "40",
+            "41",
+            "42"
+        ],
+        "answer": "41"
+    },
+    {
+        "id": "num_058",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "1, 4, 9, 16, 25, ?",
+        "choices": [
+            "32",
+            "34",
+            "35",
+            "36"
+        ],
+        "answer": "36"
+    },
+    {
+        "id": "num_059",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "2, 6, 12, 20, ?",
+        "choices": [
+            "28",
+            "29",
+            "30",
+            "31"
+        ],
+        "answer": "30"
+    },
+    {
+        "id": "num_060",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "12, 13, 15, 18, 22, ?",
+        "choices": [
+            "27",
+            "28",
+            "29",
+            "30"
+        ],
+        "answer": "27"
+    },
+    {
+        "id": "num_061",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "21, 20, 18, 15, 11, ?",
+        "choices": [
+            "5",
+            "6",
+            "7",
+            "8"
+        ],
+        "answer": "6"
+    },
+    {
+        "id": "num_062",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "3, 8, 15, 24, 35, ?",
+        "choices": [
+            "46",
+            "47",
+            "48",
+            "49"
+        ],
+        "answer": "48"
+    },
+    {
+        "id": "num_063",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "6, 24, 60, 120, 210, ?",
+        "choices": [
+            "336",
+            "340",
+            "350",
+            "360"
+        ],
+        "answer": "336"
+    },
+    {
+        "id": "num_064",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "2, 5, 14, 41, 122, ?",
+        "choices": [
+            "363",
+            "364",
+            "365",
+            "366"
+        ],
+        "answer": "365"
+    },
+    {
+        "id": "num_065",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "4, 7, 13, 25, 49, ?",
+        "choices": [
+            "95",
+            "96",
+            "97",
+            "98"
+        ],
+        "answer": "97"
+    },
+    {
+        "id": "num_066",
+        "domain": "numeric",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "10, 21, 43, 87, 175, ?",
+        "choices": [
+            "351",
+            "352",
+            "353",
+            "354"
+        ],
+        "answer": "351"
+    },
+    {
+        "id": "num_067",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "25, 36, 49, 64, ?",
+        "choices": [
+            "80",
+            "81",
+            "82",
+            "100"
+        ],
+        "answer": "81"
+    },
+    {
+        "id": "num_068",
+        "domain": "numeric",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "2, 3, 5, 7, 11, ?",
+        "choices": [
+            "13",
+            "15",
+            "17",
+            "19"
+        ],
+        "answer": "13"
+    },
+    {
+        "id": "num_069",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "14, 28, 42, 56, ?",
+        "choices": [
+            "64",
+            "66",
+            "68",
+            "70"
+        ],
+        "answer": "70"
+    },
+    {
+        "id": "num_070",
+        "domain": "numeric",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "19, 29, 39, 49, ?",
+        "choices": [
+            "59",
+            "60",
+            "69",
+            "79"
+        ],
+        "answer": "59"
+    },
+    {
+        "id": "logic_011",
+        "domain": "logic",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "All birds have feathers. A sparrow is a bird. Does a sparrow have feathers?",
+        "choices": [
+            "Yes",
+            "No",
+            "Cannot Determine"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "logic_012",
+        "domain": "logic",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "If it is raining, the ground is wet. The ground is wet. Is it raining?",
+        "choices": [
+            "Yes",
+            "No",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_013",
+        "domain": "logic",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "All squares are rectangles. Some rectangles are red. Therefore, some squares are red?",
+        "choices": [
+            "True",
+            "False",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_014",
+        "domain": "logic",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "John is older than Mary. Mary is older than Peter. Who is youngest?",
+        "choices": [
+            "John",
+            "Mary",
+            "Peter",
+            "Cannot Determine"
+        ],
+        "answer": "Peter"
+    },
+    {
+        "id": "logic_015",
+        "domain": "logic",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "A is to the left of B. B is to the left of C. Who is in the middle?",
+        "choices": [
+            "A",
+            "B",
+            "C",
+            "Cannot Determine"
+        ],
+        "answer": "B"
+    },
+    {
+        "id": "logic_016",
+        "domain": "logic",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "All A are B. No B are C. What follows?",
+        "choices": [
+            "All A are C",
+            "Some A are C",
+            "No A are C",
+            "Cannot Determine"
+        ],
+        "answer": "No A are C"
+    },
+    {
+        "id": "logic_017",
+        "domain": "logic",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Some A are not B. All B are C. What must be true?",
+        "choices": [
+            "Some A are not C",
+            "All A are C",
+            "Some A are C",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_018",
+        "domain": "logic",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "If you study, you will pass. You did not pass. Did you study?",
+        "choices": [
+            "Yes",
+            "No",
+            "Cannot Determine"
+        ],
+        "answer": "No"
+    },
+    {
+        "id": "logic_019",
+        "domain": "logic",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "All mammals are warm-blooded. Some creatures are warm-blooded. Therefore, some creatures are mammals?",
+        "choices": [
+            "True",
+            "False",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_020",
+        "domain": "logic",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "No reptiles are warm-blooded. All snakes are reptiles. What follows?",
+        "choices": [
+            "Some snakes are warm-blooded",
+            "No snakes are warm-blooded",
+            "All snakes are warm-blooded",
+            "Cannot Determine"
+        ],
+        "answer": "No snakes are warm-blooded"
+    },
+    {
+        "id": "logic_021",
+        "domain": "logic",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "All philosophers are logical. Some logical people are mathematicians. Therefore, some philosophers are mathematicians?",
+        "choices": [
+            "True",
+            "False",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_022",
+        "domain": "logic",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "No A are B. Some C are B. What follows?",
+        "choices": [
+            "Some C are not A",
+            "All C are A",
+            "No C are A",
+            "Cannot Determine"
+        ],
+        "answer": "Some C are not A"
+    },
+    {
+        "id": "logic_023",
+        "domain": "logic",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "All squares are rectangles. No rectangles are circles. Some shapes are circles. What must be true?",
+        "choices": [
+            "Some squares are circles",
+            "No squares are circles",
+            "All squares are circles",
+            "Cannot Determine"
+        ],
+        "answer": "No squares are circles"
+    },
+    {
+        "id": "logic_024",
+        "domain": "logic",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "If the sun is shining, it is daytime. It is daytime. Is the sun shining?",
+        "choices": [
+            "Yes",
+            "No",
+            "Cannot Determine"
+        ],
+        "answer": "Cannot Determine"
+    },
+    {
+        "id": "logic_025",
+        "domain": "logic",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Some politicians are honest. No honest people are liars. Therefore, some politicians are not liars?",
+        "choices": [
+            "True",
+            "False",
+            "Cannot Determine"
+        ],
+        "answer": "True"
+    },
+    {
+        "id": "verbal_010",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Up is to Down as Left is to ?",
+        "choices": [
+            "Right",
+            "Side",
+            "Turn",
+            "Direction"
+        ],
+        "answer": "Right"
+    },
+    {
+        "id": "verbal_011",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Dog is to Puppy as Cat is to ?",
+        "choices": [
+            "Kitten",
+            "Cub",
+            "Foal",
+            "Calf"
+        ],
+        "answer": "Kitten"
+    },
+    {
+        "id": "verbal_012",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Hand is to Glove as Foot is to ?",
+        "choices": [
+            "Sock",
+            "Shoe",
+            "Toe",
+            "Ankle"
+        ],
+        "answer": "Shoe"
+    },
+    {
+        "id": "verbal_013",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Apple is to Fruit as Carrot is to ?",
+        "choices": [
+            "Vegetable",
+            "Meat",
+            "Plant",
+            "Food"
+        ],
+        "answer": "Vegetable"
+    },
+    {
+        "id": "verbal_014",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Hot is to Cold as Happy is to ?",
+        "choices": [
+            "Sad",
+            "Angry",
+            "Joy",
+            "Fun"
+        ],
+        "answer": "Sad"
+    },
+    {
+        "id": "verbal_015",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Big is to Large as Small is to ?",
+        "choices": [
+            "Tiny",
+            "Huge",
+            "Medium",
+            "Size"
+        ],
+        "answer": "Tiny"
+    },
+    {
+        "id": "verbal_016",
+        "domain": "verbal",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Cup is to Drink as Plate is to ?",
+        "choices": [
+            "Eat",
+            "Food",
+            "Meal",
+            "Dinner"
+        ],
+        "answer": "Food"
+    },
+    {
+        "id": "verbal_017",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Pilot is to Airplane as Captain is to ?",
+        "choices": [
+            "Ship",
+            "Sailor",
+            "Ocean",
+            "Deck"
+        ],
+        "answer": "Ship"
+    },
+    {
+        "id": "verbal_018",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Optimist is to Hopeful as Pessimist is to ?",
+        "choices": [
+            "Gloomy",
+            "Cheerful",
+            "Realistic",
+            "Logical"
+        ],
+        "answer": "Gloomy"
+    },
+    {
+        "id": "verbal_019",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Alive is to Dead as Awake is to ?",
+        "choices": [
+            "Asleep",
+            "Tired",
+            "Rest",
+            "Wake"
+        ],
+        "answer": "Asleep"
+    },
+    {
+        "id": "verbal_020",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Wealthy is to Rich as Poor is to ?",
+        "choices": [
+            "Destitute",
+            "Money",
+            "Needy",
+            "Poverty"
+        ],
+        "answer": "Destitute"
+    },
+    {
+        "id": "verbal_021",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Water is to Wet as Fire is to ?",
+        "choices": [
+            "Hot",
+            "Burn",
+            "Flame",
+            "Heat"
+        ],
+        "answer": "Hot"
+    },
+    {
+        "id": "verbal_022",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Laugh is to Joke as Cry is to ?",
+        "choices": [
+            "Sadness",
+            "Tears",
+            "Pain",
+            "Sorrow"
+        ],
+        "answer": "Sadness"
+    },
+    {
+        "id": "verbal_023",
+        "domain": "verbal",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Tree is to Forest as Star is to ?",
+        "choices": [
+            "Galaxy",
+            "Sky",
+            "Night",
+            "Constellation"
+        ],
+        "answer": "Galaxy"
+    },
+    {
+        "id": "verbal_024",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Eager is to Enthusiastic as Apathetic is to ?",
+        "choices": [
+            "Indifferent",
+            "Passionate",
+            "Curious",
+            "Excited"
+        ],
+        "answer": "Indifferent"
+    },
+    {
+        "id": "verbal_025",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Allegiance is to Loyalty as Treachery is to ?",
+        "choices": [
+            "Betrayal",
+            "Honesty",
+            "Friendship",
+            "Trust"
+        ],
+        "answer": "Betrayal"
+    },
+    {
+        "id": "verbal_026",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Adversity is to Hardship as Prosperity is to ?",
+        "choices": [
+            "Success",
+            "Failure",
+            "Wealth",
+            "Happiness"
+        ],
+        "answer": "Success"
+    },
+    {
+        "id": "verbal_027",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Vivid is to Dull as Lucid is to ?",
+        "choices": [
+            "Confusing",
+            "Clear",
+            "Bright",
+            "Intelligent"
+        ],
+        "answer": "Confusing"
+    },
+    {
+        "id": "verbal_028",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Zenith is to Nadir as Acme is to ?",
+        "choices": [
+            "Bottom",
+            "Top",
+            "Middle",
+            "Peak"
+        ],
+        "answer": "Bottom"
+    },
+    {
+        "id": "verbal_029",
+        "domain": "verbal",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Cacophony is to Noise as Silence is to ?",
+        "choices": [
+            "Quiet",
+            "Peace",
+            "Loud",
+            "Sound"
+        ],
+        "answer": "Quiet"
+    },
+    {
+        "id": "memory_008",
+        "domain": "working_memory",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Remember: 5 - 1 - 9. What was the second number?",
+        "choices": [
+            "1",
+            "5",
+            "9",
+            "None"
+        ],
+        "answer": "1"
+    },
+    {
+        "id": "memory_009",
+        "domain": "working_memory",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Remember: 2 - 7 - 4. What was the third number?",
+        "choices": [
+            "2",
+            "7",
+            "4",
+            "None"
+        ],
+        "answer": "4"
+    },
+    {
+        "id": "memory_010",
+        "domain": "working_memory",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Remember: 8 - 3 - 6 - 1. What was the first number?",
+        "choices": [
+            "8",
+            "3",
+            "6",
+            "1"
+        ],
+        "answer": "8"
+    },
+    {
+        "id": "memory_011",
+        "domain": "working_memory",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Remember: 4 - 9 - 2 - 5. What was the last number?",
+        "choices": [
+            "4",
+            "9",
+            "2",
+            "5"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "memory_012",
+        "domain": "working_memory",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Remember backward: 5 - 2 - 7 - 9. What is reversed?",
+        "choices": [
+            "9-7-2-5",
+            "5-2-7-9",
+            "7-9-2-5",
+            "2-5-9-7"
+        ],
+        "answer": "9-7-2-5"
+    },
+    {
+        "id": "memory_013",
+        "domain": "working_memory",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Remember backward: 4 - 1 - 6 - 3 - 8. What is reversed?",
+        "choices": [
+            "8-3-6-1-4",
+            "4-1-6-3-8",
+            "6-8-3-1-4",
+            "1-4-8-3-6"
+        ],
+        "answer": "8-3-6-1-4"
+    },
+    {
+        "id": "memory_014",
+        "domain": "working_memory",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Remember: 7, 2, 5, 8. What is the sum of the first and last?",
+        "choices": [
+            "9",
+            "10",
+            "15",
+            "17"
+        ],
+        "answer": "15"
+    },
+    {
+        "id": "memory_015",
+        "domain": "working_memory",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Remember: 3, 9, 2, 6. What is the product of the second and third?",
+        "choices": [
+            "18",
+            "27",
+            "12",
+            "24"
+        ],
+        "answer": "18"
+    },
+    {
+        "id": "memory_016",
+        "domain": "working_memory",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Remember and add 3: 2 - 5 - 8 - 11. What is result?",
+        "choices": [
+            "5-8-11-14",
+            "2-5-8-11",
+            "6-9-12-15",
+            "7-10-13-16"
+        ],
+        "answer": "5-8-11-14"
+    },
+    {
+        "id": "memory_017",
+        "domain": "working_memory",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Remember and subtract 2: 9 - 7 - 5 - 3. What is result?",
+        "choices": [
+            "7-5-3-1",
+            "9-7-5-3",
+            "11-9-7-5",
+            "8-6-4-2"
+        ],
+        "answer": "7-5-3-1"
+    },
+    {
+        "id": "memory_018",
+        "domain": "working_memory",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Remember backward: 1 - 4 - 7 - 2 - 9 - 5. What is reversed?",
+        "choices": [
+            "5-9-2-7-4-1",
+            "1-4-7-2-9-5",
+            "7-2-9-5-1-4",
+            "4-1-5-9-2-7"
+        ],
+        "answer": "5-9-2-7-4-1"
+    },
+    {
+        "id": "memory_019",
+        "domain": "working_memory",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Remember: 6, 3, 8, 1, 4. What is the sum of all numbers?",
+        "choices": [
+            "20",
+            "21",
+            "22",
+            "23"
+        ],
+        "answer": "22"
+    },
+    {
+        "id": "memory_020",
+        "domain": "working_memory",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Remember: 4, 7, 2, 9, 5. What is the average (mean)?",
+        "choices": [
+            "5.2",
+            "5.4",
+            "5.6",
+            "5.8"
+        ],
+        "answer": "5.4"
+    },
+    {
+        "id": "attention_008",
+        "domain": "attention",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "How many letters 'E' appear in: ELEPHANT?",
+        "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": "2"
+    },
+    {
+        "id": "attention_009",
+        "domain": "attention",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "How many letters 'S' appear in: MISSISSIPPI?",
+        "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "answer": "4"
+    },
+    {
+        "id": "attention_010",
+        "domain": "attention",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Find the odd one out: 2, 4, 6, 7, 8",
+        "choices": [
+            "2",
+            "4",
+            "6",
+            "7"
+        ],
+        "answer": "7"
+    },
+    {
+        "id": "attention_011",
+        "domain": "attention",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Find the odd one out: 3, 6, 9, 12, 14",
+        "choices": [
+            "3",
+            "6",
+            "12",
+            "14"
+        ],
+        "answer": "14"
+    },
+    {
+        "id": "attention_012",
+        "domain": "attention",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Find the odd one out: Apple, Banana, Carrot, Grape",
+        "choices": [
+            "Apple",
+            "Banana",
+            "Carrot",
+            "Grape"
+        ],
+        "answer": "Carrot"
+    },
+    {
+        "id": "attention_013",
+        "domain": "attention",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Find the odd one out: 101, 121, 131, 141",
+        "choices": [
+            "101",
+            "121",
+            "131",
+            "141"
+        ],
+        "answer": "121"
+    },
+    {
+        "id": "attention_014",
+        "domain": "attention",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Find the odd one out: 17, 23, 29, 33",
+        "choices": [
+            "17",
+            "23",
+            "29",
+            "33"
+        ],
+        "answer": "33"
+    },
+    {
+        "id": "attention_015",
+        "domain": "attention",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Count vowels in: EDUCATION",
+        "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "attention_016",
+        "domain": "attention",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Count consonants in: COMPUTER",
+        "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "attention_017",
+        "domain": "attention",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Find the odd one out: Red, Green, Blue, Long",
+        "choices": [
+            "Red",
+            "Green",
+            "Blue",
+            "Long"
+        ],
+        "answer": "Long"
+    },
+    {
+        "id": "attention_018",
+        "domain": "attention",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Count vowels in: UNQUESTIONABLE",
+        "choices": [
+            "5",
+            "6",
+            "7",
+            "8"
+        ],
+        "answer": "6"
+    },
+    {
+        "id": "attention_019",
+        "domain": "attention",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Count consonants in: EXTRAORDINARY",
+        "choices": [
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "answer": "8"
+    },
+    {
+        "id": "attention_020",
+        "domain": "attention",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Find the odd one out: 144, 169, 196, 205",
+        "choices": [
+            "144",
+            "169",
+            "196",
+            "205"
+        ],
+        "answer": "205"
+    },
+    {
+        "id": "attention_021",
+        "domain": "attention",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Find the odd one out: 13, 26, 39, 45",
+        "choices": [
+            "13",
+            "26",
+            "39",
+            "45"
+        ],
+        "answer": "45"
+    },
+    {
+        "id": "attention_022",
+        "domain": "attention",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "How many letters 'P' appear in: PERSEVERANCE?",
+        "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": "2"
+    },
+    {
+        "id": "speed_008",
+        "domain": "processing_speed",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Press YES if 9 is greater than 6.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_009",
+        "domain": "processing_speed",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Press YES if 7 is an odd number.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_010",
+        "domain": "processing_speed",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Press YES if 10 is less than 5.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "No"
+    },
+    {
+        "id": "speed_011",
+        "domain": "processing_speed",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Press YES if 4 multiplied by 3 equals 12.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_012",
+        "domain": "processing_speed",
+        "difficulty": "easy",
+        "age_min": 10,
+        "age_max": 99,
+        "weight": 1,
+        "prompt": "Press YES if 8 divided by 2 equals 3.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "No"
+    },
+    {
+        "id": "speed_013",
+        "domain": "processing_speed",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Press YES if 64 is a perfect square.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_014",
+        "domain": "processing_speed",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Press YES if 72 is divisible by 8.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_015",
+        "domain": "processing_speed",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Press YES if 56 is a multiple of 7.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_016",
+        "domain": "processing_speed",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Press YES if 91 is a prime number.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "No"
+    },
+    {
+        "id": "speed_017",
+        "domain": "processing_speed",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "Press YES if 15 plus 27 equals 42.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_018",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 121 is both a perfect square and divisible by 11.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_019",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 169 is divisible by 13.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_020",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 51 multiplied by 3 equals 153.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_021",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 144 divided by 12 equals 11.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "No"
+    },
+    {
+        "id": "speed_022",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 17 is a prime number.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "speed_023",
+        "domain": "processing_speed",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Press YES if 1001 is divisible by 7.",
+        "choices": [
+            "Yes",
+            "No"
+        ],
+        "answer": "Yes"
+    },
+    {
+        "id": "integrated_006",
+        "domain": "integrated_reasoning",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "If 5 painters paint 5 walls in 5 hours, how many painters paint 10 walls in 10 hours?",
+        "choices": [
+            "5",
+            "10",
+            "2",
+            "20"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "integrated_007",
+        "domain": "integrated_reasoning",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "A car travels 120 km in 2 hours. How far in 3.5 hours at the same speed?",
+        "choices": [
+            "180 km",
+            "200 km",
+            "210 km",
+            "240 km"
+        ],
+        "answer": "210 km"
+    },
+    {
+        "id": "integrated_008",
+        "domain": "integrated_reasoning",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "If 3 apples cost $1.50, how much do 5 apples cost?",
+        "choices": [
+            "$2.00",
+            "$2.50",
+            "$3.00",
+            "$3.50"
+        ],
+        "answer": "$2.50"
+    },
+    {
+        "id": "integrated_009",
+        "domain": "integrated_reasoning",
+        "difficulty": "medium",
+        "age_min": 13,
+        "age_max": 99,
+        "weight": 2,
+        "prompt": "If the day before yesterday was Thursday, what day is tomorrow?",
+        "choices": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday"
+        ],
+        "answer": "Monday"
+    },
+    {
+        "id": "integrated_010",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+        "choices": [
+            "$0.05",
+            "$0.10",
+            "$0.15",
+            "$0.20"
+        ],
+        "answer": "$0.05"
+    },
+    {
+        "id": "integrated_011",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "If it takes 10 minutes to boil 1 egg, how many minutes does it take to boil 5 eggs?",
+        "choices": [
+            "10",
+            "20",
+            "50",
+            "5"
+        ],
+        "answer": "10"
+    },
+    {
+        "id": "integrated_012",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "In a group of 30 people, 18 like coffee, 15 like tea, and 8 like both. How many like neither?",
+        "choices": [
+            "3",
+            "5",
+            "7",
+            "9"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "integrated_013",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "A farmer has 15 chickens and rabbits. There are 44 legs in total. How many rabbits are there?",
+        "choices": [
+            "5",
+            "6",
+            "7",
+            "8"
+        ],
+        "answer": "7"
+    },
+    {
+        "id": "integrated_014",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "If 2x + 5 = 15, what is the value of x?",
+        "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "answer": "5"
+    },
+    {
+        "id": "integrated_015",
+        "domain": "integrated_reasoning",
+        "difficulty": "hard",
+        "age_min": 16,
+        "age_max": 99,
+        "weight": 3,
+        "prompt": "Three friends split a bill of $60 evenly. How much does each pay?",
+        "choices": [
+            "$15",
+            "$20",
+            "$25",
+            "$30"
+        ],
+        "answer": "$20"
+    }
+]

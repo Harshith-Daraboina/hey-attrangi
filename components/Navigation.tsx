@@ -57,11 +57,10 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center justify-center flex-1">
               <div className="flex space-x-1">
-                <Link 
-                  href="/" 
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${
-                    isActivePath('/') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                  }`}
+                <Link
+                  href="/"
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
+                    }`}
                 >
                   Home
                 </Link>
@@ -108,9 +107,8 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
 
                 {/* Services Dropdown */}
                 <div className="relative" onMouseEnter={() => setActiveDropdown('services')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center ${
-                    isActivePath('/services') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                  }`}>
+                  <button className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center ${isActivePath('/services') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
+                    }`}>
                     Services
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -154,11 +152,10 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                   )}
                 </div>
 
-                <Link 
-                  href="/blogs" 
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${
-                    isActivePath('/blogs') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                  }`}
+                <Link
+                  href="/blogs"
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
+                    }`}
                 >
                   Insights
                 </Link>
@@ -202,6 +199,14 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                     </div>
                   )}
                 </div>
+
+                {/* MindMetric Test Link */}
+                <Link
+                  href="/test-your-iq"
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'}`}
+                >
+                  MindMetric Test
+                </Link>
               </div>
             </nav>
 
@@ -236,99 +241,190 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
       </header>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[70] top-20 bg-white border-t border-gray-200 max-h-[calc(100vh-80px)] overflow-y-auto">
-          <div className="px-4 py-6 space-y-4">
-            <Link 
-              href="/" 
-              className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-
-            {/* About Us Mobile Dropdown */}
-            <div>
-              <button
-                onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
-                className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+      {
+        mobileMenuOpen && (
+          <div className="md:hidden fixed inset-0 z-[70] top-20 bg-white border-t border-gray-200 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <div className="px-4 py-6 space-y-4">
+              <Link
+                href="/"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                About Us
-                <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {mobileDropdown === 'about' && (
-                <div className="mt-2 ml-4 space-y-2">
-                  <Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>About Attrangi</Link>
-                  <Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Our Team</Link>
-                  <Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Our Mission</Link>
-                  <Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Contact Us</Link>
-                </div>
-              )}
-            </div>
+                Home
+              </Link>
 
-            {/* Services Mobile Dropdown */}
-            <div>
-              <button
-                onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')}
-                className="w-full px-4 py-3 text-orange-600 hover:bg-orange-50 rounded-lg font-semibold transition-colors flex items-center justify-between"
+              {/* About Us Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
+                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  About Us
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'about' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>About Attrangi</Link>
+                    <Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link>
+                    <Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link>
+                    <Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Services Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')}
+                  className="w-full px-4 py-3 text-orange-600 hover:bg-orange-50 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  Services
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'services' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Therapy Services</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Assessment & Diagnosis</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Online Consultations</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Group Sessions</Link>
+                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Resources</Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/blogs"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Services
-                <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {mobileDropdown === 'services' && (
-                <div className="mt-2 ml-4 space-y-2">
-                  <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Therapy Services</Link>
-                  <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Assessment & Diagnosis</Link>
-                  <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Online Consultations</Link>
-                  <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Group Sessions</Link>
-                  <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Resources</Link>
-                </div>
-              )}
-            </div>
+                Insights
+              </Link>
 
-            <Link 
-              href="/blogs" 
-              className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Insights
-            </Link>
+              {/* Resources Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'resources' ? null : 'resources')}
+                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  Resources
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'resources' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>All Resources</Link>
+                    <Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Self-Help Guides</Link>
+                    <Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Mental Health Tools</Link>
+                    <Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Worksheets & Activities</Link>
+                  </div>
+                )}
+              </div>
 
-            {/* Resources Mobile Dropdown */}
-            <div>
-              <button
-                onClick={() => setMobileDropdown(mobileDropdown === 'resources' ? null : 'resources')}
-                className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+              <Link
+                href="/test-your-iq"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Resources
-                <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {mobileDropdown === 'resources' && (
-                <div className="mt-2 ml-4 space-y-2">
-                  <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>All Resources</Link>
-                  <Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Self-Help Guides</Link>
-                  <Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Mental Health Tools</Link>
-                  <Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => {setMobileMenuOpen(false); setMobileDropdown(null);}}>Worksheets & Activities</Link>
-                </div>
-              )}
-            </div>
+                MindMetric Test
+              </Link>
 
-            <Link 
-              href="/aids" 
-              className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              View Products
-            </Link>
-          </div>
-        </div>
-      )}
+
+              {/* About Us Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
+                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  About Us
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'about' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>About Attrangi</Link>
+                    <Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link>
+                    <Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link>
+                    <Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Services Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')}
+                  className="w-full px-4 py-3 text-orange-600 hover:bg-orange-50 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  Services
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'services' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Therapy Services</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Assessment & Diagnosis</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Online Consultations</Link>
+                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Group Sessions</Link>
+                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Resources</Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/blogs"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Insights
+              </Link>
+
+              {/* Resources Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'resources' ? null : 'resources')}
+                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+                >
+                  Resources
+                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {mobileDropdown === 'resources' && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>All Resources</Link>
+                    <Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Self-Help Guides</Link>
+                    <Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Mental Health Tools</Link>
+                    <Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Worksheets & Activities</Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/test-your-iq"
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                MindMetric Test
+              </Link>
+
+              <Link
+                href="/aids"
+                className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                View Products
+              </Link>
+            </div>
+          </div >
+        )
+      }
     </>
   );
 }

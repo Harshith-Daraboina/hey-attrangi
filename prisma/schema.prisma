@@ -90,3 +90,49 @@ model Resource {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+model VisualQuestion {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  questionId      String   @unique
+  domain          String
+  difficulty      String
+  ageMin          Int
+  ageMax          Int
+  weight          Int
+  prompt          String
+  stimulus        Json
+  options         Json?
+  answer          Json?
+  expectedTimeMs  Int?
+  explanation     String?
+  createdAt       DateTime @default(now())
+}
+
+model TestSession {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String?
+  age       Int
+  status    String   // active | completed
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  currentLog Json?
+}
+
+model TestResult {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionId        String
+  domainScores     Json
+  totalScore       Float
+  percentile       Float?
+  cognitiveProfile String?
+  metadata         Json?
+  createdAt        DateTime @default(now())
+}
+
+model RawTrialData {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionId    String
+  questionId   String
+  correct      Boolean
+  reactionTime Int
+  timestamp    DateTime @default(now())
+}
