@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const P5Task = dynamic(() => import("../../components/P5Task"), {
+const P5Task = dynamic(() => import("@/components/iq-test/P5Task"), {
     ssr: false
 });
 
