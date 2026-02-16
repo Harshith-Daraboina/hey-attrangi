@@ -265,7 +265,7 @@ export default function HomeClient() {
                 <div className="relative w-full min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] bg-gray-900">
                     {/* Background Image */}
                     <Image
-                        src="/images/src6-3.jpeg"
+                        src="/images/src6-6.jpg"
                         alt="Modern mental health facility with calming, professional environment"
                         fill
                         className="object-cover z-0"

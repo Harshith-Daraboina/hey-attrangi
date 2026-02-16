@@ -18,12 +18,12 @@ interface SlideshowProps {
   showArrows?: boolean;
 }
 
-export default function Slideshow({ 
-  slides, 
-  autoPlay = true, 
-  interval = 5000, 
-  showDots = true, 
-  showArrows = true 
+export default function Slideshow({
+  slides,
+  autoPlay = true,
+  interval = 5000,
+  showDots = true,
+  showArrows = true
 }: SlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -62,9 +62,8 @@ export default function Slideshow({
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
           >
             {/* Background Image */}
             <img
@@ -76,22 +75,22 @@ export default function Slideshow({
                 e.currentTarget.style.display = 'none';
               }}
             />
-            
+
             {/* Light overlay for text readability */}
             <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-            
+
             {/* Text Overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <h2 
+                <h2
                   className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-                  style={{fontFamily: 'Poppins, sans-serif', textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)'}}
+                  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)' }}
                 >
                   {slide.title}
                 </h2>
-                <p 
+                <p
                   className="text-lg md:text-xl mb-8 leading-relaxed opacity-95 max-w-3xl mx-auto"
-                  style={{fontFamily: 'Poppins, sans-serif', textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)'}}
+                  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)' }}
                 >
                   {slide.description}
                 </p>
@@ -130,11 +129,10 @@ export default function Slideshow({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                index === currentSlide 
-                  ? 'bg-orange-500' 
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide
+                  ? 'bg-orange-500'
                   : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-              }`}
+                }`}
             />
           ))}
         </div>

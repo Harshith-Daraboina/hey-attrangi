@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface NavigationProps {
   currentPath?: string;
@@ -10,213 +10,162 @@ interface NavigationProps {
 
 export default function Navigation({ currentPath = "/" }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
-    let ticking = false;
+
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 50);
-          ticking = false;
-        });
-        ticking = true;
+      const currentScrollY = window.scrollY;
+
+      // Hide/Show logic
+      if (currentScrollY <= 0) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        // Scrolling down
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Scrolling up
+        setIsVisible(true);
       }
+
+      lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const isActivePath = (path: string) => currentPath === path;
 
   return (
     <>
-      <header className={`sticky top-0 z-[60] bg-white border-b-2 border-transparent transition-all duration-300 ${mounted && isScrolled ? 'shadow-xl border-b-2 border-orange-200' : 'shadow-lg'}`} suppressHydrationWarning>
+      <header
+        className={`sticky top-0 w-full z-[60] bg-white shadow-md border-b border-gray-100 transition-transform duration-300 ease-in-out will-change-transform ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
+        suppressHydrationWarning
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20 w-full">
+          <div className="flex justify-between items-center h-16 w-full">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 flex-shrink-0">
-              <Image
-                src="/images/logo-main.png"
-                alt="Hey Attrangi logo"
-                width={56}
-                height={56}
-                priority
-                className="w-14 h-14 rounded-xl shadow-lg object-contain bg-white p-1"
-              />
-              <div className="hidden md:block">
-                <h1 className="text-xl font-bold text-orange-600" style={{ fontFamily: 'Poppins, sans-serif' }}>Attrangi</h1>
-                <p className="text-xs text-gray-600 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>Mental Healthcare</p>
-              </div>
-            </Link>
+            <div className="flex-shrink-0 flex items-center">
+              <Link href="/" className="flex items-center">
+                <div className="relative h-12 w-auto">
+                  <img
+                    src="/images/logo-vertical.png"
+                    alt="Attrangi Private Limited"
+                    className="h-full w-auto object-contain"
+                  />
+                </div>
+              </Link>
+            </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center justify-center flex-1">
-              <div className="flex space-x-1">
+            {/* Desktop Navigation - Split Layout */}
+            <div className="hidden md:flex items-center flex-grow mx-6">
+              {/* Left Group */}
+              <nav className="flex items-center space-x-6">
                 <Link
                   href="/"
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                    }`}
+                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
                 >
                   Home
                 </Link>
 
-                {/* About Us Dropdown */}
-                <div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center">
-                    About Us
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'about' && (
-                    <div className="absolute top-full left-0 pt-1 w-52 z-50">
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/about" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          About Attrangi
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#team" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Our Team
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#mission" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Our Mission
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/about#contact" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Contact Us
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
                 {/* Services Dropdown */}
-                <div className="relative" onMouseEnter={() => setActiveDropdown('services')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center ${isActivePath('/services') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                    }`}>
+                <div className="relative group" onMouseEnter={() => setActiveDropdown('services')} onMouseLeave={() => setActiveDropdown(null)}>
+                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${isActivePath('/services') || activeDropdown === 'services' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
                     Services
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {activeDropdown === 'services' && (
-                    <div className="absolute top-full left-0 pt-1 w-52 z-50">
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Therapy Services
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Assessment & Diagnosis
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Online Consultations
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/services" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Group Sessions
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Resources
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
+                    <div className="absolute top-full left-0 pt-2 w-52 z-50">
+                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Therapy Services</Link>
+                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Assessment & Diagnosis</Link>
+                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Online Consultations</Link>
+                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Group Sessions</Link>
+                        <Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Resources</Link>
                       </div>
                     </div>
                   )}
                 </div>
 
                 <Link
+                  href="/test-your-iq"
+                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                >
+                  MindMetric Test
+                </Link>
+              </nav>
+
+              {/* Spacer */}
+              <div className="flex-grow"></div>
+
+              {/* Right Group */}
+              <nav className="flex items-center space-x-6">
+                <Link
                   href="/blogs"
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'
-                    }`}
+                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
                 >
                   Insights
                 </Link>
 
                 {/* Resources Dropdown */}
-                <div className="relative" onMouseEnter={() => setActiveDropdown('resources')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className="text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center">
+                <div className="relative group" onMouseEnter={() => setActiveDropdown('resources')} onMouseLeave={() => setActiveDropdown(null)}>
+                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'resources' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
                     Resources
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {activeDropdown === 'resources' && (
-                    <div className="absolute top-full left-0 pt-1 w-52 z-50">
-                      <div className="bg-white rounded-xl shadow-2xl border border-gray-200 py-2">
-                        <Link href="/resources" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          All Resources
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#self-help" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Self-Help Guides
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#tools" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Mental Health Tools
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                        <Link href="/resources#worksheets" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 hover:bg-opacity-60 flex items-center transition-colors block">
-                          Worksheets & Activities
-                          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
+                    <div className="absolute top-full left-0 pt-2 w-52 z-50">
+                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                        <Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">All Resources</Link>
+                        <Link href="/resources#self-help" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Self-Help Guides</Link>
+                        <Link href="/resources#tools" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Mental Health Tools</Link>
+                        <Link href="/resources#worksheets" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Worksheets & Activities</Link>
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* MindMetric Test Link */}
-                <Link
-                  href="/test-your-iq"
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-100 hover:bg-opacity-60'}`}
-                >
-                  MindMetric Test
-                </Link>
-              </div>
-            </nav>
+                {/* About Us Dropdown */}
+                <div className="relative group" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
+                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'about' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
+                    About Us
+                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {activeDropdown === 'about' && (
+                    <div className="absolute top-full right-0 pt-2 w-52 z-50">
+                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                        <Link href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">About Attrangi</Link>
+                        <Link href="/about#team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Team</Link>
+                        <Link href="/about#mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Mission</Link>
+                        <Link href="/about#contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Contact Us</Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </nav>
+            </div>
 
-            {/* View Products Button */}
-            <Link href="/aids" className="hidden md:flex bg-orange-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg items-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              View Products
-            </Link>
+            {/* Right Side Actions */}
+            <div className="hidden md:flex items-center space-x-3">
+              {/* Get Started Button */}
+              <Link href="/app" className="bg-orange-500 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:bg-orange-600 transition-colors whitespace-nowrap">
+                Get Started
+              </Link>
+            </div>
 
             {/* Hamburger Menu Button - Mobile Only */}
             <div className="flex-shrink-0 md:hidden">
@@ -415,11 +364,11 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
               </Link>
 
               <Link
-                href="/aids"
+                href="/app"
                 className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                View Products
+                Get Started
               </Link>
             </div>
           </div >

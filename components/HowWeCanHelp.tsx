@@ -30,7 +30,7 @@ const HowWeCanHelp = () => {
             {/* Background Image Container */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/src6-2.png" // Using a placeholder image from assets
+                    src="/images/src6-5.jpg" // Using a placeholder image from assets
                     alt="Caring team background"
                     fill
                     className="object-cover"
@@ -56,7 +56,7 @@ const HowWeCanHelp = () => {
             </div>
 
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Want to understand how Hey Attrangi can help?
                 </h2>
                 <p className="text-white/90 mb-12 max-w-2xl mx-auto text-lg">
@@ -69,7 +69,7 @@ const HowWeCanHelp = () => {
                         <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-6 text-2xl">
                             📞
                         </div>
-                        <h3 className="text-xl font-bold text-green-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <h3 className="text-xl font-bold text-green-900 mb-3">
                             Book a free call with our coach
                         </h3>
                         <p className="text-gray-600 mb-8 text-sm leading-relaxed">
@@ -85,7 +85,7 @@ const HowWeCanHelp = () => {
                         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-6 text-2xl">
                             💬
                         </div>
-                        <h3 className="text-xl font-bold text-green-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <h3 className="text-xl font-bold text-green-900 mb-3">
                             Connect with our Care Team
                         </h3>
                         <p className="text-gray-600 mb-8 text-sm leading-relaxed">

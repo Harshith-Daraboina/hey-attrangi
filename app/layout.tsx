@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Poppins } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/components/SessionProvider";
 
-const poppins = Poppins({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -43,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
-      <body className={`antialiased ${poppins.className}`}>
+    <html lang="en" className={manrope.variable}>
+      <body className={`antialiased ${manrope.className}`}>
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
@@ -81,7 +81,7 @@ export default function RootLayout({
             `,
           }}
         />
-        
+
         <SessionProvider>
           {children}
         </SessionProvider>

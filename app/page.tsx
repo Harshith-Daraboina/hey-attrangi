@@ -5,8 +5,10 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
-import MentalHealthConcerns from "@/components/MentalHealthConcerns";
+import FAQ from "@/components/FAQ";
 import HowWeCanHelp from "@/components/HowWeCanHelp";
+import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
+import MentalHealthConcerns from "@/components/MentalHealthConcerns";
 
 interface FeaturedBlog {
   id: string;
@@ -232,12 +234,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Navigation Component */}
-      <Navigation currentPath="/" />
-
-      <div className="min-h-screen bg-orange-50 overflow-x-hidden">
-
-
+      <div className="min-h-screen bg-orange-50">
         {/* Moving Quote Bar */}
         <div className="bg-gray-800 text-white py-2 px-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -251,14 +248,16 @@ export default function Home() {
               </svg>
             </button>
 
-            {/* Quote Content */}
-            <div className="flex items-center flex-1 justify-center mx-4 overflow-hidden relative h-8">
-              <p
-                key={currentQuote}
-                className={`text-xs font-medium text-center absolute w-full ${isAnimating ? 'animate-train-slide' : ''}`}
+            {/* Scrolling Content */}
+            <div className="flex-1 overflow-hidden mx-4 h-6 relative">
+              <div
+                className={`flex items-center justify-center h-full transition-all duration-500 ease-in-out ${isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                  }`}
               >
-                "{quotes[currentQuote]}"
-              </p>
+                <p className="text-sm font-medium tracking-wide whitespace-nowrap">
+                  {quotes[currentQuote]}
+                </p>
+              </div>
             </div>
 
             {/* Next Button */}
@@ -273,11 +272,14 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Navigation Component */}
+        <Navigation currentPath="/" />
+
         {/* Hero Section with Background Image */}
         <div className="relative w-full min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] bg-gray-900">
           {/* Background Image */}
           <Image
-            src="/images/src6-3.jpeg"
+            src="/images/src6-7.png"
             alt="Modern mental health facility with calming, professional environment"
             fill
             className="object-cover z-0"
@@ -299,7 +301,7 @@ export default function Home() {
                 {/* Main Heading with text shadow */}
                 <h1
                   className="text-white text-3xl md:text-4xl font-bold leading-tight drop-shadow-lg"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+
                 >
                   A mental healthcare ecosystem for the way we live, feel, and connect
                 </h1>
@@ -307,7 +309,7 @@ export default function Home() {
                 {/* Description with better contrast */}
                 <p
                   className="text-white text-base md:text-lg leading-relaxed drop-shadow-md opacity-95"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+
                 >
                   We follow the bio-psycho-social model because your body, mind, and
                   environment all shape how you feel. Our care supports every part of your
@@ -317,7 +319,7 @@ export default function Home() {
                 {/* CTA Button with improved styling */}
                 <button
                   className="bg-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base shadow-xl"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+
                 >
                   FIND THE RIGHT EXPERT
                 </button>
@@ -328,15 +330,15 @@ export default function Home() {
             <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 pb-8 px-4">
               <div className="flex items-center text-white text-xs md:text-sm">
                 <div className="w-2 h-2 bg-orange-500 rounded-full mr-2 flex-shrink-0"></div>
-                <span style={{ fontFamily: 'Poppins, sans-serif' }}>For Every Age & Concern</span>
+                <span>For Every Age & Concern</span>
               </div>
               <div className="flex items-center text-white text-xs md:text-sm">
                 <div className="w-2 h-2 bg-orange-500 rounded-full mr-2 flex-shrink-0"></div>
-                <span style={{ fontFamily: 'Poppins, sans-serif' }}>In-person & Online</span>
+                <span>In-person & Online</span>
               </div>
               <div className="flex items-center text-white text-xs md:text-sm">
                 <div className="w-2 h-2 bg-orange-500 rounded-full mr-2 flex-shrink-0"></div>
-                <span style={{ fontFamily: 'Poppins, sans-serif' }}>For Individuals, Families and Organisations</span>
+                <span>For Individuals, Families and Organisations</span>
               </div>
             </div>
           </div>
@@ -352,34 +354,34 @@ export default function Home() {
           <div className="relative -mt-16 mb-20 z-10">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-orange-100 text-center">
-                <div className="grid md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
                   {/* Stat 1 */}
                   <div className="p-4">
-                    <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                      500+
+                    <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
+                      200+
                     </div>
                     <p className="text-gray-600 text-xs font-medium leading-relaxed">
-                      Mental health professionals ready to support your journey to wellness
+                      Peers and professionals actively supporting and guiding your mental health journey
                     </p>
                   </div>
 
                   {/* Stat 2 */}
                   <div className="p-4">
-                    <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
                       24/7
                     </div>
                     <p className="text-gray-600 text-xs font-medium leading-relaxed">
-                      Access to resources and support whenever you need it most
+                      Access to AI-powered support, tools, and resources — even between therapy sessions
                     </p>
                   </div>
 
                   {/* Stat 3 */}
                   <div className="p-4">
-                    <div className="text-4xl md:text-5xl font-bold text-orange-500 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                      10,000+
+                    <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-4">
+                      Personalised Care
                     </div>
                     <p className="text-gray-600 text-xs font-medium leading-relaxed">
-                      Lives positively impacted through our comprehensive care programs
+                      Structured therapy plans designed by licensed psychiatrists and enhanced with guided exercises
                     </p>
                   </div>
                 </div>
@@ -427,144 +429,114 @@ export default function Home() {
 
           {/* Hero Section */}
           <main className="relative pt-20 pb-40 overflow-hidden">
+            <ScrollingTextMarqueeComponent />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* WHO IT'S FOR Section */}
-              <div className="mb-20">
-                {/* Centered Heading */}
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                    Hey Attrangi supports everyone on their journey
-                  </h2>
-                  <p className="text-xl text-gray-600 leading-relaxed">
+              {/* WHO IT'S FOR Section - Redesigned with specific images */}
+              <div className="mb-20 relative">
+
+                <div className="bg-white rounded-[40px] shadow-sm border border-orange-100 p-8 md:p-16 relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
+                    <div className="max-w-2xl">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-200 text-orange-600 text-xs font-semibold mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                        Who it's for
+                      </div>
+                      <h2 className="text-4xl md:text-5xl font-black text-[#1a2b3c] leading-tight mb-4 tracking-tight">
+                        Hey Attrangi supports <br className="hidden md:block" />
+                        everyone on their journey
+                      </h2>
+                    </div>
+
+                    <Link
+                      href="/app"
+                      className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 uppercase flex items-center gap-2 group whitespace-nowrap"
+                    >
+                      get onboarded now
+                      <span className="text-2xl leading-none transition-transform group-hover:translate-x-1">→</span>
+                    </Link>
+                  </div>
+
+                  <p className="text-lg md:text-xl text-gray-500 max-w-2xl mb-12">
                     Get comprehensive mental health support anytime, anywhere — with the Attrangi platform.
                   </p>
-                </div>
 
-                {/* Content Grid - Features and Video Side by Side */}
-                <div className="grid lg:grid-cols-2 gap-16 items-start">
-                  {/* Left Content - Feature List */}
-                  <div className="space-y-6">
+                  {/* Divider Line */}
+                  <div className="h-px bg-gray-100 w-full mb-16"></div>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
                     {/* For Students */}
-                    <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                    <div className="flex flex-col group">
+                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                        <Image
+                          src="/images/student.png"
+                          alt="Student support"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                          For Students
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">For Students</h3>
+                        <p className="text-gray-500 leading-relaxed text-sm">
                           Manage academic stress, track emotions, and find peer support circles with personalized tools designed for your educational journey.
                         </p>
                       </div>
                     </div>
 
                     {/* For Caregivers */}
-                    <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                    <div className="flex flex-col group">
+                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                        <Image
+                          src="/images/caregiver.jpg"
+                          alt="Caregiver support"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                          For Caregivers
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">For Caregivers</h3>
+                        <p className="text-gray-500 leading-relaxed text-sm">
                           Monitor progress, understand patterns, and support your loved ones with compassion through dedicated tracking and communication tools.
                         </p>
                       </div>
                     </div>
 
                     {/* For Therapists */}
-                    <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                    <div className="flex flex-col group">
+                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                        <Image
+                          src="/images/therapist.jpg"
+                          alt="Therapist support"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                          For Therapists
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">For Therapists</h3>
+                        <p className="text-gray-500 leading-relaxed text-sm">
                           Streamline sessions, access AI summaries, and personalize care effortlessly with professional tools designed for mental health practitioners.
                         </p>
                       </div>
                     </div>
 
                     {/* For Professionals */}
-                    <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                    <div className="flex flex-col group">
+                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                        <Image
+                          src="/images/founder2.png"
+                          alt="Professional support"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                          For Professionals
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">For Professionals</h3>
+                        <p className="text-gray-500 leading-relaxed text-sm">
                           De-stress with quick mindfulness sessions and habit trackers for work-life balance, designed for busy working professionals.
                         </p>
                       </div>
                     </div>
-
                   </div>
-
-                  {/* Right Content - Hero Video Presentation */}
-                  <div className="relative flex justify-center items-center w-full h-[420px]">
-                    {/* Decorative background accents */}
-                    {/* <div className="absolute -top-16 -left-6 w-24 h-24 rounded-full bg-orange-100 opacity-80"></div> */}
-                    {/* <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-gradient-to-tr from-orange-200/80 via-orange-100/60 to-transparent rounded-full mix-blend-multiply"></div> */}
-                    {/* <div className="absolute inset-0 translate-x-10 translate-y-8 w-[110%] h-[110%] rounded-[120px] bg-gradient-to-br from-orange-200/40 via-orange-100/30 to-transparent"></div> */}
-
-                    {/* Content Card */}
-                    <div className="relative w-full max-w-[560px]">
-                      {/* <div className="absolute -inset-8 bg-gradient-to-br from-orange-200 via-white to-orange-100 rounded-[36px] opacity-90"></div> */}
-                      <div className="relative bg-white rounded-[30px] shadow-[0_35px_70px_rgba(17,24,39,0.25)] overflow-hidden border border-orange-100">
-                        {/* Badge */}
-                        <div className="absolute top-6 left-6 flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full shadow-sm z-20">
-                          <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                          <span className="text-xs font-semibold tracking-wide text-green-600 uppercase">Live session</span>
-                        </div>
-
-                        {/* Video */}
-                        <video
-                          className="w-full h-[320px] object-cover"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="none"
-                          style={{
-                            filter: 'brightness(0.95) contrast(1.05)'
-                          }}
-                        >
-                          <source src="/videos/vid3.mp4" type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-
-                        {/* Overlay info */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                          <div>
-                            <h3 className="text-white text-lg font-semibold leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                              Therapy that feels the emptiness
-                            </h3>
-                            <p className="text-white/85 text-sm mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                              Guided sessions tailored to your goals, pace, and everyday life.
-                            </p>
-                          </div>
-                          <button className="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-white text-sm font-medium hover:bg-white/35 transition-all">
-                            INSTALL NOW
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
@@ -584,11 +556,12 @@ export default function Home() {
           </main>
         </div>
 
+
+
         {/* Personalized Care Section */}
         <section className="bg-white py-20 pb-32 overflow-x-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Side - Main Image with Cards */}
               {/* Left Side - Main Image with Cards */}
               <div className="relative min-h-[500px] flex justify-center items-center overflow-visible">
                 <div className="relative w-full h-[500px] md:h-[600px]">
@@ -605,7 +578,7 @@ export default function Home() {
               {/* Right Side - Content */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
                     Real care adapts to your life, your people, your pace.
                   </h2>
                   <p className="text-base text-gray-600 leading-relaxed mb-6">
@@ -631,7 +604,7 @@ export default function Home() {
 
                 {/* CTA Section */}
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
                     Find support that fits you
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -651,7 +624,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services Section */}
         <section id="services" className="bg-orange-50 py-16 relative">
           {/* Founder Message Section - Floating Card */}
           <div className="relative -mt-32 mb-20 z-40">
@@ -671,12 +643,12 @@ export default function Home() {
                       />
                     </div>
                     <div className="text-center md:text-left">
-                      <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-3">
                         Dr Sandesh Sanjeev Phalke
                       </h2>
                       <p
                         className="text-base md:text-lg text-gray-700 font-medium"
-                        style={{ fontFamily: 'Poppins, sans-serif' }}
+
                       >
                         Founder | Researcher
                       </p>
@@ -688,14 +660,14 @@ export default function Home() {
                   <div className="space-y-8">
                     {/* Main Quote */}
                     <div>
-                      <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 italic leading-tight mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 italic leading-tight mb-4">
                         "Mental health is not a destination, but a journey of understanding, growth, and self-compassion."
                       </p>
                     </div>
 
                     {/* Vision Description */}
                     <div className="border-l-4 border-orange-500 pl-6">
-                      <p className="text-base md:text-lg text-gray-700 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                         We believe everyone deserves compassionate, evidence-based care that honors their unique journey.
                       </p>
                     </div>
@@ -708,71 +680,75 @@ export default function Home() {
           {/* Featured Blogs Section */}
           {insightsToShow.length > 0 && (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200 mb-16">
+              <div className="mb-16">
                 <div className="text-center mb-12">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>Latest Insights</h2>
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  <h2 className="text-4xl md:text-5xl font-bold text-[#1a2b3c] mb-4 font-poppins">Latest Insights</h2>
+                  <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
                     Discover evidence-based articles, personal stories, and expert guidance
                     from our mental health professionals
                   </p>
                 </div>
 
                 {/* Featured Blog Cards Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                   {insightsToShow.map((blog, index) => {
                     const isPlaceholder = blog.isPlaceholder;
                     const href = blog.slug ? `/blogs/${blog.slug}` : "/blogs";
                     return (
-                      <Link key={`${blog.id}-${index}`} href={href} className="group">
-                        <article className="bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 h-full">
+                      <Link key={`${blog.id}-${index}`} href={href} className="group h-full">
+                        <article className="bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-gray-100 overflow-hidden h-full flex flex-col">
                           {/* Image */}
-                          <div className="relative h-40 bg-gradient-to-br from-blue-100 to-purple-100">
+                          <div className="relative h-52 w-full overflow-hidden">
                             {blog.image ? (
                               <Image
                                 src={blog.image}
                                 alt={blog.title}
                                 fill
-                                className="object-cover"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                               />
                             ) : (
-                              <div className="flex items-center justify-center h-full">
-                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                  <span className="text-white text-xl">📝</span>
-                                </div>
+                              <div className="flex items-center justify-center h-full bg-gray-100">
+                                <span className="text-4xl">📝</span>
                               </div>
                             )}
-                            <div className="absolute top-3 left-3">
-                              <span className={`inline-block px-3 py-1 text-white rounded-full text-xs font-semibold ${isPlaceholder ? 'bg-orange-500' : 'bg-blue-600'}`}>
+
+                            {/* Tags */}
+                            <div className="absolute top-4 left-4 z-10">
+                              <span className={`inline-block px-3 py-1.5 text-white text-xs font-bold rounded-full shadow-sm ${isPlaceholder ? 'bg-orange-500' : 'bg-blue-600'
+                                }`}>
                                 {isPlaceholder ? "Coming Soon" : "Featured"}
                               </span>
                             </div>
                           </div>
 
                           {/* Content */}
-                          <div className="p-5">
-                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          <div className="p-6 flex flex-col flex-grow">
+                            <h3 className="text-xl font-bold text-[#1a2b3c] mb-3 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2">
                               {blog.title}
                             </h3>
+
                             {blog.excerpt && (
-                              <p className="text-sm text-gray-600 mb-3 line-clamp-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                              <p className="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed flex-grow">
                                 {blog.excerpt}
                               </p>
                             )}
-                            <div className="flex items-center justify-between text-xs text-gray-500">
-                              <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                                </svg>
-                                <span>{blog.views}</span>
+
+                            <div className="flex items-center justify-between pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
+                              <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-1.5">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                  </svg>
+                                  <span>{blog.views || 0}</span>
+                                </div>
+                                <span>{formatDate(blog.createdAt)}</span>
                               </div>
-                              <span>{formatDate(blog.createdAt)}</span>
+
+                              {blog.author && (
+                                <span className="text-gray-500">By {blog.author}</span>
+                              )}
                             </div>
-                            {blog.author && (
-                              <div className="mt-2 text-xs text-gray-600 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                By {blog.author}
-                              </div>
-                            )}
                           </div>
                         </article>
                       </Link>
@@ -784,11 +760,10 @@ export default function Home() {
                 <div className="text-center">
                   <Link
                     href="/blogs"
-                    className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3 rounded-xl font-semibold text-base hover:bg-orange-600 transition-colors shadow-lg"
-                    style={{ fontFamily: 'Poppins, sans-serif' }}
+                    className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                   >
                     View All Insights
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Link>
@@ -798,95 +773,138 @@ export default function Home() {
           )}
         </section>
 
-        <section className="bg-[#ffffff] py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            {/* Section Header */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-
-              <h2
-                className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                Personalized Care, Thoughtfully Enhanced by AI
-              </h2>
-
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Our technology works quietly in the background — helping therapists
-                understand context, adapt in real time, and offer care that feels deeply
-                personal, never clinical.
-              </p>
-            </div>
+        <MentalHealthConcerns />
 
 
 
-            {/* Premium Cards */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-              {/* Card 1 */}
-              <div className="group bg-white/70 backdrop-blur-xl border border-black/5 rounded-2xl p-8 shadow-sm transition-all duration-700 hover:shadow-lg hover:-translate-y-1">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-full bg-orange-100/70 flex items-center justify-center text-xl">
-                    📚
-                  </div>
-                  <span className="text-xs uppercase tracking-widest text-gray-400">
-                    Feature 01
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-medium text-gray-900 mb-3">
-                  Curated Resources
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed">
-                  Thoughtfully selected exercises, reflections, and tools are shared
-                  during and after sessions — aligned with what you discussed, when it
-                  matters most.
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="group bg-white/70 backdrop-blur-xl border border-black/5 rounded-2xl p-8 shadow-sm transition-all duration-700 hover:shadow-lg hover:-translate-y-1">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100/70 flex items-center justify-center text-xl">
-                    🔒
-                  </div>
-                  <span className="text-xs uppercase tracking-widest text-gray-400">
-                    Feature 02
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-medium text-gray-900 mb-3">
-                  Secure & Monitored
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed">
-                  Every session is protected with enterprise-grade security and quality
-                  monitoring — ensuring a private, respectful, and emotionally safe
-                  experience.
-                </p>
-              </div>
 
 
-            </div>
-
-            {/* Footer Statement */}
-            <div className="text-center mt-20">
-            </div>
-
-
-
+        <section className="bg-white py-24 relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange-50 rounded-full blur-3xl opacity-50"></div>
+            <div className="absolute top-1/2 -left-24 w-72 h-72 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
           </div>
 
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Section Header */}
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <span className="text-orange-500 font-bold tracking-widest text-sm uppercase mb-4 block">Testimonials</span>
+              <h2
+                className="text-4xl md:text-5xl font-extrabold text-[#1a2b3c] mb-6 tracking-tight leading-tight"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                Trusted by Experts in <br className="hidden md:block" /> Mental Health & Tech
+              </h2>
+            </div>
+
+            {/* Peer Reviews Grid */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {/* Card 1 - Ram Subramanyam */}
+              <div className="relative bg-white rounded-[32px] p-8 shadow-[0_2px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full group transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)]">
+                {/* Decorative Quote */}
+                <div className="absolute top-6 right-8 text-9xl leading-none text-orange-50/50 font-serif select-none pointer-events-none group-hover:text-orange-100/50 transition-colors">
+                  "
+                </div>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex gap-1 mb-6">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  <blockquote className="text-[#1a2b3c] text-lg font-medium leading-relaxed mb-8 flex-grow">
+                    “The fusion of AI with mental health expertise at Attrangi is truly innovative. They've built a platform that scales empathy without losing the personal touch.”
+                  </blockquote>
+
+                  <div className="flex items-center gap-4 pt-6 border-t border-gray-50">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center text-orange-600 font-bold text-sm shadow-inner">
+                      RS
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#1a2b3c] text-sm">Ram Subramanyam</h4>
+                      <p className="text-xs text-gray-500 font-medium tracking-wide">Tech & Strategy Advisor</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 - Dr. Abhisheik */}
+              <div className="relative bg-white rounded-[32px] p-8 shadow-[0_2px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full group transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)]">
+                {/* Decorative Quote */}
+                <div className="absolute top-6 right-8 text-9xl leading-none text-blue-50/50 font-serif select-none pointer-events-none group-hover:text-blue-100/50 transition-colors">
+                  "
+                </div>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex gap-1 mb-6">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  <blockquote className="text-[#1a2b3c] text-lg font-medium leading-relaxed mb-8 flex-grow">
+                    “Attrangi’s commitment to evidence-based care and neurodiversity is exemplary. It’s a vital resource for anyone seeking comprehensive, modern support.”
+                  </blockquote>
+
+                  <div className="flex items-center gap-4 pt-6 border-t border-gray-50">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center text-blue-600 font-bold text-sm shadow-inner">
+                      DA
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#1a2b3c] text-sm">Dr. Abhisheik</h4>
+                      <p className="text-xs text-gray-500 font-medium tracking-wide">Clinical Psychiatrist</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 - Dr. Sandesh */}
+              <div className="relative bg-white rounded-[32px] p-8 shadow-[0_2px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col h-full group transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.12)]">
+                {/* Decorative Quote */}
+                <div className="absolute top-6 right-8 text-9xl leading-none text-purple-50/50 font-serif select-none pointer-events-none group-hover:text-purple-100/50 transition-colors">
+                  "
+                </div>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex gap-1 mb-6">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  <blockquote className="text-[#1a2b3c] text-lg font-medium leading-relaxed mb-8 flex-grow">
+                    “Building this ecosystem has been a journey of passion. Our goal is to ensure that technology serves the human spirit, making care accessible to all.”
+                  </blockquote>
+
+                  <div className="flex items-center gap-4 pt-6 border-t border-gray-50">
+                    <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 relative shadow-inner">
+                      <Image src="/images/founder2.png" alt="Dr. Sandesh" fill className="object-cover" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#1a2b3c] text-sm">Dr. Sandesh</h4>
+                      <p className="text-xs text-gray-500 font-medium tracking-wide">Founder & Researcher</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
 
-
-        {/* Mental Health Concerns Section */}
-        <MentalHealthConcerns />
-
         {/* How We Can Help Section */}
         <HowWeCanHelp />
+
+        {/* FAQ Section */}
+        <FAQ />
 
         {/* Footer */}
         <Footer />

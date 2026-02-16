@@ -29,6 +29,7 @@ export default function Footer() {
               <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
               <li><Link href="/blogs" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>
 
@@ -36,7 +37,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Self-Help Library</a></li>
+              <li><Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Find a Therapist</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Community Support</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Crisis Resources</a></li>
@@ -87,11 +88,11 @@ export default function Footer() {
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             © {new Date().getFullYear()} Hey Attrangi. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Accessibility</a>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm">
+            <Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link>
+            <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>
