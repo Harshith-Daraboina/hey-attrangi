@@ -67,7 +67,7 @@ const fallbackInsights: FeaturedBlog[] = [
     title: "How Therapy & Community Support Work Together",
     slug: "",
     excerpt: "Why combining professional therapy with peer-led spaces accelerates healing for neurodivergent individuals.",
-    image: "/images/src6-2.png",
+    image: "/images/src6-5.jpg",
     author: "Hey Attrangi Experts",
     likes: 0,
     views: 860,
@@ -432,9 +432,9 @@ export default function Home() {
             <ScrollingTextMarqueeComponent />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* WHO IT'S FOR Section - Redesigned with specific images */}
-              <div className="mb-20 relative">
+              <div className="mb-12 relative">
 
-                <div className="bg-white rounded-[40px] shadow-sm border border-orange-100 p-8 md:p-16 relative z-10">
+                <div className="bg-white rounded-[40px] shadow-sm border border-orange-100 p-6 md:p-10 relative z-10">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
                     <div className="max-w-2xl">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-200 text-orange-600 text-xs font-semibold mb-6">
@@ -456,18 +456,18 @@ export default function Home() {
                     </Link>
                   </div>
 
-                  <p className="text-lg md:text-xl text-gray-500 max-w-2xl mb-12">
+                  <p className="text-lg md:text-xl text-gray-500 max-w-2xl mb-8">
                     Get comprehensive mental health support anytime, anywhere — with the Attrangi platform.
                   </p>
 
                   {/* Divider Line */}
-                  <div className="h-px bg-gray-100 w-full mb-16"></div>
+                  <div className="h-px bg-gray-100 w-full mb-8"></div>
 
                   {/* Features Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
                     {/* For Students */}
                     <div className="flex flex-col group">
-                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
                         <Image
                           src="/images/student.png"
                           alt="Student support"
@@ -485,7 +485,7 @@ export default function Home() {
 
                     {/* For Caregivers */}
                     <div className="flex flex-col group">
-                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
                         <Image
                           src="/images/caregiver.jpg"
                           alt="Caregiver support"
@@ -503,7 +503,7 @@ export default function Home() {
 
                     {/* For Therapists */}
                     <div className="flex flex-col group">
-                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
                         <Image
                           src="/images/therapist.jpg"
                           alt="Therapist support"
@@ -521,7 +521,7 @@ export default function Home() {
 
                     {/* For Professionals */}
                     <div className="flex flex-col group">
-                      <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
                         <Image
                           src="/images/founder2.png"
                           alt="Professional support"
@@ -566,7 +566,7 @@ export default function Home() {
               <div className="relative min-h-[500px] flex justify-center items-center overflow-visible">
                 <div className="relative w-full h-[500px] md:h-[600px]">
                   <Image
-                    src="/images/src4-2.png"
+                    src="/images/src4-3.png"
                     alt="Mental healthcare platform interface"
                     fill
                     className="object-contain"

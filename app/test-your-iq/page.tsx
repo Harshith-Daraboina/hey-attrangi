@@ -3,7 +3,7 @@
 import Link from "next/link";
 import TestCard from "@/components/iq-test/TestCard";
 import Footer from "@/components/Footer";
-
+import { NormalDistributionChart } from "@/components/iq-test/NormalDistributionChart";
 import Navigation from "@/components/Navigation";
 
 export default function Home() {

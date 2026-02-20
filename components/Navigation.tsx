@@ -68,94 +68,103 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
             {/* Desktop Navigation - Split Layout */}
             <div className="hidden md:flex items-center flex-grow mx-6">
               {/* Left Group */}
-              <nav className="flex items-center space-x-6">
-                <Link
-                  href="/"
-                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
-                >
-                  Home
-                </Link>
+              <nav aria-label="Main Navigation" className="flex items-center flex-grow space-x-6">
+                <ul className="flex items-center space-x-6 list-none m-0 p-0">
+                  <li>
+                    <Link
+                      href="/"
+                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                    >
+                      Home
+                    </Link>
+                  </li>
 
-                {/* Services Dropdown */}
-                <div className="relative group" onMouseEnter={() => setActiveDropdown('services')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${isActivePath('/services') || activeDropdown === 'services' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
-                    Services
-                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'services' && (
-                    <div className="absolute top-full left-0 pt-2 w-52 z-50">
-                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
-                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Therapy Services</Link>
-                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Assessment & Diagnosis</Link>
-                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Online Consultations</Link>
-                        <Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Group Sessions</Link>
-                        <Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Resources</Link>
+                  {/* Services Dropdown */}
+                  <li className="relative group" onMouseEnter={() => setActiveDropdown('services')} onMouseLeave={() => setActiveDropdown(null)}>
+                    <button aria-haspopup="true" aria-expanded={activeDropdown === 'services'} className={`text-sm font-medium transition-colors duration-200 flex items-center ${isActivePath('/services') || activeDropdown === 'services' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
+                      Services
+                      <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {activeDropdown === 'services' && (
+                      <div className="absolute top-full left-0 pt-2 w-52 z-50">
+                        <ul className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 list-none m-0">
+                          <li><Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Therapy Services</Link></li>
+                          <li><Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Assessment & Diagnosis</Link></li>
+                          <li><Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Online Consultations</Link></li>
+                          <li><Link href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Group Sessions</Link></li>
+                          <li><Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Resources</Link></li>
+                        </ul>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </li>
 
-                <Link
-                  href="/test-your-iq"
-                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
-                >
-                  MindMetric Test
-                </Link>
-              </nav>
+                  <li>
+                    <Link
+                      href="/test-your-iq"
+                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                    >
+                      MindMetric Test
+                    </Link>
+                  </li>
+                </ul>
 
-              {/* Spacer */}
-              <div className="flex-grow"></div>
+                {/* Spacer */}
+                <div className="flex-grow"></div>
 
-              {/* Right Group */}
-              <nav className="flex items-center space-x-6">
-                <Link
-                  href="/blogs"
-                  className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
-                >
-                  Insights
-                </Link>
+                {/* Right Group */}
+                <ul className="flex items-center space-x-6 list-none m-0 p-0">
+                  <li>
+                    <Link
+                      href="/blogs"
+                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                    >
+                      Insights
+                    </Link>
+                  </li>
 
-                {/* Resources Dropdown */}
-                <div className="relative group" onMouseEnter={() => setActiveDropdown('resources')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'resources' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
-                    Resources
-                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'resources' && (
-                    <div className="absolute top-full left-0 pt-2 w-52 z-50">
-                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
-                        <Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">All Resources</Link>
-                        <Link href="/resources#self-help" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Self-Help Guides</Link>
-                        <Link href="/resources#tools" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Mental Health Tools</Link>
-                        <Link href="/resources#worksheets" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Worksheets & Activities</Link>
+                  {/* Resources Dropdown */}
+                  <li className="relative group" onMouseEnter={() => setActiveDropdown('resources')} onMouseLeave={() => setActiveDropdown(null)}>
+                    <button aria-haspopup="true" aria-expanded={activeDropdown === 'resources'} className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'resources' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
+                      Resources
+                      <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {activeDropdown === 'resources' && (
+                      <div className="absolute top-full left-0 pt-2 w-52 z-50">
+                        <ul className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 list-none m-0">
+                          <li><Link href="/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">All Resources</Link></li>
+                          <li><Link href="/resources#self-help" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Self-Help Guides</Link></li>
+                          <li><Link href="/resources#tools" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Mental Health Tools</Link></li>
+                          <li><Link href="/resources#worksheets" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Worksheets & Activities</Link></li>
+                        </ul>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </li>
 
-                {/* About Us Dropdown */}
-                <div className="relative group" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
-                  <button className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'about' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
-                    About Us
-                    <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {activeDropdown === 'about' && (
-                    <div className="absolute top-full right-0 pt-2 w-52 z-50">
-                      <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
-                        <Link href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">About Attrangi</Link>
-                        <Link href="/about#team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Team</Link>
-                        <Link href="/about#mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Mission</Link>
-                        <Link href="/about#contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Contact Us</Link>
+                  {/* About Us Dropdown */}
+                  <li className="relative group" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
+                    <button aria-haspopup="true" aria-expanded={activeDropdown === 'about'} className={`text-sm font-medium transition-colors duration-200 flex items-center ${activeDropdown === 'about' ? 'text-orange-600' : 'text-gray-600 hover:text-orange-600'}`}>
+                      About Us
+                      <svg className={`w-4 h-4 ml-0.5 transition-transform duration-200 ${activeDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {activeDropdown === 'about' && (
+                      <div className="absolute top-full right-0 pt-2 w-52 z-50">
+                        <ul className="bg-white rounded-lg shadow-xl border border-gray-100 py-2 list-none m-0">
+                          <li><Link href="/about" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">About Attrangi</Link></li>
+                          <li><Link href="/about#team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Team</Link></li>
+                          <li><Link href="/about#mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Mission</Link></li>
+                          <li><Link href="/about#contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Contact Us</Link></li>
+                          <li><Link href="/refund-policy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Refund Policy</Link></li>
+                        </ul>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </li>
+                </ul>
               </nav>
             </div>
 
@@ -192,19 +201,23 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
       {/* Mobile Menu */}
       {
         mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 z-[70] top-20 bg-white border-t border-gray-200 max-h-[calc(100vh-80px)] overflow-y-auto">
-            <div className="px-4 py-6 space-y-4">
-              <Link
-                href="/"
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
+          <nav aria-label="Mobile Navigation" className="md:hidden fixed inset-0 z-[70] top-20 bg-white border-t border-gray-200 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <ul className="px-4 py-6 space-y-4 list-none m-0">
+              <li>
+                <Link
+                  href="/"
+                  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+              </li>
 
               {/* About Us Mobile Dropdown */}
-              <div>
+              <li>
                 <button
+                  aria-haspopup="true"
+                  aria-expanded={mobileDropdown === 'about'}
                   onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
                   className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
                 >
@@ -214,18 +227,21 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                   </svg>
                 </button>
                 {mobileDropdown === 'about' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>About Attrangi</Link>
-                    <Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link>
-                    <Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link>
-                    <Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link>
-                  </div>
+                  <ul className="mt-2 ml-4 space-y-2 list-none m-0">
+                    <li><Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>About Attrangi</Link></li>
+                    <li><Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link></li>
+                    <li><Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link></li>
+                    <li><Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link></li>
+                    <li><Link href="/refund-policy" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Refund Policy</Link></li>
+                  </ul>
                 )}
-              </div>
+              </li>
 
               {/* Services Mobile Dropdown */}
-              <div>
+              <li>
                 <button
+                  aria-haspopup="true"
+                  aria-expanded={mobileDropdown === 'services'}
                   onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')}
                   className="w-full px-4 py-3 text-orange-600 hover:bg-orange-50 rounded-lg font-semibold transition-colors flex items-center justify-between"
                 >
@@ -235,27 +251,31 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                   </svg>
                 </button>
                 {mobileDropdown === 'services' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Therapy Services</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Assessment & Diagnosis</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Online Consultations</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Group Sessions</Link>
-                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Resources</Link>
-                  </div>
+                  <ul className="mt-2 ml-4 space-y-2 list-none m-0">
+                    <li><Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Therapy Services</Link></li>
+                    <li><Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Assessment & Diagnosis</Link></li>
+                    <li><Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Online Consultations</Link></li>
+                    <li><Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Group Sessions</Link></li>
+                    <li><Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Resources</Link></li>
+                  </ul>
                 )}
-              </div>
+              </li>
 
-              <Link
-                href="/blogs"
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Insights
-              </Link>
+              <li>
+                <Link
+                  href="/blogs"
+                  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Insights
+                </Link>
+              </li>
 
               {/* Resources Mobile Dropdown */}
-              <div>
+              <li>
                 <button
+                  aria-haspopup="true"
+                  aria-expanded={mobileDropdown === 'resources'}
                   onClick={() => setMobileDropdown(mobileDropdown === 'resources' ? null : 'resources')}
                   className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
                 >
@@ -265,113 +285,36 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                   </svg>
                 </button>
                 {mobileDropdown === 'resources' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>All Resources</Link>
-                    <Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Self-Help Guides</Link>
-                    <Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Mental Health Tools</Link>
-                    <Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Worksheets & Activities</Link>
-                  </div>
+                  <ul className="mt-2 ml-4 space-y-2 list-none m-0">
+                    <li><Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>All Resources</Link></li>
+                    <li><Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Self-Help Guides</Link></li>
+                    <li><Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Mental Health Tools</Link></li>
+                    <li><Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Worksheets & Activities</Link></li>
+                  </ul>
                 )}
-              </div>
+              </li>
 
-              <Link
-                href="/test-your-iq"
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                MindMetric Test
-              </Link>
-
-
-              {/* About Us Mobile Dropdown */}
-              <div>
-                <button
-                  onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
-                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
+              <li>
+                <Link
+                  href="/test-your-iq"
+                  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  About Us
-                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'about' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {mobileDropdown === 'about' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/about" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>About Attrangi</Link>
-                    <Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link>
-                    <Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link>
-                    <Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link>
-                  </div>
-                )}
-              </div>
+                  MindMetric Test
+                </Link>
+              </li>
 
-              {/* Services Mobile Dropdown */}
-              <div>
-                <button
-                  onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')}
-                  className="w-full px-4 py-3 text-orange-600 hover:bg-orange-50 rounded-lg font-semibold transition-colors flex items-center justify-between"
+              <li>
+                <Link
+                  href="/app"
+                  className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  Services
-                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {mobileDropdown === 'services' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Therapy Services</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Assessment & Diagnosis</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Online Consultations</Link>
-                    <Link href="/services" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Group Sessions</Link>
-                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Resources</Link>
-                  </div>
-                )}
-              </div>
-
-              <Link
-                href="/blogs"
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Insights
-              </Link>
-
-              {/* Resources Mobile Dropdown */}
-              <div>
-                <button
-                  onClick={() => setMobileDropdown(mobileDropdown === 'resources' ? null : 'resources')}
-                  className="w-full px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors flex items-center justify-between"
-                >
-                  Resources
-                  <svg className={`w-4 h-4 transition-transform ${mobileDropdown === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {mobileDropdown === 'resources' && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <Link href="/resources" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>All Resources</Link>
-                    <Link href="/resources#self-help" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Self-Help Guides</Link>
-                    <Link href="/resources#tools" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Mental Health Tools</Link>
-                    <Link href="/resources#worksheets" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Worksheets & Activities</Link>
-                  </div>
-                )}
-              </div>
-
-              <Link
-                href="/test-your-iq"
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                MindMetric Test
-              </Link>
-
-              <Link
-                href="/app"
-                className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Get Started
-              </Link>
-            </div>
-          </div >
+                  Get Started
+                </Link>
+              </li>
+            </ul>
+          </nav >
         )
       }
     </>

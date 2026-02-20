@@ -12,8 +12,11 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Hey Attrangi - Support for Neurodivergent Individuals | Psychological Resources",
-  description: "Comprehensive support platform for neurodivergent individuals. Access self-help resources, therapy connections, community support, and awareness content. Professional psychological services and neurodivergent-friendly tools.",
+  title: {
+    template: "%s | Hey Attrangi",
+    default: "Hey Attrangi - Mental Health & Therapy Space",
+  },
+  description: "Hey Attrangi provides professional therapy, online consultations, and free mental health resources. Enhance your emotional wellbeing with cognitive assessments and expert support.",
   keywords: "neurodivergent, psychological support, therapy, autism, ADHD, mental health, self-help, community support, psychological resources, neurodivergent-friendly",
   authors: [{ name: "Hey Attrangi Team" }],
   icons: {
@@ -22,11 +25,13 @@ export const metadata: Metadata = {
         url: "/favicon.png",
         sizes: "96x96",
         type: "image/png",
-      },
+      }
     ],
     apple: [
       {
-        url: "/favicon.png",
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
       },
     ],
   },

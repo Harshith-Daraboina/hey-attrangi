@@ -581,7 +581,7 @@ export default function HomeClient() {
                             <div className="relative min-h-[500px] flex justify-center items-center overflow-visible">
                                 <div className="relative w-full h-[500px] md:h-[600px]">
                                     <Image
-                                        src="/images/src4-2.png"
+                                        src="/images/src4-3.png"
                                         alt="Mental healthcare platform interface"
                                         fill
                                         className="object-contain"
