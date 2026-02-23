@@ -170,6 +170,13 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
 
             {/* Right Side Actions */}
             <div className="hidden md:flex items-center space-x-3">
+              {/* Try Pragya Button */}
+              <Link
+                href="/try-pragya"
+                className="bg-white text-orange-600 border border-orange-500 px-5 py-2.5 rounded-full font-bold text-sm shadow-sm hover:bg-orange-50 transition-colors whitespace-nowrap"
+              >
+                Try Pragya
+              </Link>
               {/* Get Started Button */}
               <Link href="/app" className="bg-orange-500 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:bg-orange-600 transition-colors whitespace-nowrap">
                 Get Started
@@ -305,6 +312,13 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
               </li>
 
               <li>
+                <Link
+                  href="/try-pragya"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full block bg-white text-orange-600 border border-orange-500 px-6 py-3 mb-3 rounded-xl font-bold text-sm shadow-sm text-center"
+                >
+                  Try Pragya
+                </Link>
                 <Link
                   href="/app"
                   className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
