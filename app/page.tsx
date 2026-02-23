@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef, memo } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
@@ -85,6 +85,108 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const isAnimatingRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Need these definitions for the bento layout
+  const getCategories = (blog: any) => {
+    if (blog.tumblineQuestion) {
+      return ["Mental Health", "Wellness"];
+    }
+    return ["Mental Health", "Wellness"];
+  };
+
+  const calculateReadingTime = (content: string) => {
+    if (!content) return "5 min read";
+    const words = content.split(/\s+/).length;
+    const minutes = Math.ceil(words / 200);
+    return `${minutes} min read`;
+  };
+
+  const FeaturedArticleCard = memo(({ blog }: { blog: any }) => (
+    <Link href={`/blogs/${blog.slug || blog.id}`} className="group relative bg-white rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 h-full flex flex-col">
+      <div className="relative w-full h-[280px] md:h-[340px] overflow-hidden bg-gray-50/50 shrink-0 p-4 sm:p-5">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] border border-gray-100/50">
+          {blog.image ? (
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          ) : (
+            <div className={`absolute inset-0 flex items-center justify-center ${blog.isPlaceholder ? 'bg-orange-100' : 'bg-orange-100/50'}`}>
+              <span className="text-gray-400 text-5xl">📝</span>
+            </div>
+          )}
+          {blog.isPlaceholder && (
+            <div className="absolute top-4 left-4 z-10">
+              <span className="inline-block px-3 py-1.5 text-white text-xs font-bold rounded-full shadow-sm bg-orange-500">
+                Coming Soon
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="p-6 md:p-8 flex flex-col flex-grow">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Article</span>
+          <span className="text-gray-300">•</span>
+          <span className="px-3 py-1 text-[11px] font-semibold text-orange-600 bg-orange-50 rounded-md tracking-wide">{getCategories(blog)[0]}</span>
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold text-[#1a2b3c] mb-3 group-hover:text-orange-600 transition-colors leading-[1.25]">
+          {blog.title}
+        </h3>
+        <p className="text-gray-500 text-base line-clamp-2 leading-relaxed">
+          {blog.excerpt || "Explore insights and practical strategies to understand and manage mental health concerns effectively..."}
+        </p>
+      </div>
+    </Link>
+  ));
+
+  FeaturedArticleCard.displayName = 'FeaturedArticleCard';
+
+  const CompactHorizontalCard = memo(({ blog, showReadingTime = false }: { blog: any, showReadingTime?: boolean }) => (
+    <Link href={`/blogs/${blog.slug || blog.id}`} className="group relative flex bg-white rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 p-4 sm:p-5 items-center gap-5 h-full">
+      <div className="relative w-[120px] h-[120px] md:w-[150px] md:h-[150px] rounded-2xl overflow-hidden bg-gray-50/50 shrink-0 border border-gray-100/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
+        {blog.image ? (
+          <Image
+            src={blog.image}
+            alt={blog.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="150px"
+          />
+        ) : (
+          <div className={`absolute inset-0 flex items-center justify-center ${blog.isPlaceholder ? 'bg-orange-100' : ''}`}>
+            <span className="text-gray-400 text-3xl">📝</span>
+          </div>
+        )}
+        {blog.isPlaceholder && (
+          <div className="absolute top-2 left-2 z-10">
+            <span className="inline-block px-2 py-0.5 text-white text-[9px] font-bold rounded-full shadow-sm bg-orange-500">
+              Soon
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex flex-col flex-1 py-1">
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
+          <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Article</span>
+          <span className="text-gray-300">•</span>
+          {showReadingTime ? (
+            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">ARTICLE | {calculateReadingTime(blog.content).toUpperCase()}</span>
+          ) : (
+            <span className="px-2 py-0.5 text-[11px] font-semibold text-orange-600 bg-orange-50 rounded-md tracking-wide">{getCategories(blog)[0]}</span>
+          )}
+        </div>
+        <h3 className="text-lg md:text-xl font-bold text-[#1a2b3c] group-hover:text-orange-600 transition-colors leading-snug line-clamp-3 pb-1">
+          {blog.title}
+        </h3>
+      </div>
+    </Link>
+  ));
+
+  CompactHorizontalCard.displayName = 'CompactHorizontalCard';
 
   const quotes = [
     "We've just launched our new mental health platform",
@@ -472,7 +574,7 @@ export default function Home() {
                           src="/images/student.png"
                           alt="Student support"
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div>
@@ -490,7 +592,7 @@ export default function Home() {
                           src="/images/caregiver.jpg"
                           alt="Caregiver support"
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div>
@@ -508,7 +610,7 @@ export default function Home() {
                           src="/images/therapist.jpg"
                           alt="Therapist support"
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div>
@@ -523,10 +625,10 @@ export default function Home() {
                     <div className="flex flex-col group">
                       <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
                         <Image
-                          src="/images/founder2.png"
+                          src="/images/src13.png"
                           alt="Professional support"
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div>
@@ -682,78 +784,38 @@ export default function Home() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-16">
                 <div className="text-center mb-12">
-                  <h2 className="text-4xl md:text-5xl font-bold text-[#1a2b3c] mb-4 font-poppins">Latest Insights</h2>
-                  <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
+                  <span className="text-[#1a2b3c] font-bold tracking-widest text-sm uppercase mb-4 block">Knowledge Base</span>
+                  <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400 mb-6 tracking-tight leading-tight" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    Latest Insights
+                  </h2>
+                  <p className="text-lg md:text-xl text-[#1a2b3c]/80 max-w-3xl mx-auto leading-relaxed mb-4">
                     Discover evidence-based articles, personal stories, and expert guidance
-                    from our mental health professionals
+                    from our mental health professionals.
                   </p>
                 </div>
 
-                {/* Featured Blog Cards Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                  {insightsToShow.map((blog, index) => {
-                    const isPlaceholder = blog.isPlaceholder;
-                    const href = blog.slug ? `/blogs/${blog.slug}` : "/blogs";
-                    return (
-                      <Link key={`${blog.id}-${index}`} href={href} className="group h-full">
-                        <article className="bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-gray-100 overflow-hidden h-full flex flex-col">
-                          {/* Image */}
-                          <div className="relative h-52 w-full overflow-hidden">
-                            {blog.image ? (
-                              <Image
-                                src={blog.image}
-                                alt={blog.title}
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                              />
-                            ) : (
-                              <div className="flex items-center justify-center h-full bg-gray-100">
-                                <span className="text-4xl">📝</span>
-                              </div>
-                            )}
+                {/* Bento Grid Layout (Amaha Style) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+                  {/* Left Featured Item */}
+                  {insightsToShow.length > 0 && (
+                    <div className="lg:col-span-7">
+                      <FeaturedArticleCard blog={insightsToShow[0]} />
+                    </div>
+                  )}
 
-                            {/* Tags */}
-                            <div className="absolute top-4 left-4 z-10">
-                              <span className={`inline-block px-3 py-1.5 text-white text-xs font-bold rounded-full shadow-sm ${isPlaceholder ? 'bg-orange-500' : 'bg-blue-600'
-                                }`}>
-                                {isPlaceholder ? "Coming Soon" : "Featured"}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Content */}
-                          <div className="p-6 flex flex-col flex-grow">
-                            <h3 className="text-xl font-bold text-[#1a2b3c] mb-3 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2">
-                              {blog.title}
-                            </h3>
-
-                            {blog.excerpt && (
-                              <p className="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed flex-grow">
-                                {blog.excerpt}
-                              </p>
-                            )}
-
-                            <div className="flex items-center justify-between pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
-                              <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1.5">
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                  </svg>
-                                  <span>{blog.views || 0}</span>
-                                </div>
-                                <span>{formatDate(blog.createdAt)}</span>
-                              </div>
-
-                              {blog.author && (
-                                <span className="text-gray-500">By {blog.author}</span>
-                              )}
-                            </div>
-                          </div>
-                        </article>
-                      </Link>
-                    );
-                  })}
+                  {/* Right Stacked Items */}
+                  <div className="lg:col-span-5 flex flex-col gap-6">
+                    {insightsToShow.length > 1 && (
+                      <div className="flex-1">
+                        <CompactHorizontalCard blog={insightsToShow[1]} />
+                      </div>
+                    )}
+                    {insightsToShow.length > 2 && (
+                      <div className="flex-1">
+                        <CompactHorizontalCard blog={insightsToShow[2]} />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* View All Blogs Button */}
@@ -771,6 +833,25 @@ export default function Home() {
               </div>
             </div>
           )}
+
+          {/* New Hero Image Section Below Insights */}
+          <div className="relative w-full h-[50vh] md:h-[60vh] mt-20">
+            <Image
+              src="/images/src14.png"
+              alt="Mental wellbeing professionals"
+              fill
+              className="object-cover"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/40"></div>
+
+            {/* Centered Text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4 text-center">
+              <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl tracking-tight leading-tight pt-32 pb-60 shadow-sm drop-shadow-md">
+                200+ peers verified, one integrated team, all focused on your care
+              </h2>
+            </div>
+          </div>
         </section>
 
         <MentalHealthConcerns />

@@ -37,7 +37,8 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link></li>
+              <li><Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/terms?section=refund" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Find a Therapist</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Community Support</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Crisis Resources</a></li>
@@ -48,7 +49,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Connect With Us</h4>
             <ul className="space-y-2 text-sm mb-4">
-              <li><a href="mailto:support@attrangi.com" className="text-gray-400 hover:text-white transition-colors">support@attrangi.com</a></li>
+              <li><a href="mailto:contact@heyattrangi.com" className="text-gray-400 hover:text-white transition-colors">contact@heyattrangi.com</a></li>
               <li><a href="tel:+919552324069" className="text-gray-400 hover:text-white transition-colors">+91 95523 24069</a></li>
               <li className="text-gray-400">
                 Jai Jinendra Banglow, 580009<br />
@@ -90,9 +91,9 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-sm">
             <Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link>
-            <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="/refund-policy" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link>
+            <Link href="/terms?section=privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms & Conditions</Link>
+            <Link href="/terms?section=refund" className="text-gray-400 hover:text-white transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>

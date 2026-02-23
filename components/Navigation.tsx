@@ -159,7 +159,7 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                           <li><Link href="/about#team" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Team</Link></li>
                           <li><Link href="/about#mission" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Our Mission</Link></li>
                           <li><Link href="/about#contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Contact Us</Link></li>
-                          <li><Link href="/refund-policy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Refund Policy</Link></li>
+                          <li><Link href="/terms" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">Terms & Conditions</Link></li>
                         </ul>
                       </div>
                     )}
@@ -232,7 +232,7 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                     <li><Link href="/about#team" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Team</Link></li>
                     <li><Link href="/about#mission" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Our Mission</Link></li>
                     <li><Link href="/about#contact" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Contact Us</Link></li>
-                    <li><Link href="/refund-policy" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Refund Policy</Link></li>
+                    <li><Link href="/terms" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg" onClick={() => { setMobileMenuOpen(false); setMobileDropdown(null); }}>Terms & Conditions</Link></li>
                   </ul>
                 )}
               </li>
