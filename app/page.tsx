@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState, useRef, memo } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
@@ -409,22 +409,24 @@ export default function Home() {
                 </h1>
 
                 {/* Description with better contrast */}
-                <p
+                <div
                   className="text-white text-base md:text-lg leading-relaxed drop-shadow-md opacity-95"
 
                 >
                   We follow the bio-psycho-social model because your body, mind, and
                   environment all shape how you feel. Our care supports every part of your
                   life, not just symptoms.
-                </p>
+                </div>
 
-                {/* CTA Button with improved styling */}
-                <button
-                  className="bg-orange-500 text-white px-6 py-3 rounded-xl font-semibold text-base shadow-xl"
-
-                >
-                  FIND THE RIGHT EXPERT
-                </button>
+                {/* CTA Buttons with improved styling */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/test-your-iq" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
+                    Mind Matric test
+                  </Link>
+                  <Link href="/try-pragya" className="bg-white hover:bg-gray-50 text-orange-600 border-2 border-orange-500 px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
+                    Try Pragya
+                  </Link>
+                </div>
               </div>
             </div>
 
