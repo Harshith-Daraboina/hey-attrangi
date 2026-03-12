@@ -409,14 +409,14 @@ export default function Home() {
                 </h1>
 
                 {/* Description with better contrast */}
-                <div
+                <p
                   className="text-white text-base md:text-lg leading-relaxed drop-shadow-md opacity-95"
 
                 >
                   We follow the bio-psycho-social model because your body, mind, and
                   environment all shape how you feel. Our care supports every part of your
                   life, not just symptoms.
-                </div>
+                </p>
 
                 {/* CTA Buttons with improved styling */}
                 <div className="flex flex-col sm:flex-row gap-4">
