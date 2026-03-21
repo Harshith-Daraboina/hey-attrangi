@@ -43,6 +43,8 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
   }, []);
 
   const isActivePath = (path: string) => currentPath === path;
+  const isMindMatrixSection =
+    currentPath === "/mind-matrix" || currentPath.startsWith("/mind-matrix/");
 
   return (
     <>
@@ -102,10 +104,10 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
 
                   <li>
                     <Link
-                      href="/test-your-iq"
-                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/test-your-iq') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                      href="/mind-matrix"
+                      className={`text-sm font-medium transition-colors duration-200 ${isMindMatrixSection ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
                     >
-                      MindMetric Test
+                      Mind Matrix
                     </Link>
                   </li>
                 </ul>
@@ -303,11 +305,11 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
 
               <li>
                 <Link
-                  href="/test-your-iq"
+                  href="/mind-matrix"
                   className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  MindMetric Test
+                  Mind Matrix
                 </Link>
               </li>
 

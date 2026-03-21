@@ -1,6 +1,35 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/mind-matrix/tests/iq",
+        destination: "/mind-matrix",
+        permanent: true,
+      },
+      {
+        source: "/test-your-iq/tests/iq",
+        destination: "/mind-matrix",
+        permanent: true,
+      },
+      {
+        source: "/test-your-iq/tests/mind-matrix",
+        destination: "/mind-matrix",
+        permanent: true,
+      },
+      {
+        source: "/test-your-iq",
+        destination: "/mind-matrix",
+        permanent: true,
+      },
+      {
+        source: "/test-your-iq/:path*",
+        destination: "/mind-matrix/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // Ignore TypeScript and ESLint errors during build for Vercel deployment
   typescript: {
     ignoreBuildErrors: true,

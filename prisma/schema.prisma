@@ -117,17 +117,20 @@ model TestSession {
   currentLog Json?
 }
 
+/// Mind Matrix / Mind Check outcome (minimal check-in model).
+/// Deprecated / ignored in app code: domainScores, IQ, percentile, metadata, totalScore, cognitiveProfile (legacy BSON only).
 model TestResult {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionId        String
-  domainScores     Json
-  totalScore       Float
-  percentile       Float?
-  cognitiveProfile String?
-  metadata         Json?
-  createdAt        DateTime @default(now())
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionId      String
+  userId         String?
+  score          Int
+  band           String
+  correctAnswers Int
+  timeTaken      Int
+  createdAt      DateTime @default(now())
 }
 
+/// Trial log for scoring. `reactionTime` is schema-only (write 0); Mind Matrix does not read or use it.
 model RawTrialData {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionId    String

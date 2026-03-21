@@ -1,4 +1,4 @@
-This experimental IQ test had 25 items, each an matrix with one tile missing and eight possibilities for that tile.
+This set has 25 matrix-pattern items, each with one tile missing and several candidate tiles to choose from.
 
 The items are /questions/ folder, in subfolders 1...25 which correspond to Q1....Q25 in the data file. In the folder for each question you will find the files:
 

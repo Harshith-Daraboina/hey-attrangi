@@ -7,8 +7,8 @@ const prisma = new PrismaClient();
 async function main() {
     console.log('Start seeding ...');
 
-    const visualQuestionsPath = path.join(process.cwd(), 'lib/iq-test/visualquestions.json');
-    const questionsPath = path.join(process.cwd(), 'lib/iq-test/questions.json');
+    const visualQuestionsPath = path.join(process.cwd(), 'lib/mind-matrix/visualquestions.json');
+    const questionsPath = path.join(process.cwd(), 'lib/mind-matrix/questions.json');
 
     const visualQuestions = JSON.parse(fs.readFileSync(visualQuestionsPath, 'utf-8'));
     const questions = JSON.parse(fs.readFileSync(questionsPath, 'utf-8'));
@@ -17,8 +17,8 @@ async function main() {
     // visualQuestions likely has 'stimulus' fields, questions might be text-based.
     const allQuestions = [...visualQuestions, ...questions];
 
-    // Clear existing IQ Test data
-    console.log('Clearing old IQ test data...');
+    // Clear existing Mind Matrix seed data
+    console.log('Clearing old Mind Matrix question seed data...');
     await prisma.rawTrialData.deleteMany({});
     await prisma.testResult.deleteMany({});
     await prisma.testSession.deleteMany({});
@@ -64,9 +64,8 @@ async function main() {
         });
     }
 
-    console.log("Seeding Image-based Matrix Reasoning Questions...");
-    // Seed 25 Image-based Matrix Reasoning Questions from IQ1
-    // This logic relies on images existing in public/IQ1
+    console.log("Seeding image-based matrix pattern items...");
+    // Seed 25 image-based matrix items (public image set)
     for (let i = 1; i <= 25; i++) {
         const questionId = `vis_mr_iq1_${i}`;
 

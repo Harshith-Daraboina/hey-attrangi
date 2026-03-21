@@ -10,15 +10,15 @@ const faqs = [
     },
     {
         question: "How do I book a session with a therapist?",
-        answer: "Booking is simple through our platform. You can browse our network of licensed professionals, view their availability, and schedule a session that fits your calendar—all within your Hey Attrangi account."
+        answer: "Booking is simple through our platform. You can browse our network of licensed professionals, view their availability, and schedule a session that fits your calendar. It all stays in your Hey Attrangi account."
     },
     {
-        question: "How long does the MindMetric assessment take?",
-        answer: "Our comprehensive cognitive assessment typically takes between 25 to 40 minutes. We recommend taking it in a quiet environment where you can focus without interruptions."
+        question: "How long does a Mind Check take?",
+        answer: "In Mind Matrix, each Mind Check takes about three minutes. A quiet space helps you settle in without rushing."
     },
     {
-        question: "Can I retake the cognitive assessments?",
-        answer: "Yes, you can retake assessments to track your progress over time. We generally recommend waiting at least 30 days between retakes to ensure the most accurate reflection of your cognitive profile."
+        question: "Can I take a Mind Check more than once?",
+        answer: "Yes. You can start another Mind Check in Mind Matrix whenever it feels helpful. If you’re noticing patterns over time, spacing visits by a few weeks can make shifts easier to see. That’s a personal rhythm, not a requirement."
     },
     {
         question: "Can I access Hey Attrangi on multiple devices?",
@@ -26,7 +26,7 @@ const faqs = [
     },
     {
         question: "Is my mental health data private and secure?",
-        answer: "Your privacy is our highest priority. All personal information, session notes, and assessment results are protected with enterprise-grade encryption. We never share your individual data with third parties without your explicit consent."
+        answer: "Your privacy is our highest priority. Personal information, session notes, and anything you share in a check-in are protected with strong encryption. We never sell your individual data or share it without your clear consent."
     }
 ];
 

@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     template: "%s | Hey Attrangi",
     default: "Hey Attrangi - Mental Health & Therapy Space",
   },
-  description: "Hey Attrangi provides professional therapy, online consultations, and free mental health resources. Enhance your emotional wellbeing with cognitive assessments and expert support.",
+  description:
+    "Hey Attrangi provides professional therapy, online consultations, and free mental health resources. Support your emotional wellbeing with gentle check-ins and expert care.",
   keywords: "neurodivergent, psychological support, therapy, autism, ADHD, mental health, self-help, community support, psychological resources, neurodivergent-friendly",
   authors: [{ name: "Hey Attrangi Team" }],
   icons: {

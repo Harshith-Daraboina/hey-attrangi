@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { sessionId, questionId, answer, reactionTime } = body;
+        const { sessionId, questionId, answer } = body;
 
         if (!sessionId || !questionId || answer === undefined) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -34,30 +34,18 @@ export async function POST(req: Request) {
             isCorrect = answer === "CORRECT";
         }
 
-        // 2. Record Raw Trial Data
+        // RawTrialData.reactionTime is required by schema but unused in Mind Matrix (always 0; not read for scoring).
         await prisma.rawTrialData.create({
             data: {
                 sessionId,
                 questionId,
                 correct: isCorrect,
-                reactionTime: reactionTime || 0,
+                reactionTime: 0,
                 timestamp: new Date()
             }
         });
 
-        // 3. Update Session Log (Optional, for quick access)
-        // We could append to currentLog, but RawTrialData is better for analysis
-
-        // 4. Get Next Question (Placeholder for Adaptive Engine)
-        // For now, let's just find a random question that hasn't been answered?
-        // Simplified: Just return success and let frontend request next or we return one here.
-        // Let's return a simple success response for now, frontend will manage flow or call /api/test/question
-
-        return NextResponse.json({
-            success: true,
-            correct: isCorrect,
-            correctAnswer: question.answer // Optional: strictly for feedback if needed
-        });
+        return NextResponse.json({ success: true });
 
     } catch (error) {
         console.error('Error submitting answer:', error);

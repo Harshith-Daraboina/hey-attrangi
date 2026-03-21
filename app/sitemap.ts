@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/test-your-iq`,
+            url: `${baseUrl}/mind-matrix`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,

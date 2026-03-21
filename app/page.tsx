@@ -420,8 +420,8 @@ export default function Home() {
 
                 {/* CTA Buttons with improved styling */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/test-your-iq" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
-                    Mind Matric test
+                  <Link href="/mind-matrix" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
+                    Start Mind Check
                   </Link>
                   <Link href="/try-pragya" className="bg-white hover:bg-gray-50 text-orange-600 border-2 border-orange-500 px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
                     Try Pragya
