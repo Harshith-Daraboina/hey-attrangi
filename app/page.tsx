@@ -561,7 +561,7 @@ export default function Home() {
                   </div>
 
                   <p className="text-lg md:text-xl text-gray-500 max-w-2xl mb-8">
-                    Get comprehensive mental health support anytime, anywhere — with the Attrangi platform.
+                    Get comprehensive mental health support anytime, anywhere with the Attrangi platform.
                   </p>
 
                   {/* Divider Line */}
@@ -605,14 +605,15 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* For Therapists */}
+                    {/* For Therapists: focal point center-right on the subject */}
                     <div className="flex flex-col group">
-                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300">
+                      <div className="relative w-full aspect-video rounded-3xl overflow-hidden mb-5 shadow-md group-hover:shadow-xl transition-all duration-300 bg-slate-100">
                         <Image
-                          src="/images/therapist.jpg"
+                          src="/images/therapist.png"
                           alt="Therapist support"
                           fill
-                          className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover object-[62%_28%] sm:object-[60%_26%] group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div>
