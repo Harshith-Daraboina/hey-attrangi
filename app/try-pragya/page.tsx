@@ -84,7 +84,7 @@ export default function TryPragyaPage() {
         setIsLoading(true);
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-bot-heyattrangi-low.hf.space";
+            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-lokie-v2.hf.space";
             const res = await fetch(`${apiUrl}/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
