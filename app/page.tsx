@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import HowWeCanHelp from "@/components/HowWeCanHelp";
 import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
 import MentalHealthConcerns from "@/components/MentalHealthConcerns";
+import { APP_SIGNUP_URL } from "@/lib/app-urls";
 
 interface FeaturedBlog {
   id: string;
@@ -552,7 +553,7 @@ export default function Home() {
                     </div>
 
                     <Link
-                      href="/app"
+                      href={APP_SIGNUP_URL}
                       className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 uppercase flex items-center gap-2 group whitespace-nowrap"
                     >
                       get onboarded now
