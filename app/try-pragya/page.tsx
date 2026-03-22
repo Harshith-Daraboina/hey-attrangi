@@ -94,13 +94,19 @@ export default function TryPragyaPage() {
             if (!res.ok) throw new Error("Failed to send message");
 
             const data = await res.json();
-            setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
-            setBotExpression(getBotExpression(data.reply));
+
+            if (data.error) {
+                console.error("Bot API returned error:", data.error);
+                throw new Error(data.error);
+            }
+
+            setMessages((prev) => [...prev, { role: "assistant", content: data.reply || "I didn't quite get that. Could you please rephrase?" }]);
+            setBotExpression(data.expression || getBotExpression(data.reply || ""));
         } catch (error) {
             console.error("Chat error:", error);
             setMessages((prev) => [
                 ...prev,
-                { role: "assistant", content: "Sorry, I'm having trouble connecting right now." },
+                { role: "assistant", content: "Sorry, I'm having trouble connecting to the backend right now." },
             ]);
         } finally {
             setIsLoading(false);
@@ -112,6 +118,40 @@ export default function TryPragyaPage() {
         setSelectedMode(null);
         setMessages([]);
         setBotExpression("NEUTRAL");
+    };
+
+    const handleEndAndSummarize = async () => {
+        if (!hasStarted || isLoading || messages.length === 0) return;
+        setIsLoading(true);
+        try {
+            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-lokie-v2.hf.space";
+            const res = await fetch(`${apiUrl}/summarize`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ session_id: sessionId }),
+            });
+
+            if (!res.ok) throw new Error("Failed to summarize");
+            const data = await res.json();
+
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            setMessages((prev) => [
+                ...prev,
+                { role: "assistant", content: `**Conversation Summary:**\n\n${data.summary}\n\nThank you for sharing. Take care!` },
+            ]);
+            setBotExpression("WARM");
+        } catch (error) {
+            console.error("Summarize error:", error);
+            setMessages((prev) => [
+                ...prev,
+                { role: "assistant", content: "Sorry, I couldn't generate a summary right now." },
+            ]);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -159,7 +199,14 @@ export default function TryPragyaPage() {
                             <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                             Reset Chat
                         </button>
-                        <button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-colors border border-orange-500 rounded-[16px] py-4 px-4 flex items-center justify-center gap-2 text-[15px] font-medium text-white shadow-md">
+                        <button
+                            onClick={handleEndAndSummarize}
+                            disabled={isLoading || !hasStarted || messages.length === 0}
+                            className={`w-full transition-colors border rounded-[16px] py-4 px-4 flex items-center justify-center gap-2 text-[15px] font-medium text-white shadow-md ${isLoading || !hasStarted || messages.length === 0
+                                    ? "bg-gray-400 border-gray-400 cursor-not-allowed"
+                                    : "bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-orange-500"
+                                }`}
+                        >
                             <svg className="w-5 h-5 text-orange-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
                             End & Summarize
                         </button>
