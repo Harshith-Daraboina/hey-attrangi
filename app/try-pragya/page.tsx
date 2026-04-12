@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 interface ChatMessage {
     role: "user" | "assistant";
     content: string;
+    isError?: boolean;
 }
 
 interface ChatMode {
@@ -52,13 +53,15 @@ export default function TryPragyaPage() {
     const [inputMessage, setInputMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [botExpression, setBotExpression] = useState("NEUTRAL");
+    const [lastUserMessage, setLastUserMessage] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const [sessionId] = useState(() =>
-        typeof window !== "undefined"
-            ? `guest_${Math.random().toString(36).substring(7)}`
-            : "guest_session"
-    );
+    const [sessionId, setSessionId] = useState("guest_session");
+
+    useEffect(() => {
+        const id = `guest_${Math.random().toString(36).substring(7)}`;
+        setSessionId(id);
+    }, []);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -74,39 +77,67 @@ export default function TryPragyaPage() {
         }
     };
 
-    const sendMessage = async (e?: React.FormEvent) => {
+    const sendMessage = async (e?: React.FormEvent, retryMsg?: string) => {
         e?.preventDefault();
-        if (!inputMessage.trim() || isLoading) return;
+        if ((!inputMessage.trim() && !retryMsg) || isLoading) return;
 
-        const userMsg = inputMessage;
-        setInputMessage("");
-        setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
+        const userMsg = retryMsg || inputMessage;
+        if (!retryMsg) {
+            setLastUserMessage(userMsg);
+            setInputMessage("");
+            setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
+        }
+        
         setIsLoading(true);
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-lokie-v2.hf.space";
+            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-bot-heyattrangi-v4.hf.space";
             const res = await fetch(`${apiUrl}/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ session_id: sessionId, message: userMsg }),
             });
 
-            if (!res.ok) throw new Error("Failed to send message");
+            if (!res.ok) {
+                if (res.status === 500 || res.status === 503) {
+                    throw new Error("Backend is temporarily unavailable or sleeping.");
+                }
+                throw new Error("Failed to connect to the assistant.");
+            }
 
             const data = await res.json();
 
             if (data.error) {
                 console.error("Bot API returned error:", data.error);
-                throw new Error(data.error);
+                // Sanitize error message to avoid leaking internal info
+                const cleanError = typeof data.error === 'string' && !data.error.includes('$') 
+                    ? data.error 
+                    : "The assistant encountered an internal error.";
+                throw new Error(cleanError);
             }
 
             setMessages((prev) => [...prev, { role: "assistant", content: data.reply || "I didn't quite get that. Could you please rephrase?" }]);
             setBotExpression(data.expression || getBotExpression(data.reply || ""));
-        } catch (error) {
+        } catch (error: any) {
             console.error("Chat error:", error);
+            const errorMessage = error.message || "Sorry, I'm having trouble connecting to the backend right now.";
             setMessages((prev) => [
                 ...prev,
-                { role: "assistant", content: "Sorry, I'm having trouble connecting to the backend right now." },
+                { 
+                    role: "assistant", 
+                    content: (
+                        <div className="space-y-2">
+                            <p>{errorMessage} Please wait a moment and try again. The service might be waking up from sleep.</p>
+                            <p className="text-[12px] opacity-70">
+                                You can check the backend status here: 
+                                <a href="https://huggingface.co/spaces/Heyattrangi-spaces/Bot-Heyattrangi-V4" target="_blank" rel="noopener noreferrer" className="ml-1 underline hover:text-orange-600">
+                                    Hugging Face Space
+                                </a>
+                            </p>
+                        </div>
+                    ) as any,
+                    isError: true
+                },
             ]);
         } finally {
             setIsLoading(false);
@@ -124,8 +155,8 @@ export default function TryPragyaPage() {
         if (!hasStarted || isLoading || messages.length === 0) return;
         setIsLoading(true);
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-lokie-v2.hf.space";
-            const res = await fetch(`${apiUrl}/summarize`, {
+            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-bot-heyattrangi-v4.hf.space";
+            const res = await fetch(`${apiUrl}/summary`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ session_id: sessionId }),
@@ -140,7 +171,7 @@ export default function TryPragyaPage() {
 
             setMessages((prev) => [
                 ...prev,
-                { role: "assistant", content: `**Conversation Summary:**\n\n${data.summary}\n\nThank you for sharing. Take care!` },
+                { role: "assistant", content: `**Conversation Summary:**\n\n${data.report || "No summary available."}\n\nThank you for sharing. Take care!` },
             ]);
             setBotExpression("WARM");
         } catch (error) {
@@ -270,10 +301,21 @@ export default function TryPragyaPage() {
                                         <div
                                             className={`max-w-[85%] sm:max-w-[75%] rounded-3xl p-5 text-[15px] leading-relaxed shadow-sm ${msg.role === "user"
                                                 ? "bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-tr-sm shadow-[0_4px_14px_rgba(249,107,19,0.25)]"
-                                                : "bg-white text-gray-800 rounded-tl-sm border border-gray-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
+                                                : msg.isError 
+                                                    ? "bg-red-50 text-red-800 rounded-tl-sm border border-red-100 shadow-[0_2px_10px_rgba(220,38,38,0.04)]"
+                                                    : "bg-white text-gray-800 rounded-tl-sm border border-gray-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
                                                 }`}
                                         >
                                             {msg.content}
+                                            {msg.isError && lastUserMessage && (
+                                                <button 
+                                                    onClick={() => sendMessage(undefined, lastUserMessage)}
+                                                    className="mt-3 flex items-center gap-1.5 text-[13px] font-bold text-red-600 hover:text-red-700 transition-colors bg-white/50 px-3 py-1.5 rounded-lg border border-red-100"
+                                                >
+                                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                                                    Retry
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                 ))}
