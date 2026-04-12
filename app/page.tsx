@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import HowWeCanHelp from "@/components/HowWeCanHelp";
 import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
 import MentalHealthConcerns from "@/components/MentalHealthConcerns";
+import QuietSpace from "@/components/QuietSpace";
 import { APP_SIGNUP_URL } from "@/lib/app-urls";
 
 interface FeaturedBlog {
@@ -420,12 +421,19 @@ export default function Home() {
                 </p>
 
                 {/* CTA Buttons with improved styling */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/mind-matrix" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
-                    Start Mind Check
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <Link href="/mind-matrix" className="group relative inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-white transition-all duration-300 bg-orange-500 hover:bg-orange-600 rounded-full shadow-[0_8px_30px_rgb(249,115,22,0.3)] hover:shadow-[0_8px_30px_rgb(249,115,22,0.5)] hover:-translate-y-1 active:scale-[0.98] overflow-hidden">
+                    <span className="relative z-10 flex items-center gap-2">
+                      Start Mind Check
+                      <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
                   </Link>
-                  <Link href="/try-pragya" className="bg-white hover:bg-gray-50 text-orange-600 border-2 border-orange-500 px-8 py-3.5 rounded-xl font-bold text-base md:text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">
-                    Try Pragya
+                  <Link href="/try-pragya" className="group relative inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-bold text-orange-600 transition-all duration-300 bg-white hover:bg-gray-50 border-2 border-orange-500 hover:border-orange-600 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]">
+                    <span className="relative z-10 flex items-center gap-2">
+                      Try Pragya
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -858,6 +866,7 @@ export default function Home() {
           </div>
         </section>
 
+        <QuietSpace />
         <MentalHealthConcerns />
 
 
