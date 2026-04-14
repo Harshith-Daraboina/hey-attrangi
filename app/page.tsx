@@ -9,7 +9,7 @@ import FAQ from "@/components/FAQ";
 import HowWeCanHelp from "@/components/HowWeCanHelp";
 import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
 import MentalHealthConcerns from "@/components/MentalHealthConcerns";
-import QuietSpace from "@/components/QuietSpace";
+
 import { APP_SIGNUP_URL } from "@/lib/app-urls";
 
 interface FeaturedBlog {
@@ -42,9 +42,9 @@ const formatDate = (dateString: string) => {
 const fallbackInsights: FeaturedBlog[] = [
   {
     id: "placeholder-1",
-    title: "Navigating Neurodivergence: First Steps for Families",
+    title: "Navigating your mental health journey: First Steps for Families",
     slug: "",
-    excerpt: "Practical guidance for parents and caregivers who want to create supportive home environments for neurodivergent loved ones.",
+    excerpt: "Practical guidance for parents and caregivers who want to create supportive home environments for their loved ones.",
     image: "/images/src12.jpg",
     author: "Hey Attrangi Team",
     likes: 0,
@@ -68,7 +68,7 @@ const fallbackInsights: FeaturedBlog[] = [
     id: "placeholder-3",
     title: "How Therapy & Community Support Work Together",
     slug: "",
-    excerpt: "Why combining professional therapy with peer-led spaces accelerates healing for neurodivergent individuals.",
+    excerpt: "Why combining professional therapy with peer-led spaces accelerates healing for individuals.",
     image: "/images/src6-5.jpg",
     author: "Hey Attrangi Experts",
     likes: 0,
@@ -192,7 +192,7 @@ export default function Home() {
 
   const quotes = [
     "We've just launched our new mental health platform",
-    "Supporting neurodivergent individuals with comprehensive care",
+    "Supporting individuals with their mental health companion",
     "Evidence-based therapy for better mental health outcomes",
     "Your mental health journey starts with understanding"
   ];
@@ -526,7 +526,7 @@ export default function Home() {
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-orange-100">
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-                  Attrangi started as a small mental health support initiative, aiming to help neurodivergent individuals navigate the challenges of traditional mental health services. It soon became obvious that it would make sense to help our clients see beyond their diagnoses and limitations, and be there with them from the very beginning of their mental health journey.
+                  Attrangi started as a small mental health support initiative, aiming to help individuals with their mental health companion navigate the challenges of traditional mental health services. It soon became obvious that it would make sense to help our clients see beyond their diagnoses and limitations, and be there with them from the very beginning of their mental health journey.
                 </p>
                 
                 <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
@@ -866,7 +866,7 @@ export default function Home() {
           </div>
         </section>
 
-        <QuietSpace />
+        
         <MentalHealthConcerns />
 
 
@@ -943,7 +943,7 @@ export default function Home() {
                   </div>
 
                   <blockquote className="text-[#1a2b3c] text-lg font-medium leading-relaxed mb-8 flex-grow">
-                    “Attrangi’s commitment to evidence-based care and neurodiversity is exemplary. It’s a vital resource for anyone seeking comprehensive, modern support.”
+                    “Attrangi’s commitment to evidence-based care and modern mental health care is exemplary. It’s a vital resource for anyone seeking comprehensive, modern support.”
                   </blockquote>
 
                   <div className="flex items-center gap-4 pt-6 border-t border-gray-50">

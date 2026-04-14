@@ -81,7 +81,7 @@ const MentalHealthConcerns = () => {
                 },
             ]
         },
-        {
+        /* {
             id: "neuro",
             name: "Neurodevelopmental",
             description: "Support for unique brain wiring and developmental challenges.",
@@ -94,7 +94,7 @@ const MentalHealthConcerns = () => {
                     icon: <Zap className="w-8 h-8 text-orange-500" />,
                 },
             ]
-        },
+        }, */
         {
             id: "habits",
             name: "Addiction & Habits",

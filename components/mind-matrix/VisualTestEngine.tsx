@@ -20,7 +20,7 @@ function formatMmSs(secs: number): string {
 
 function MindCheckShell({ children }: { children: ReactNode }) {
     return (
-        <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center p-6 font-sans text-stone-800">
+        <div className="min-h-screen bg-[#FFF7ED] flex flex-col items-center justify-center p-6 font-sans text-stone-800">
             <div className="w-full max-w-md">{children}</div>
         </div>
     );
@@ -161,7 +161,7 @@ export default function VisualTestEngine() {
     if (preTest === "entry") {
         return (
             <MindCheckShell>
-                <div className="bg-white rounded-3xl shadow-sm border border-stone-200/80 p-10 md:p-12 text-center">
+                <div className="bg-[#FFF7ED] rounded-3xl shadow-sm border border-stone-200/80 p-10 md:p-12 text-center">
                     <h1 className="text-2xl md:text-[1.65rem] font-semibold text-stone-900 leading-snug">
                         Take a moment to check in with your mind (3 min)
                     </h1>
@@ -182,7 +182,7 @@ export default function VisualTestEngine() {
         const loading = status === "LOADING";
         return (
             <MindCheckShell>
-                <div className="bg-white rounded-3xl shadow-sm border border-stone-200/80 p-10 md:p-12">
+                <div className="bg-[#FFF7ED] rounded-3xl shadow-sm border border-stone-200/80 p-10 md:p-12">
                     <h2 className="text-xl font-semibold text-stone-900 text-center mb-8">Before you begin</h2>
                     <ul className="space-y-4 text-stone-600 text-left text-base leading-relaxed mb-10">
                         <li className="flex gap-3">
@@ -222,7 +222,7 @@ export default function VisualTestEngine() {
     if (status === "ERROR") {
         return (
             <MindCheckShell>
-                <div className="bg-white rounded-3xl shadow-sm border border-stone-200/80 p-10 text-center">
+                <div className="bg-[#FFF7ED] rounded-3xl shadow-sm border border-stone-200/80 p-10 text-center">
                     <h1 className="text-xl font-semibold text-stone-900 mb-3">We couldn&apos;t complete your Mind Check</h1>
                     <p className="text-stone-600 text-sm mb-8">
                         Something went wrong. Please try again in a moment.
@@ -254,8 +254,8 @@ export default function VisualTestEngine() {
         const message = typeof results.message === "string" ? results.message : "";
 
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-stone-50 p-4 font-sans py-12">
-                <div className="bg-white p-8 md:p-12 max-w-lg w-full text-center rounded-3xl shadow-sm border border-stone-200/80">
+            <div className="flex flex-col items-center justify-center min-h-screen bg-[#FFF7ED] p-4 font-sans py-12">
+                <div className="bg-[#FFF7ED] p-8 md:p-12 max-w-lg w-full text-center rounded-3xl shadow-sm border border-stone-200/80">
                     <p className="text-sm text-gray-500 mb-2">Your Mind Today</p>
                     <p className="text-8xl font-light tabular-nums text-stone-900 leading-none tracking-tight">
                         {Math.round(score)}
@@ -282,7 +282,7 @@ export default function VisualTestEngine() {
     const stepNum = totalQuestions > 0 ? currentIndex + 1 : 0;
 
     return (
-        <div className="min-h-screen bg-stone-50 flex flex-col font-sans text-stone-800 relative">
+        <div className="min-h-screen bg-[#FFF7ED] flex flex-col font-sans text-stone-800 relative">
             {showTimeUp ? (
                 <div
                     className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-stone-900/40 backdrop-blur-sm px-6 animate-in fade-in duration-300"
@@ -300,7 +300,7 @@ export default function VisualTestEngine() {
                 </div>
             ) : null}
 
-            <div className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/80">
+            <div className="bg-[#FFF7ED]/90 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap justify-between items-center gap-y-3 py-3 md:py-0 md:h-20 md:flex-nowrap">
                         <div className="flex items-center gap-3 min-w-0">
@@ -309,7 +309,7 @@ export default function VisualTestEngine() {
                                 alt="Attrangi Logo"
                                 width={56}
                                 height={56}
-                                className="w-14 h-14 rounded-xl shadow-sm object-contain bg-white p-1"
+                                className="w-14 h-14 rounded-xl shadow-sm object-contain bg-[#FFF7ED] p-1"
                             />
                             <div>
                                 <h1
@@ -373,9 +373,9 @@ export default function VisualTestEngine() {
                     </div>
                 </div>
 
-                <div className="w-full h-1 bg-stone-200/80">
+                <div className="w-full h-1 bg-orange-100/50">
                     <div
-                        className="h-full bg-stone-500 transition-all duration-500 ease-out"
+                        className="h-full bg-orange-600 transition-all duration-500 ease-out"
                         style={{ width: `${progressPercentage}%` }}
                     />
                 </div>

@@ -64,11 +64,11 @@ export default function QuestionnaireEngine({ title, questions, responseScale, s
         const severity = getResult();
 
         return (
-            <div className="min-h-screen bg-orange-50 flex items-center justify-center p-4">
-                <div className="bg-white p-8 rounded-3xl shadow-xl max-w-2xl w-full text-center">
+            <div className="min-h-screen bg-[#FFF7ED] flex items-center justify-center p-4">
+                <div className="bg-[#FFF7ED] p-8 rounded-3xl shadow-xl max-w-2xl w-full text-center border border-orange-200/50">
                     <h1 className="text-3xl font-bold text-gray-900 mb-6">{title} complete</h1>
 
-                    <div className="mb-10 p-8 bg-orange-50 rounded-2xl">
+                    <div className="mb-10 p-8 bg-orange-100/50 rounded-2xl">
                         <p className="text-sm text-orange-500 uppercase font-bold tracking-wider mb-2">Summary</p>
                         <p className="text-5xl font-extrabold text-orange-900 mb-2">{score}</p>
                         <p className="text-xl text-orange-700 font-medium">{severity}</p>
@@ -90,9 +90,9 @@ export default function QuestionnaireEngine({ title, questions, responseScale, s
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
+        <div className="min-h-screen bg-[#FFF7ED] flex flex-col">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+            <div className="bg-[#FFF7ED]/90 backdrop-blur-md sticky top-0 z-10">
                 <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
                     <h1 className="font-bold text-gray-900 truncate mr-4">{title}</h1>
                     <span className="text-sm text-gray-500 font-medium whitespace-nowrap">
@@ -100,7 +100,7 @@ export default function QuestionnaireEngine({ title, questions, responseScale, s
                     </span>
                 </div>
                 {/* Progress Bar */}
-                <div className="h-1 w-full bg-gray-100">
+                <div className="h-1 w-full bg-orange-100/30">
                     <div
                         className="h-full bg-orange-500 transition-all duration-300 ease-out"
                         style={{ width: `${progress}%` }}
@@ -111,7 +111,7 @@ export default function QuestionnaireEngine({ title, questions, responseScale, s
             {/* Content */}
             <div className="flex-1 flex flex-col items-center justify-center p-4">
                 <div className="w-full max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-10">
+                    <div className="bg-[#FFF7ED] rounded-2xl shadow-sm border border-orange-200/50 p-6 md:p-10">
                         <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-10 leading-tight">
                             {currentQuestion.text}
                         </h2>
@@ -121,10 +121,10 @@ export default function QuestionnaireEngine({ title, questions, responseScale, s
                                 <button
                                     key={value}
                                     onClick={() => handleAnswer(parseInt(value))}
-                                    className="text-left px-6 py-4 rounded-xl border border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all group flex items-center justify-between"
+                                    className="text-left px-6 py-4 rounded-xl border border-orange-200/60 transition-all group flex items-center justify-between hover:bg-orange-50"
                                 >
                                     <span className="text-lg text-gray-700 group-hover:text-orange-900 font-medium">{label}</span>
-                                    <div className="w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-orange-500"></div>
+                                    <div className="w-5 h-5 rounded-full border-2 border-orange-300 group-hover:border-orange-500"></div>
                                 </button>
                             ))}
                         </div>

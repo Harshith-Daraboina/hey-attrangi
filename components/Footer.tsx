@@ -17,7 +17,7 @@ export default function Footer() {
             />
             <h3 className="text-xl font-semibold mb-2">Hey Attrangi</h3>
             <p className="text-gray-400 text-sm">
-              Supporting neurodivergent individuals with comprehensive psychological resources and community support.
+              Supporting individuals with comprehensive psychological resources and community support.
             </p>
           </div>
 
