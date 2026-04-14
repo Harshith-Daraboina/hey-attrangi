@@ -16,7 +16,7 @@ export default function MindCheckProcessing() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-stone-50 p-6 font-sans">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-[#FFF7ED] p-6 font-sans">
             <div className="w-full max-w-sm text-center space-y-8">
                 <div className="space-y-3">
                     <p className="text-lg text-stone-600 leading-relaxed">Understanding your results…</p>
@@ -30,7 +30,7 @@ export default function MindCheckProcessing() {
                     ) : null}
                 </div>
                 <div className="flex justify-center" aria-hidden>
-                    <div className="h-9 w-9 border-2 border-stone-200 border-t-stone-500 rounded-full animate-spin" />
+                    <div className="h-9 w-9 border-2 border-orange-200 border-t-stone-500 rounded-full animate-spin" />
                 </div>
             </div>
         </div>

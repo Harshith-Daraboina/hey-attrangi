@@ -7,7 +7,7 @@ import Navigation from "@/components/Navigation";
 
 export default function Home() {
   const otherTests = [
-    {
+    /* {
       id: "adhd",
       title: "ADHD Assessment",
       description: "Assess attention and focus levels to understand potential ADHD tendencies using standard clinical scales.",
@@ -22,7 +22,7 @@ export default function Home() {
       icon: "🎭",
       href: "/mind-matrix/tests/personality",
       color: "purple"
-    },
+    }, */
     {
       id: "depression",
       title: "Depression Screening",
@@ -39,14 +39,14 @@ export default function Home() {
       href: "/mind-matrix/tests/anxiety",
       color: "pink"
     },
-    {
+    /* {
       id: "autism",
       title: "Autism Spectrum",
       description: "Screen for traits associated with the Autism Spectrum to better understand your social processing.",
       icon: "🧩",
       href: "/mind-matrix/tests/autism",
       color: "green"
-    }
+    } */
   ];
 
   return (
@@ -102,26 +102,39 @@ export default function Home() {
 
               {/* Right: calm visual (no charts, curves, or peer comparisons) */}
               <div className="relative flex justify-center lg:justify-end">
-                <div
-                  className="w-full max-w-md aspect-[4/3] rounded-3xl bg-gradient-to-br from-stone-100 via-orange-50/50 to-stone-200/70 border border-stone-200/80 shadow-sm flex flex-col items-center justify-center p-10 text-center"
-                  aria-hidden
-                >
-                  <div className="h-14 w-14 rounded-2xl bg-white/90 border border-stone-200/60 shadow-sm mb-6 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-stone-600 leading-relaxed max-w-xs">
-                    A quiet space for you. No rankings, no curves, no comparing yourself to anyone else.
-                  </p>
+                <div className="relative w-full max-w-[500px] opacity-60 hover:opacity-100 transition-opacity duration-500">
+                  <svg viewBox="0 0 540 260" className="w-full h-auto drop-shadow-sm">
+                    {/* Grid Lines */}
+                    <line x1="135" y1="50" x2="135" y2="210" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="202.5" y1="50" x2="202.5" y2="210" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="270" y1="20" x2="270" y2="210" stroke="#94A3B8" strokeWidth="2" strokeDasharray="4 4" />
+                    <line x1="337.5" y1="50" x2="337.5" y2="210" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="405" y1="50" x2="405" y2="210" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="4 4" />
+
+                    {/* Baseline */}
+                    <line x1="50" y1="210" x2="490" y2="210" stroke="#94A3B8" strokeWidth="2" />
+
+                    {/* Curve */}
+                    <path d="M50 210 C 150 210, 180 40, 270 40 C 360 40, 390 210, 490 210" fill="none" stroke="#3B82F6" strokeWidth="3" />
+
+                    {/* Percentages */}
+                    <text x="80" y="190" fontSize="14" fill="#475569" fontWeight="bold">0.1%</text>
+                    <text x="145" y="170" fontSize="14" fill="#475569" fontWeight="bold">2.1%</text>
+                    <text x="210" y="110" fontSize="14" fill="#475569" fontWeight="bold">13.6%</text>
+                    <text x="270" y="32" fontSize="16" fill="#1E293B" fontWeight="bold" textAnchor="middle">34.1%</text>
+                    <text x="330" y="110" fontSize="14" fill="#475569" fontWeight="bold">13.6%</text>
+                    <text x="390" y="170" fontSize="14" fill="#475569" fontWeight="bold">2.1%</text>
+                    <text x="450" y="190" fontSize="14" fill="#475569" fontWeight="bold">0.1%</text>
+
+                    {/* Values */}
+                    <text x="135" y="235" fontSize="14" fill="#64748B" textAnchor="middle">70</text>
+                    <text x="202.5" y="235" fontSize="14" fill="#64748B" textAnchor="middle">85</text>
+                    <text x="270" y="235" fontSize="16" fill="#1E293B" fontWeight="bold" textAnchor="middle">100</text>
+                    <text x="337.5" y="235" fontSize="14" fill="#64748B" textAnchor="middle">115</text>
+                    <text x="405" y="235" fontSize="14" fill="#64748B" textAnchor="middle">130</text>
+                  </svg>
                 </div>
               </div>
-
             </div>
 
             {/* Logos Strip */}

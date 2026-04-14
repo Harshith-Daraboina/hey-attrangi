@@ -29,7 +29,7 @@ export default function AidsPage() {
         "Find Local Therapists",
         "Online Therapy Platforms",
         "Group Therapy Sessions",
-        "Specialized ADHD/Autism Therapists"
+        "Specialized Therapists"
       ]
     },
     {
@@ -293,7 +293,7 @@ export default function AidsPage() {
                 
                 <Link href="/about" className="block p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
                   <p className="font-semibold text-purple-900">About Our Mission</p>
-                  <p className="text-sm text-purple-700">Learn how we support neurodivergent individuals</p>
+                  <p className="text-sm text-purple-700">Learn how we support individuals</p>
                 </Link>
                 
                 <div className="p-4 bg-green-50 rounded-xl">

@@ -66,7 +66,7 @@ export default function GeneralTask({ question, onComplete }: GeneralTaskProps) 
                             className={`py-4 px-6 border-2 rounded-xl text-lg font-medium transition shadow-sm 
                                 ${isSubmitting
                                     ? 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed'
-                                    : 'bg-white border-slate-200 text-slate-700 hover:border-orange-500 hover:bg-orange-50 hover:shadow'
+                                    : 'bg-[#FFF7ED] border-orange-200 text-slate-700 hover:border-orange-500 hover:bg-orange-50 hover:shadow'
                                 }`}
                         >
                             {opt}

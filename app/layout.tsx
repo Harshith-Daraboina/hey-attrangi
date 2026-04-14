@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   description:
     "Hey Attrangi provides professional therapy, online consultations, and free mental health resources. Support your emotional wellbeing with gentle check-ins and expert care.",
-  keywords: "neurodivergent, psychological support, therapy, autism, ADHD, mental health, self-help, community support, psychological resources, neurodivergent-friendly",
+  keywords: "your mental health companion, psychological support, therapy, autism, ADHD, mental health, self-help, community support, psychological resources, companion-friendly",
   authors: [{ name: "Hey Attrangi Team" }],
   icons: {
     icon: [
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Hey Attrangi - Support for Neurodivergent Individuals",
-    description: "Comprehensive support platform for neurodivergent individuals with self-help resources, therapy connections, and community support.",
+    title: "Hey Attrangi - Your Mental Health Companion",
+    description: "Comprehensive support platform with your mental health companion, providing self-help resources, therapy connections, and community support.",
     type: "website",
   },
 };

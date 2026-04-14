@@ -57,8 +57,8 @@ export default function AboutPage() {
                 }}>
                 <p className="mb-4">
                   We're dedicated to revolutionizing mental health support by creating an inclusive,
-                  accessible, and empowering platform that celebrates neurodiversity. Our mission is to
-                  provide evidence-based therapy and resources tailored specifically for neurodivergent individuals.
+                  accessible, and empowering platform. Our mission is to
+                  provide evidence-based therapy and resources tailored specifically for individuals seeking support.
                 </p>
                 <p>
                   Through innovative technology and compassionate care, we're building a community where
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <div className="relative z-10">
                 <blockquote className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   "Every individual deserves access to mental health support that understands their unique needs.
-                  At Attrangi, we're not just providing services – we're building a community where neurodivergent
+                  At Attrangi, we're not just providing services – we're building a community where
                   individuals can thrive and be their authentic selves."
                 </blockquote>
               </div>
@@ -155,8 +155,8 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                     <p className="text-lg text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                      Attrangi started as a small mental health support initiative, aiming to help
-                      neurodivergent individuals navigate the challenges of traditional mental health services.
+                      individuals navigate the challenges of traditional mental health services.
+                      Hey Attrangi supports you as your mental health companion.
                       It soon became obvious that it would make sense to help our clients see beyond their
                       diagnoses and limitations, and be there with them from the very beginning of their
                       mental health journey.
@@ -188,7 +188,7 @@ export default function AboutPage() {
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                       <div>
                         <span className="font-semibold">Evidence-Based Therapy</span>
-                        <p className="text-sm text-gray-600 mt-1">Scientifically proven methods tailored to neurodivergent needs</p>
+                        <p className="text-sm text-gray-600 mt-1">Scientifically proven methods tailored to your unique needs</p>
                       </div>
                     </div>
 
@@ -196,7 +196,7 @@ export default function AboutPage() {
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                       <div>
                         <span className="font-semibold">Inclusive & Accessible</span>
-                        <p className="text-sm text-gray-600 mt-1">Welcoming environment for all neurodivergent individuals</p>
+                        <p className="text-sm text-gray-600 mt-1">Welcoming environment for all individuals seeking care</p>
                       </div>
                     </div>
 
@@ -239,7 +239,7 @@ export default function AboutPage() {
 
             <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-800 leading-relaxed relative z-10" style={{ fontFamily: 'Poppins, sans-serif' }}>
               "Every individual deserves access to mental health support that understands their unique needs.
-              At Attrangi, we're not just providing services – we're building a community where neurodivergent
+              At Attrangi, we're not just providing services – we're building a community where
               individuals can thrive and be their authentic selves."
             </blockquote>
           </div>
@@ -275,7 +275,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-orange-100">
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-                  Attrangi started as a small mental health support initiative, aiming to help neurodivergent individuals navigate the challenges of traditional mental health services. It soon became obvious that it would make sense to help our clients see beyond their diagnoses and limitations, and be there with them from the very beginning of their mental health journey.
+                  Attrangi started as a small mental health support initiative, aiming to help individuals navigate the challenges of traditional mental health services. Hey Attrangi supports you as your mental health companion. It soon became obvious that it would make sense to help our clients see beyond their diagnoses and limitations, and be there with them from the very beginning of their mental health journey.
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">

@@ -8,7 +8,7 @@ interface InstructionDialogProps {
 
 export default function InstructionDialog({ title, instructions, onStart }: InstructionDialogProps) {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-orange-50 p-4">
+        <div className="flex flex-col items-center justify-center p-4 w-full">
 
             <div className="flex flex-col md:flex-row items-end justify-center max-w-4xl w-full gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
 
