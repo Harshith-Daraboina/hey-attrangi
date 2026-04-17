@@ -54,13 +54,19 @@ export default function TryPragyaPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [botExpression, setBotExpression] = useState("NEUTRAL");
     const [lastUserMessage, setLastUserMessage] = useState("");
+    const [isLimitReached, setIsLimitReached] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const [sessionId, setSessionId] = useState("guest_session");
+    const [visitorId, setVisitorId] = useState<string | null>(null);
+    const [remainingChats, setRemainingChats] = useState<number | null>(null);
 
     useEffect(() => {
-        const id = `guest_${Math.random().toString(36).substring(7)}`;
-        setSessionId(id);
+        let id = localStorage.getItem("visitor_id");
+        if (!id) {
+            id = `vis_${Math.random().toString(36).substring(2, 11)}`;
+            localStorage.setItem("visitor_id", id);
+        }
+        setVisitorId(id);
     }, []);
 
     useEffect(() => {
@@ -79,7 +85,7 @@ export default function TryPragyaPage() {
 
     const sendMessage = async (e?: React.FormEvent, retryMsg?: string) => {
         e?.preventDefault();
-        if ((!inputMessage.trim() && !retryMsg) || isLoading) return;
+        if ((!inputMessage.trim() && !retryMsg) || isLoading || !visitorId) return;
 
         const userMsg = retryMsg || inputMessage;
         if (!retryMsg) {
@@ -91,31 +97,31 @@ export default function TryPragyaPage() {
         setIsLoading(true);
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-bot-heyattrangi-v4.hf.space";
-            const res = await fetch(`${apiUrl}/chat`, {
+            const res = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ session_id: sessionId, message: userMsg }),
+                body: JSON.stringify({ visitor_id: visitorId, message: userMsg }),
             });
-
-            if (!res.ok) {
-                if (res.status === 500 || res.status === 503) {
-                    throw new Error("Backend is temporarily unavailable or sleeping.");
-                }
-                throw new Error("Failed to connect to the assistant.");
-            }
 
             const data = await res.json();
 
-            if (data.error) {
-                console.error("Bot API returned error:", data.error);
-                // Sanitize error message to avoid leaking internal info
-                const cleanError = typeof data.error === 'string' && !data.error.includes('$') 
-                    ? data.error 
-                    : "The assistant encountered an internal error.";
-                throw new Error(cleanError);
+            if (!res.ok) {
+                if (data.error === "LIMIT_REACHED") {
+                    setIsLimitReached(true);
+                    setMessages((prev) => [
+                        ...prev, 
+                        { 
+                            role: "assistant", 
+                            content: "You've reached your daily limit of 5 chats. Please login to continue chatting and unlock more features!" as any,
+                            isError: true 
+                        }
+                    ]);
+                    return;
+                }
+                throw new Error(data.error || "Failed to connect to the assistant.");
             }
 
+            setRemainingChats(data.remaining);
             setMessages((prev) => [...prev, { role: "assistant", content: data.reply || "I didn't quite get that. Could you please rephrase?" }]);
             setBotExpression(data.expression || getBotExpression(data.reply || ""));
         } catch (error: any) {
@@ -127,13 +133,7 @@ export default function TryPragyaPage() {
                     role: "assistant", 
                     content: (
                         <div className="space-y-2">
-                            <p>{errorMessage} Please wait a moment and try again. The service might be waking up from sleep.</p>
-                            <p className="text-[12px] opacity-70">
-                                You can check the backend status here: 
-                                <a href="https://huggingface.co/spaces/Heyattrangi-spaces/Bot-Heyattrangi-V4" target="_blank" rel="noopener noreferrer" className="ml-1 underline hover:text-orange-600">
-                                    Hugging Face Space
-                                </a>
-                            </p>
+                            <p>{errorMessage} Please wait a moment and try again.</p>
                         </div>
                     ) as any,
                     isError: true
@@ -155,11 +155,10 @@ export default function TryPragyaPage() {
         if (!hasStarted || isLoading || messages.length === 0) return;
         setIsLoading(true);
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_BOT_API_URL || "https://heyattrangi-spaces-bot-heyattrangi-v4.hf.space";
-            const res = await fetch(`${apiUrl}/summary`, {
+            const res = await fetch("/api/summary", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ session_id: sessionId }),
+                body: JSON.stringify({ session_id: visitorId }),
             });
 
             if (!res.ok) throw new Error("Failed to summarize");
@@ -252,7 +251,36 @@ export default function TryPragyaPage() {
                 </div>
 
                 {/* Main Content Area */}
-                <div className="flex-1 flex justify-center bg-[#fafcfd] relative overflow-y-auto">
+                <div className={`flex-1 flex justify-center bg-[#fafcfd] relative overflow-y-auto ${isLimitReached ? 'overflow-hidden' : ''}`}>
+                    {isLimitReached && (
+                        <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/30 flex items-center justify-center p-6 animate-in fade-in duration-500">
+                            <div className="bg-white/90 backdrop-blur-xl p-10 rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-white/50 text-center max-w-md w-full scale-in-center">
+                                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <svg className="w-10 h-10 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </div>
+                                <h2 className="text-2xl font-bold text-gray-800 mb-3">Limit Reached</h2>
+                                <p className="text-gray-500 mb-8 font-medium">
+                                    You've used all 5 free chats for today. Unlock unlimited conversations by logging in!
+                                </p>
+                                <div className="space-y-4">
+                                    <a 
+                                        href="/login" 
+                                        className="block w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-1 active:scale-[0.98]"
+                                    >
+                                        Log In / Sign Up
+                                    </a>
+                                    <button 
+                                        onClick={() => setIsLimitReached(false)}
+                                        className="text-sm text-gray-400 hover:text-gray-600 font-medium transition-colors"
+                                    >
+                                        Close for now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     {!hasStarted ? (
                         /* Pre-chat Setup Layout */
                         <div className="w-full max-w-xl px-8 flex flex-col justify-center h-full min-h-[700px] animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out py-12">
@@ -333,31 +361,43 @@ export default function TryPragyaPage() {
 
                             {/* Chat Input Field */}
                             <div className="p-4 md:p-6 bg-white border-t border-gray-100 shadow-[0_-10px_30px_rgba(0,0,0,0.02)] z-10">
-                                <form id="chat-form" onSubmit={sendMessage} className="relative max-w-4xl mx-auto flex items-center">
-                                    <input
-                                        type="text"
-                                        value={inputMessage}
-                                        onChange={(e) => setInputMessage(e.target.value)}
-                                        placeholder="Type your message here..."
-                                        className="w-full bg-gray-50 text-gray-800 placeholder-gray-400 rounded-2xl py-4 pl-6 pr-16 border border-gray-100 focus:outline-none focus:border-orange-300 focus:ring-2 focus:ring-orange-100 focus:bg-white transition-all shadow-inner text-[15px]"
-                                        disabled={isLoading}
-                                        autoFocus
-                                    />
-                                    <div className="absolute right-2 top-2 bottom-2 flex items-center">
-                                        <button
-                                            type="submit"
-                                            disabled={isLoading || !inputMessage.trim()}
-                                            className={`p-2.5 rounded-[12px] h-full transition-all duration-300 flex items-center justify-center aspect-square ${isLoading || !inputMessage.trim()
-                                                ? "text-gray-400 bg-transparent"
-                                                : "text-white bg-orange-500 hover:bg-orange-600 shadow-md hover:-translate-y-0.5 hover:shadow-lg shadow-orange-500/30"
-                                                }`}
-                                        >
-                                            <svg className="w-5 h-5 transform translate-x-[-1px] translate-y-[1px]" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                            </svg>
-                                        </button>
+                                <div className="max-w-4xl mx-auto">
+                                    <div className="flex justify-between items-center mb-2 px-2">
+                                        <span className="text-[12px] text-gray-400">
+                                            {remainingChats !== null ? `${remainingChats} chats remaining today` : ""}
+                                        </span>
+                                        {remainingChats !== null && remainingChats <= 1 && (
+                                            <a href="/login" className="text-[12px] text-orange-600 font-bold hover:underline">
+                                                Login for unlimited chats
+                                            </a>
+                                        )}
                                     </div>
-                                </form>
+                                    <form id="chat-form" onSubmit={sendMessage} className="relative flex items-center">
+                                        <input
+                                            type="text"
+                                            value={inputMessage}
+                                            onChange={(e) => setInputMessage(e.target.value)}
+                                            placeholder="Type your message here..."
+                                            className="w-full bg-gray-50 text-gray-800 placeholder-gray-400 rounded-2xl py-4 pl-6 pr-16 border border-gray-100 focus:outline-none focus:border-orange-300 focus:ring-2 focus:ring-orange-100 focus:bg-white transition-all shadow-inner text-[15px]"
+                                            disabled={isLoading}
+                                            autoFocus
+                                        />
+                                        <div className="absolute right-2 top-2 bottom-2 flex items-center">
+                                            <button
+                                                type="submit"
+                                                disabled={isLoading || !inputMessage.trim()}
+                                                className={`p-2.5 rounded-[12px] h-full transition-all duration-300 flex items-center justify-center aspect-square ${isLoading || !inputMessage.trim()
+                                                    ? "text-gray-400 bg-transparent"
+                                                    : "text-white bg-orange-500 hover:bg-orange-600 shadow-md hover:-translate-y-0.5 hover:shadow-lg shadow-orange-500/30"
+                                                    }`}
+                                            >
+                                                <svg className="w-5 h-5 transform translate-x-[-1px] translate-y-[1px]" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                                 <p className="text-center text-[11px] text-gray-500 mt-4 hidden md:block font-medium">
                                     Pragya may produce inaccurate information about people, places, or facts.
                                 </p>
