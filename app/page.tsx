@@ -23,6 +23,8 @@ interface FeaturedBlog {
   views: number;
   createdAt: string;
   isPlaceholder?: boolean;
+  category?: string;
+  type?: string;
 }
 
 const formatDate = (dateString: string) => {
