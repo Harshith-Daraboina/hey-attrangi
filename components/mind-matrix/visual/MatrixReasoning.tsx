@@ -73,7 +73,7 @@ export default function MatrixReasoning({ question, onComplete }: MatrixProps) {
                 <div className="flex flex-col md:flex-row items-start justify-center gap-8 w-full">
                     {/* Question Image (Left) */}
                     <div className="w-full md:w-[40%] flex justify-center md:justify-end">
-                        <div className="bg-[#FFF7ED] p-2 rounded-xl shadow-md border border-orange-100 inline-block w-full flex justify-center">
+                        <div className="bg-white p-2 rounded-xl shadow-md border border-orange-100 inline-block w-full flex justify-center">
                             <img
                                 src={question.stimulus.question_image}
                                 alt="Pattern"
@@ -90,7 +90,7 @@ export default function MatrixReasoning({ question, onComplete }: MatrixProps) {
                                     key={i}
                                     onClick={() => handleSelect(i)}
                                     disabled={isSubmitted}
-                                    className={`aspect-square !bg-[#FFF7ED] border-2 rounded-lg overflow-hidden transition-all shadow-sm p-1
+                                    className={`aspect-square bg-white border-2 rounded-lg overflow-hidden transition-all shadow-sm p-1
                                         ${selectedOption === i
                                             ? 'border-orange-500 ring-2 ring-orange-200 scale-105'
                                             : 'border-orange-200 hover:border-orange-300 hover:shadow-md'
@@ -121,7 +121,7 @@ export default function MatrixReasoning({ question, onComplete }: MatrixProps) {
             <div className={`grid gap-4 mb-8 p-4 bg-orange-50/50 rounded-xl shadow-inner`}
                 style={{ gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))` }}>
                 {grid.map((cell: any, i: number) => (
-                    <div key={i} className="aspect-square bg-[#FFF7ED] border-2 border-orange-200 rounded-lg flex items-center justify-center p-4">
+                    <div key={i} className="aspect-square bg-white border-2 border-orange-200 rounded-lg flex items-center justify-center p-4">
                         <svg viewBox="0 0 100 100" className="w-full h-full text-blue-600">
                             {renderShape(cell)}
                         </svg>
@@ -139,7 +139,7 @@ export default function MatrixReasoning({ question, onComplete }: MatrixProps) {
                     <button
                         key={i}
                         onClick={() => handleSelect(i)}
-                        className={`aspect-square bg-[#FFF7ED] border-2 rounded-lg flex items-center justify-center p-4 transition-all hover:shadow-md
+                        className={`aspect-square bg-white border-2 rounded-lg flex items-center justify-center p-4 transition-all hover:shadow-md
                     ${selectedOption === i
                                 ? (question.answer === opt ? 'border-orange-400 bg-orange-50 ring-2 ring-orange-100' : 'border-stone-400 bg-stone-50')
                                 : 'border-orange-200 hover:border-orange-300'

@@ -2,51 +2,37 @@
 
 import Link from "next/link";
 import TestCard from "@/components/mind-matrix/TestCard";
+import AssessmentCard from "@/components/mind-matrix/AssessmentCard";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
+import { Search } from "lucide-react";
 
 export default function Home() {
-  const otherTests = [
-    /* {
+  const assessmentsData = [
+    {
       id: "adhd",
-      title: "ADHD Assessment",
-      description: "Assess attention and focus levels to understand potential ADHD tendencies using standard clinical scales.",
-      icon: "🧠",
+      title: "ADHD Screening",
+      description: "Find out if your challenges with focus, restlessness, and daily organization might point to ADHD.",
+      image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=400&q=80",
+      duration: "3 mins quiz",
       href: "/mind-matrix/tests/adhd",
-      color: "blue"
     },
     {
-      id: "personality",
-      title: "Personality Test",
-      description: "Discover key traits that define your behavior and interactions with the Big Five personality model.",
-      icon: "🎭",
-      href: "/mind-matrix/tests/personality",
-      color: "purple"
-    }, */
+      id: "ocd",
+      title: "OCD Symptoms Check",
+      description: "Understand if your persistent intrusive thoughts or repetitive behaviors could be signs of OCD.",
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80",
+      duration: "5 mins quiz",
+      href: "/mind-matrix/tests/ocd",
+    },
     {
       id: "depression",
-      title: "Depression Screening",
-      description: "Evaluate your mood and emotional well-being to identify signs of depression.",
-      icon: "🌧️",
+      title: "Depression Assessment",
+      description: "Evaluate your mood and emotional well-being to see if you might be experiencing signs of depression.",
+      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80",
+      duration: "5 mins quiz",
       href: "/mind-matrix/tests/depression",
-      color: "teal"
-    },
-    {
-      id: "anxiety",
-      title: "Anxiety Test",
-      description: "Evaluate anxiety levels and gain insights into your stress management and emotional resilience.",
-      icon: "😰",
-      href: "/mind-matrix/tests/anxiety",
-      color: "pink"
-    },
-    /* {
-      id: "autism",
-      title: "Autism Spectrum",
-      description: "Screen for traits associated with the Autism Spectrum to better understand your social processing.",
-      icon: "🧩",
-      href: "/mind-matrix/tests/autism",
-      color: "green"
-    } */
+    }
   ];
 
   return (
@@ -168,27 +154,42 @@ export default function Home() {
         </section>
 
         {/* Available Tests Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-[#FAF7F5]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-slate-500 uppercase border border-slate-300 rounded-full">
-                We are different
+            {/* Header Area */}
+            <div className="mb-12">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                  <h2 className="text-[2.25rem] md:text-[2.5rem] font-bold text-slate-700 mb-3 tracking-tight">
+                    Mental Health Assessments
+                  </h2>
+                  <p className="text-slate-500 text-[0.95rem]">
+                    Gain insight into your mental and emotional health and find ways to support yourself
+                  </p>
+                </div>
+
+                <div className="relative w-full md:w-72">
+                  <input 
+                    type="text" 
+                    placeholder="Search resources" 
+                    className="w-full pl-5 pr-10 py-3.5 rounded-xl border-none shadow-sm focus:ring-2 focus:ring-[#EF5A42]/20 text-sm bg-white"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#EF5A42]">
+                    <Search className="w-4 h-4" />
+                  </div>
+                </div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-                Learn more <br />
-                about yourself
-              </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {otherTests.map((test) => (
-                <TestCard
-                  key={test.id}
-                  title={test.title}
-                  description={test.description}
-                  icon={test.icon}
-                  href={test.href}
-                  color={test.color}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+              {assessmentsData.map((assessment) => (
+                <AssessmentCard
+                  key={assessment.id}
+                  title={assessment.title}
+                  description={assessment.description}
+                  image={assessment.image}
+                  duration={assessment.duration}
+                  href={assessment.href}
                 />
               ))}
             </div>
