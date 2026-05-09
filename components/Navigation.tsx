@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { APP_SIGNUP_URL } from "@/lib/app-urls";
+import { APP_SIGNIN_URL } from "@/lib/app-urls";
 
 interface NavigationProps {
   currentPath?: string;
@@ -182,7 +182,7 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
               </Link>
               {/* Get Started Button */}
               <Link
-                href={APP_SIGNUP_URL}
+                href={APP_SIGNIN_URL}
                 className="bg-orange-500 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:bg-orange-600 transition-colors whitespace-nowrap"
               >
                 Get Started
@@ -326,7 +326,7 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                   Try Pragya
                 </Link>
                 <Link
-                  href={APP_SIGNUP_URL}
+                  href={APP_SIGNIN_URL}
                   className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >

@@ -10,7 +10,6 @@ import HowWeCanHelp from "@/components/HowWeCanHelp";
 import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
 import MentalHealthConcerns from "@/components/MentalHealthConcerns";
 
-import { APP_SIGNUP_URL } from "@/lib/app-urls";
 
 interface FeaturedBlog {
   id: string;
