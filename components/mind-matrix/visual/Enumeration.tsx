@@ -130,7 +130,7 @@ export default function Enumeration({ question, onComplete }: EnumerationProps) 
                             className={`p-6 border-2 rounded-xl text-xl font-bold transition 
                                 ${isSubmitting
                                     ? 'bg-orange-50 border-orange-100 text-gray-400 cursor-not-allowed'
-                                    : 'bg-[#FFF7ED] border-orange-200 hover:border-orange-500 hover:bg-orange-50 text-slate-800'
+                                    : 'bg-white border-orange-200 hover:border-orange-500 hover:bg-orange-50 text-slate-800'
                                 }`}
                         >
                             {opt}

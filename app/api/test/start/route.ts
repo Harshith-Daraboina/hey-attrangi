@@ -6,7 +6,7 @@ const MIND_MATRIX_TOTAL = 12;
 const TIME_LIMIT_SECONDS = 180;
 const SELECTION_MODE = 'random_balanced' as const;
 
-const PER_CATEGORY = 4;
+const PER_CATEGORY = 6;
 
 const EXCLUDED_DOMAINS = new Set([
     'multiple_object_tracking',
@@ -20,6 +20,7 @@ const EXCLUDED_DOMAINS = new Set([
     'numeric',
     'verbal',
     'attention',
+    'matrix_reasoning', // Excluded per user request
 ]);
 
 function shuffle<T>(array: T[]): T[] {
@@ -57,15 +58,13 @@ export async function POST(req: Request) {
 
         const eligible = allQuestions.filter((q) => !EXCLUDED_DOMAINS.has(q.domain));
 
-        const matrixPool = eligible.filter((q) => q.domain === 'matrix_reasoning');
         const logicPool = eligible.filter((q) => q.domain === 'logic');
         const processingPool = eligible.filter(
             (q) => q.domain === 'processing_speed' || q.domain === 'enumeration'
         );
 
-        if (matrixPool.length < PER_CATEGORY || logicPool.length < PER_CATEGORY || processingPool.length < PER_CATEGORY) {
+        if (logicPool.length < PER_CATEGORY || processingPool.length < PER_CATEGORY) {
             console.error('Mind Matrix: insufficient pool', {
-                matrix: matrixPool.length,
                 logic: logicPool.length,
                 processing: processingPool.length,
             });
@@ -75,11 +74,10 @@ export async function POST(req: Request) {
             );
         }
 
-        const matrixPick = pickRandom(matrixPool, PER_CATEGORY);
         const logicPick = pickRandom(logicPool, PER_CATEGORY);
         const processingPick = pickRandom(processingPool, PER_CATEGORY);
 
-        const combined = [...matrixPick, ...logicPick, ...processingPick];
+        const combined = [...logicPick, ...processingPick];
 
         const seen = new Set<string>();
         const unique = combined.filter((q) => {
