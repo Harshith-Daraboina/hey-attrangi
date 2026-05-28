@@ -500,27 +500,27 @@ export default function Home() {
                 </div>
 
                 {/* Call To Actions */}
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-row flex-nowrap items-center gap-3 sm:gap-4">
                   <Link
                     href="/mind-matrix"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-white bg-[#FF6B00] hover:bg-orange-600 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-5 py-3 sm:px-7 sm:py-3.5 text-sm sm:text-base font-bold text-gray-700 bg-white border border-gray-200 hover:bg-gray-50 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                     Start Mind Check
-                    <svg className="w-4 h-4 ml-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
                   </Link>
                   <Link
                     href="/try-pragya"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-gray-700 bg-white border border-gray-200 hover:bg-gray-50 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-5 py-3 sm:px-7 sm:py-3.5 text-sm sm:text-base font-bold text-white bg-[#FF6B00] hover:bg-orange-600 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                     Try Pragya
+                    <svg className="w-4 h-4 ml-1 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                   </Link>
                 </div>
               </div>
@@ -1120,7 +1120,6 @@ export default function Home() {
 
         {/* How We Can Help Section */}
         <HowWeCanHelp />
-
         {/* FAQ Section */}
         <FAQ />
 
