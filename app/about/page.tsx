@@ -324,8 +324,8 @@ export default function AboutPage() {
                   </div>
                   <div className="p-5 text-center">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Dr. Sandesh Palhke</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Child Psychologist | Proffesor UI & UX</p>
-                    <p className="text-xs text-gray-500 mt-1">Founder & Lead Therapist</p>
+                    <p className="text-sm text-orange-600 font-semibold">Designer behavioural Therapist </p>
+                    <p className="text-xs text-gray-500 mt-1">Founder, Attrangi</p>
                   </div>
                 </div>
               </div>
