@@ -16,11 +16,21 @@ import {
     Search
 } from 'lucide-react';
 
+type ConcernTheme = {
+    bg: string;
+    hoverBg: string;
+    title: string;
+    btnBg: string;
+    btnText: string;
+    border: string;
+};
+
 type Concern = {
     title: string;
     description: string;
     slug: string;
     icon: React.ReactNode;
+    theme: ConcernTheme;
 };
 
 type Category = {
@@ -32,8 +42,6 @@ type Category = {
 };
 
 const MentalHealthConcerns = () => {
-    const [activeCategory, setActiveCategory] = useState<string>("mood");
-
     const categories: Category[] = [
         {
             id: "mood",
@@ -43,15 +51,31 @@ const MentalHealthConcerns = () => {
             concerns: [
                 {
                     title: "Depression",
-                    description: "Does your life feel impossible & hopeless? You don’t have to manage it alone.",
+                    description: "Feeling persistent sadness, hopelessness, or losing interest in things you once enjoyed?",
                     slug: "depression",
-                    icon: <CloudRain className="w-8 h-8 text-blue-500" />,
+                    icon: <CloudRain className="w-12 h-12 text-purple-500" />,
+                    theme: {
+                        bg: "bg-purple-50/50",
+                        hoverBg: "hover:bg-purple-50",
+                        title: "text-purple-900",
+                        btnBg: "bg-purple-100",
+                        btnText: "text-purple-800",
+                        border: "border-purple-100"
+                    }
                 },
                 {
                     title: "Bipolar Disorder",
-                    description: "Are you struggling with episodes of mania or depression? You can find the care you need.",
+                    description: "Experiencing extreme mood swings between emotional highs (mania) and lows (depression)?",
                     slug: "bipolar-disorder",
-                    icon: <Zap className="w-8 h-8 text-yellow-500" />,
+                    icon: <Zap className="w-12 h-12 text-amber-500" />,
+                    theme: {
+                        bg: "bg-amber-50/50",
+                        hoverBg: "hover:bg-amber-50",
+                        title: "text-amber-900",
+                        btnBg: "bg-amber-100",
+                        btnText: "text-amber-800",
+                        border: "border-amber-100"
+                    }
                 },
             ]
         },
@@ -62,39 +86,49 @@ const MentalHealthConcerns = () => {
             icon: <Sparkles className="w-5 h-5" />,
             concerns: [
                 {
-                    title: "Anxiety",
-                    description: "Chronic worry, mental fatigue, and feeling like your thoughts are always one step ahead?",
+                    title: "Anxiety & OCD",
+                    description: "Constant worries, racing thoughts, or repetitive behaviors interfering with daily life?",
                     slug: "anxiety",
-                    icon: <Brain className="w-8 h-8 text-purple-500" />,
+                    icon: <Brain className="w-12 h-12 text-emerald-500" />,
+                    theme: {
+                        bg: "bg-emerald-50/50",
+                        hoverBg: "hover:bg-emerald-50",
+                        title: "text-emerald-900",
+                        btnBg: "bg-emerald-100",
+                        btnText: "text-emerald-800",
+                        border: "border-emerald-100"
+                    }
                 },
                 {
                     title: "Social Anxiety",
                     description: "Do social settings make you anxious and fearful? We can help you cope better.",
                     slug: "social-anxiety",
-                    icon: <Users className="w-8 h-8 text-green-500" />,
+                    icon: <Users className="w-12 h-12 text-blue-500" />,
+                    theme: {
+                        bg: "bg-blue-50/50",
+                        hoverBg: "hover:bg-blue-50",
+                        title: "text-blue-900",
+                        btnBg: "bg-blue-100",
+                        btnText: "text-blue-800",
+                        border: "border-blue-100"
+                    }
                 },
                 {
-                    title: "Obsessive Compulsive Disorder",
-                    description: "Are your thoughts out of control & making you feel overwhelmed? Find ways to cope.",
-                    slug: "ocd",
-                    icon: <LayoutGrid className="w-8 h-8 text-indigo-500" />,
+                    title: "Burnout",
+                    description: "Feeling emotionally drained, physically exhausted, or unable to keep up?",
+                    slug: "burnout",
+                    icon: <LayoutGrid className="w-12 h-12 text-red-500" />,
+                    theme: {
+                        bg: "bg-red-50/50",
+                        hoverBg: "hover:bg-red-50",
+                        title: "text-red-900",
+                        btnBg: "bg-red-100",
+                        btnText: "text-red-800",
+                        border: "border-red-100"
+                    }
                 },
             ]
         },
-        /* {
-            id: "neuro",
-            name: "Neurodevelopmental",
-            description: "Support for unique brain wiring and developmental challenges.",
-            icon: <Zap className="w-5 h-5" />,
-            concerns: [
-                {
-                    title: "Adult ADHD",
-                    description: "Struggling with focus, restlessness, or impulsivity? There are ways to manage it better.",
-                    slug: "adult-adhd",
-                    icon: <Zap className="w-8 h-8 text-orange-500" />,
-                },
-            ]
-        }, */
         {
             id: "habits",
             name: "Addiction & Habits",
@@ -105,13 +139,29 @@ const MentalHealthConcerns = () => {
                     title: "Alcohol Addiction",
                     description: "Is alcohol interfering with your ability to lead a fulfilling life? Find the right support.",
                     slug: "alcohol-addiction",
-                    icon: <Wine className="w-8 h-8 text-red-500" />,
+                    icon: <Wine className="w-12 h-12 text-rose-500" />,
+                    theme: {
+                        bg: "bg-rose-50/50",
+                        hoverBg: "hover:bg-rose-50",
+                        title: "text-rose-900",
+                        btnBg: "bg-rose-100",
+                        btnText: "text-rose-800",
+                        border: "border-rose-100"
+                    }
                 },
                 {
                     title: "Tobacco Addiction",
                     description: "Tried quitting tobacco but finding it difficult? It is possible to be tobacco free.",
                     slug: "tobacco-addiction",
-                    icon: <Cigarette className="w-8 h-8 text-gray-500" />,
+                    icon: <Cigarette className="w-12 h-12 text-slate-500" />,
+                    theme: {
+                        bg: "bg-slate-50/50",
+                        hoverBg: "hover:bg-slate-50",
+                        title: "text-slate-900",
+                        btnBg: "bg-slate-100",
+                        btnText: "text-slate-800",
+                        border: "border-slate-100"
+                    }
                 },
             ]
         },
@@ -125,94 +175,69 @@ const MentalHealthConcerns = () => {
                     title: "Women’s Health",
                     description: "Hormonal, sexual or fertility concerns affecting your mental health? We can help.",
                     slug: "womens-health",
-                    icon: <Flower2 className="w-8 h-8 text-pink-500" />,
+                    icon: <Flower2 className="w-12 h-12 text-pink-500" />,
+                    theme: {
+                        bg: "bg-pink-50/50",
+                        hoverBg: "hover:bg-pink-50",
+                        title: "text-pink-900",
+                        btnBg: "bg-pink-100",
+                        btnText: "text-pink-800",
+                        border: "border-pink-100"
+                    }
                 },
             ]
         }
     ];
 
-    const activeCategoryData = categories.find(c => c.id === activeCategory) || categories[0];
+    const allConcerns = categories.flatMap(c => c.concerns);
 
     return (
-        <section className="bg-orange-50 py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                <div className="bg-[#fadcc4]/30 rounded-[2.5rem] p-6 md:p-8 flex flex-col lg:flex-row gap-8 shadow-sm ring-1 ring-orange-100/50 backdrop-blur-sm">
-
-                    {/* Left Sidebar Navigation */}
-                    <div className="w-full lg:w-80 flex-shrink-0 bg-white/80 backdrop-blur rounded-3xl p-6 shadow-sm border border-white/50 h-fit">
-                        <div className="inline-flex items-center gap-2 bg-orange-100/50 rounded-full px-4 py-1.5 text-xs font-bold text-orange-600 uppercase tracking-wide mb-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                    <div>
+                        <div className="inline-flex items-center gap-2 bg-orange-50 rounded-full px-4 py-1.5 text-xs font-bold text-orange-600 uppercase tracking-wide mb-4">
                             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
                             Discover Support
                         </div>
-
-                        <div className="space-y-2">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.id}
-                                    onClick={() => setActiveCategory(category.id)}
-                                    className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 group text-left ${activeCategory === category.id
-                                            ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20 scale-100'
-                                            : 'hover:bg-orange-50 text-gray-600 hover:scale-[1.02]'
-                                        }`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <div className={`p-2 rounded-xl transition-colors ${activeCategory === category.id ? 'bg-white/20' : 'bg-orange-50 text-orange-500 group-hover:bg-orange-100'
-                                            }`}>
-                                            {category.icon}
-                                        </div>
-                                        <span className="font-bold text-sm md:text-base">{category.name}</span>
-                                    </div>
-                                    <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${activeCategory === category.id ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
-                                        }`} />
-                                </button>
-                            ))}
-                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#1a2b3c] mb-3">
+                            Conditions we support
+                        </h2>
+                        <p className="text-gray-600 font-medium max-w-2xl">
+                            Find specialized care, understanding, and tailored approaches for your mental health journey.
+                        </p>
                     </div>
+                    <Link href="/conditions" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-[#1a2b3c] px-6 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow border border-gray-200 whitespace-nowrap text-sm">
+                        <Search className="w-4 h-4 text-orange-500" />
+                        View all conditions
+                    </Link>
+                </div>
 
-                    {/* Right Content Area */}
-                    <div className="flex-1 flex flex-col">
-                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pl-2">
-                            <div>
-                                <h2 className="text-3xl font-bold text-[#1a2b3c] mb-2">{activeCategoryData.name}</h2>
-                                <p className="text-gray-600 font-medium max-w-lg">
-                                    {activeCategoryData.description}
-                                </p>
+                {/* Horizontal Scroll Container */}
+                <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                    {allConcerns.map((concern, index) => (
+                        <Link
+                            key={index}
+                            href={`/conditions/${concern.slug}`}
+                            className={`snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[350px] group relative ${concern.theme.bg} ${concern.theme.hoverBg} rounded-[2rem] p-6 sm:p-8 transition-all duration-300 border ${concern.theme.border} hover:shadow-lg flex flex-col items-start overflow-hidden`}
+                        >
+                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/60 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm mb-6">
+                                {concern.icon}
                             </div>
-                            <Link href="/conditions" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-[#1a2b3c] px-6 py-2.5 rounded-full font-bold transition-all shadow-sm hover:shadow border border-gray-100 whitespace-nowrap text-sm">
-                                <Search className="w-4 h-4" />
-                                View all conditions
-                            </Link>
-                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {activeCategoryData.concerns.map((concern, index) => (
-                                <Link
-                                    key={index}
-                                    href={`/conditions/${concern.slug}`}
-                                    className="group relative bg-white hover:bg-orange-50/50 rounded-3xl p-6 transition-all duration-300 border border-gray-100 hover:border-orange-100 hover:shadow-lg hover:shadow-orange-500/5 flex flex-col md:flex-row gap-6 items-start overflow-hidden"
-                                >
-                                    <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                                        {concern.icon}
-                                    </div>
-
-                                    <div className="flex-1 relative z-10">
-                                        <h3 className="text-[#1a2b3c] font-bold text-lg mb-2 group-hover:text-orange-600 transition-colors">
-                                            {concern.title}
-                                        </h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                                            {concern.description}
-                                        </p>
-                                        <div className="flex items-center text-orange-500 text-sm font-bold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                                            Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                                        </div>
-                                    </div>
-
-                                    {/* Decorative bento background element */}
-                                    <div className="absolute right-0 bottom-0 w-32 h-32 bg-gradient-to-tl from-orange-100/20 to-transparent rounded-tl-[100%] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+                            <div className="flex-1 relative z-10 flex flex-col items-start text-left w-full h-full">
+                                <h3 className={`${concern.theme.title} font-bold text-xl sm:text-2xl mb-3 transition-colors`}>
+                                    {concern.title}
+                                </h3>
+                                <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed mb-8 flex-grow">
+                                    {concern.description}
+                                </p>
+                                <div className={`mt-auto inline-flex items-center px-5 py-2.5 rounded-full ${concern.theme.btnBg} ${concern.theme.btnText} text-sm font-bold transition-transform duration-300 group-hover:-translate-y-0.5`}>
+                                    Learn More <ArrowRight className="w-4 h-4 ml-1.5" />
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </section>

@@ -9,7 +9,8 @@ import FAQ from "@/components/FAQ";
 import HowWeCanHelp from "@/components/HowWeCanHelp";
 import ScrollingTextMarqueeComponent from "@/components/ScrollingTextMarquee";
 import MentalHealthConcerns from "@/components/MentalHealthConcerns";
-
+import PlatformFeatures from "@/components/PlatformFeatures";
+import { APP_SIGNIN_URL } from "@/lib/app-urls";
 
 interface FeaturedBlog {
   id: string;
@@ -721,74 +722,107 @@ export default function Home() {
           </div>
         </div>
 
-        {/* How it works section with wavy/curved top */}
-        <div className="relative w-full bg-[#fff5ea] pt-32 pb-36 overflow-hidden">
-          {/* Background Waves */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            {/* Top Wave (White) */}
-            <svg className="absolute top-[-1px] w-full h-[80px] sm:h-[150px] text-white z-10 -scale-x-100" viewBox="0 0 1440 320" preserveAspectRatio="none">
-              <path fill="currentColor" d="M0,60 C400,250 800,-50 1440,120 L1440,0 L0,0 Z"></path>
-            </svg>
-
-            {/* Bottom Wave (White) */}
-            <svg className="absolute bottom-[-1px] w-full h-[80px] sm:h-[150px] text-white z-10 -scale-x-100" viewBox="0 0 1440 320" preserveAspectRatio="none">
-              <path fill="currentColor" d="M0,200 C480,350 960,50 1440,200 L1440,320 L0,320 Z"></path>
-            </svg>
-          </div>
-
-          <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10 text-center">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#ff6000] mb-12 tracking-tight select-none">
-              How it works?
-            </h3>
-
-            {/* 4 Steps / Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-20 max-w-6xl mx-auto px-2">
-              {/* Item 1 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-3xl shadow-sm mb-5 transition-transform duration-300 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden border border-orange-50/50">
-                  <Image src="/home/image%20copy.png" alt="Continuous Engagement" fill className="object-cover" />
-                </div>
-                <h4 className="text-lg md:text-xl font-bold text-[#ff6000] mb-2 leading-tight">Continuous Engagement</h4>
-                <p className="text-gray-800 text-sm md:text-[15px] font-medium leading-snug max-w-[250px]">
-                  Students access a 24×7 AI-supported platform.
+        {/* Statistics / Impact Section */}
+        <div className="relative w-full bg-[#f8f9fa] py-20 lg:py-32 overflow-hidden border-b border-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Column: Text Content */}
+              <div className="flex flex-col justify-center max-w-2xl">
+                <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold text-[#2d3a4b] leading-[1.1] tracking-tight mb-6" style={{ fontFamily: "Georgia, serif" }}>
+                  75% of mental health conditions begin before age 25.
+                </h2>
+                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-8" style={{ fontFamily: "Georgia, serif" }}>
+                  Yet millions of students struggle in silence, waiting until stress becomes burnout, anxiety becomes overwhelming, and asking for help feels too late.
                 </p>
+                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
+                  It doesn't have to.
+                </p>
+
+                <div>
+                  <Link
+                    href={APP_SIGNIN_URL}
+                    className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-8 py-3.5 text-base sm:text-lg font-bold text-white bg-[#f68b4b] hover:bg-[#e07b40] rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
+                  >
+                    Get Started
+                    <span className="flex items-center justify-center w-5 h-5 rounded-full border border-white/40">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                      </svg>
+                    </span>
+                  </Link>
+                </div>
               </div>
 
-              {/* Item 2 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-3xl shadow-sm mb-5 transition-transform duration-300 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden border border-orange-50/50">
-                  <Image src="/home/image%20copy%203.png" alt="Structured Monitoring" fill className="object-cover" />
-                </div>
-                <h4 className="text-lg md:text-xl font-bold text-[#ff6000] mb-2 leading-tight">Structured Monitoring</h4>
-                <p className="text-gray-800 text-sm md:text-[15px] font-medium leading-snug max-w-[250px]">
-                  Mood patterns, engagement trends, and early distress signals identified
-                </p>
-              </div>
+              {/* Right Column: Mobile Mockup */}
+              <div className="relative flex justify-center lg:justify-end items-center mt-12 lg:mt-0 select-none">
+                {/* Mobile Mockup (iPhone Container) */}
+                <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/18.5] bg-[#8a4e23] rounded-[44px] p-2.5 shadow-2xl border-4 border-[#3d210e] ring-1 ring-gray-900/10 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300 z-10 mr-4 sm:mr-8 lg:mr-16">
+                  {/* Screen Inside iPhone */}
+                  <div className="relative w-full h-full bg-[#faf9f6] rounded-[36px] p-4 flex flex-col overflow-hidden">
+                    {/* Dynamic Island Notch */}
+                    <div className="w-20 h-5 bg-[#000000] rounded-full mx-auto mb-4 flex-shrink-0 z-20 shadow-sm"></div>
 
-              {/* Item 3 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-3xl shadow-sm mb-5 transition-transform duration-300 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden border border-orange-50/50">
-                  <Image src="/home/image%20copy%204.png" alt="Therapist Access" fill className="object-cover" />
-                </div>
-                <h4 className="text-lg md:text-xl font-bold text-[#ff6000] mb-2 leading-tight">Therapist Access</h4>
-                <p className="text-gray-800 text-sm md:text-[15px] font-medium leading-snug max-w-[250px]">
-                  Students connected to certified therapists across multiple specializations
-                </p>
-              </div>
+                    {/* Header */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
+                          <Image src="/images/student.png" alt="User" width={32} height={32} className="object-cover" />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 bg-white px-2 py-1 rounded-full shadow-sm">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" /></svg>
+                        <span>72° Partly Cloudy</span>
+                      </div>
+                    </div>
 
-              {/* Item 4 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-3xl shadow-sm mb-5 transition-transform duration-300 group-hover:-translate-y-1 flex items-center justify-center overflow-hidden border border-orange-50/50">
-                  <Image src="/home/image%20copy%205.png" alt="Institutional Dashboard" fill className="object-cover" />
+                    <h3 className="text-xl font-bold text-[#111827] mb-4">
+                      Hey Attrangi
+                    </h3>
+
+                    {/* App Content Blocks */}
+                    <div className="flex-1 flex flex-col gap-3 overflow-y-auto scrollbar-none pb-4">
+
+                      {/* Search Bar Mockup */}
+                      <div className="bg-white rounded-full shadow-sm border border-gray-100 p-2.5 flex items-center justify-between mb-2">
+                        <span className="text-xs text-gray-400 font-medium ml-2">Ask me anything</span>
+                        <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 mb-2">
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 flex flex-col items-center justify-center text-center gap-2">
+                          <span className="text-orange-500">📅</span>
+                          <span className="text-[10px] font-bold text-gray-600">Create an event</span>
+                        </div>
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 flex flex-col items-center justify-center text-center gap-2">
+                          <span className="text-blue-500">⏰</span>
+                          <span className="text-[10px] font-bold text-gray-600">Set a reminder</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-purple-50 rounded-2xl shadow-sm border border-purple-100 p-3 mb-2">
+                        <div className="flex justify-between items-start mb-2">
+                          <div className="w-6 h-6 rounded-full bg-purple-200 flex items-center justify-center">
+                            <span className="text-purple-600 text-xs">🧘</span>
+                          </div>
+                          <span className="text-gray-400 text-xs">✕</span>
+                        </div>
+                        <h4 className="text-xs font-bold text-purple-900 leading-tight">Prep for your day<br />with a daily check-in</h4>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
-                <h4 className="text-lg md:text-xl font-bold text-[#ff6000] mb-2 leading-tight">Institutional Dashboard</h4>
-                <p className="text-gray-800 text-sm md:text-[15px] font-medium leading-snug max-w-[250px]">
-                  Institutions receive aggregate, privacy-safe insights without exposure to individual data
-                </p>
+
               </div>
             </div>
           </div>
         </div>
+
+
 
         {/* Personalized Care Section */}
         <section className="bg-white py-12 lg:py-16 overflow-hidden relative">
@@ -853,56 +887,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Measurable Impact Section */}
-        <section className="bg-white pb-24 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Header */}
-            <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-gray-800 mb-3 tracking-tight">
-              Built for measurable <span className="text-[#ff6000]">impact</span> across your campus.
-            </h2>
-            <p className="text-[17px] text-gray-600 max-w-3xl mx-auto mb-14 font-medium">
-              Attrangi doesn't just support students, it strengthens how institutions respond to mental health at scale.
-            </p>
 
-            {/* Cards Container */}
-            <div className="flex flex-col gap-6 items-center">
-              {/* Top Row (3 Cards) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
-                {/* Card 1 */}
-                <div className="bg-[#faeedd] rounded-[20px] p-8 text-left h-full transition-transform duration-300 hover:-translate-y-1 shadow-sm border border-orange-50/50 flex flex-col justify-center">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1">Prevent crises before they escalate</h3>
-                  <p className="text-gray-700 text-[15px] leading-snug">Early signals enable timely intervention, not reactive response</p>
-                </div>
-                {/* Card 2 */}
-                <div className="bg-[#faeedd] rounded-[20px] p-8 text-left h-full transition-transform duration-300 hover:-translate-y-1 shadow-sm border border-orange-50/50 flex flex-col justify-center">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1">Improve student stability and retention</h3>
-                  <p className="text-gray-700 text-[15px] leading-snug">Consistent support leads to better academic and emotional outcomes</p>
-                </div>
-                {/* Card 3 */}
-                <div className="bg-[#faeedd] rounded-[20px] p-8 text-left h-full transition-transform duration-300 hover:-translate-y-1 shadow-sm border border-orange-50/50 flex flex-col justify-center">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1">Reduce burden on faculty and staff</h3>
-                  <p className="text-gray-700 text-[15px] leading-snug">Structured systems replace informal emotional handling</p>
-                </div>
-              </div>
 
-              {/* Bottom Row (2 Cards) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-                {/* Card 4 */}
-                <div className="bg-[#faeedd] rounded-[20px] p-8 text-left h-full transition-transform duration-300 hover:-translate-y-1 shadow-sm border border-orange-50/50 flex flex-col justify-center">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1">Enable data-informed decision making</h3>
-                  <p className="text-gray-700 text-[15px] leading-snug">Privacy-safe insights help institutions act with clarity</p>
-                </div>
-                {/* Card 5 */}
-                <div className="bg-[#faeedd] rounded-[20px] p-8 text-left h-full transition-transform duration-300 hover:-translate-y-1 shadow-sm border border-orange-50/50 flex flex-col justify-center">
-                  <h3 className="font-bold text-gray-900 text-[16px] leading-tight mb-1">Strengthen compliance and accountability</h3>
-                  <p className="text-gray-700 text-[15px] leading-snug">Aligned with evolving regulatory and accreditation expectations</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section id="services" className="bg-orange-50 py-16 relative z-0">
+        {/* Platform Features Section */}
+        <PlatformFeatures />
+
+        <section id="services" className="bg-white py-16 relative z-0">
 
           {/* Featured Blogs Section */}
           {insightsToShow.length > 0 && (
@@ -910,7 +901,7 @@ export default function Home() {
               <div className="mb-16">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1a2b3c] tracking-tight leading-tight" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    Your Go-To Student Well-being Library
+                    Know more about the causes!
                   </h2>
                   <div className="relative w-full md:w-80 shrink-0">
                     <input
@@ -926,30 +917,123 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Bento Grid Layout (Amaha Style) */}
+                {/* Bento Grid Layout (Alternating Style) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
-                  {/* Left Column */}
-                  <div className="lg:col-span-7 flex flex-col gap-6">
-                    {insightsToShow.length > 0 && (
-                      <FeaturedArticleCard blog={insightsToShow[0]} />
-                    )}
-                    {insightsToShow.length > 3 && (
-                      <TextOnlyCard blog={insightsToShow[3]} />
-                    )}
-                  </div>
+                  {/* Top Left - Tall */}
+                  {insightsToShow.length > 0 && (
+                    <div className="lg:col-span-5 xl:col-span-4 flex">
+                      <Link href={`/blogs/${insightsToShow[0].slug || insightsToShow[0].id}`} className="group relative bg-[#1a2b3c] rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 w-full flex flex-col h-[350px] md:h-[420px] hover:shadow-md">
+                        <div className="absolute inset-0">
+                          {insightsToShow[0].image ? (
+                            <Image src={insightsToShow[0].image} alt={insightsToShow[0].title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" />
+                          ) : (
+                            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center"><span className="text-4xl opacity-30">📝</span></div>
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent"></div>
+                        </div>
+                        <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end flex-grow mt-auto">
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider">{insightsToShow[0].type || "Article"}</span>
+                            {insightsToShow[0].category && (
+                              <>
+                                <span className="text-white/40">•</span>
+                                <span className="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase bg-white/20 text-white backdrop-blur-md border border-white/10">{insightsToShow[0].category}</span>
+                              </>
+                            )}
+                          </div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-orange-300 transition-colors leading-snug mb-2">{insightsToShow[0].title}</h3>
+                          <p className="text-white/70 text-sm line-clamp-2 leading-relaxed">{insightsToShow[0].excerpt}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
 
-                  {/* Right Column */}
-                  <div className="lg:col-span-5 flex flex-col gap-6">
-                    {insightsToShow.length > 1 && (
-                      <CompactHorizontalCard blog={insightsToShow[1]} />
-                    )}
-                    {insightsToShow.length > 2 && (
-                      <CompactHorizontalCard blog={insightsToShow[2]} />
-                    )}
-                    {insightsToShow.length > 4 && (
-                      <TextOnlyCard blog={insightsToShow[4]} />
-                    )}
-                  </div>
+                  {/* Top Right - Wide */}
+                  {insightsToShow.length > 1 && (
+                    <div className="lg:col-span-7 xl:col-span-8 flex">
+                      <Link href={`/blogs/${insightsToShow[1].slug || insightsToShow[1].id}`} className="group relative bg-[#1a2b3c] rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 w-full flex flex-col h-[350px] md:h-[420px] hover:shadow-md">
+                        <div className="absolute inset-0">
+                          {insightsToShow[1].image ? (
+                            <Image src={insightsToShow[1].image} alt={insightsToShow[1].title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" />
+                          ) : (
+                            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center"><span className="text-4xl opacity-30">📝</span></div>
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent"></div>
+                        </div>
+                        <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end flex-grow mt-auto">
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider">{insightsToShow[1].type || "Article"}</span>
+                            {insightsToShow[1].category && (
+                              <>
+                                <span className="text-white/40">•</span>
+                                <span className="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase bg-white/20 text-white backdrop-blur-md border border-white/10">{insightsToShow[1].category}</span>
+                              </>
+                            )}
+                          </div>
+                          <h3 className="text-xl md:text-2xl lg:text-[28px] font-bold text-white group-hover:text-orange-300 transition-colors leading-snug mb-3 max-w-2xl">{insightsToShow[1].title}</h3>
+                          <p className="text-white/70 text-sm line-clamp-2 leading-relaxed max-w-3xl">{insightsToShow[1].excerpt}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Bottom Left - Wide */}
+                  {insightsToShow.length > 2 && (
+                    <div className="lg:col-span-7 xl:col-span-8 flex">
+                      <Link href={`/blogs/${insightsToShow[2].slug || insightsToShow[2].id}`} className="group relative bg-[#1a2b3c] rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 w-full flex flex-col h-[350px] md:h-[420px] hover:shadow-md">
+                        <div className="absolute inset-0">
+                          {insightsToShow[2].image ? (
+                            <Image src={insightsToShow[2].image} alt={insightsToShow[2].title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" />
+                          ) : (
+                            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center"><span className="text-4xl opacity-30">📝</span></div>
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent"></div>
+                        </div>
+                        <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end flex-grow mt-auto">
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider">{insightsToShow[2].type || "Article"}</span>
+                            {insightsToShow[2].category && (
+                              <>
+                                <span className="text-white/40">•</span>
+                                <span className="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase bg-white/20 text-white backdrop-blur-md border border-white/10">{insightsToShow[2].category}</span>
+                              </>
+                            )}
+                          </div>
+                          <h3 className="text-xl md:text-2xl lg:text-[28px] font-bold text-white group-hover:text-orange-300 transition-colors leading-snug mb-3 max-w-2xl">{insightsToShow[2].title}</h3>
+                          <p className="text-white/70 text-sm line-clamp-2 leading-relaxed max-w-3xl">{insightsToShow[2].excerpt}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Bottom Right - Tall */}
+                  {insightsToShow.length > 3 && (
+                    <div className="lg:col-span-5 xl:col-span-4 flex">
+                      <Link href={`/blogs/${insightsToShow[3].slug || insightsToShow[3].id}`} className="group relative bg-[#1a2b3c] rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 w-full flex flex-col h-[350px] md:h-[420px] hover:shadow-md">
+                        <div className="absolute inset-0">
+                          {insightsToShow[3].image ? (
+                            <Image src={insightsToShow[3].image} alt={insightsToShow[3].title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" />
+                          ) : (
+                            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center"><span className="text-4xl opacity-30">📝</span></div>
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent"></div>
+                        </div>
+                        <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end flex-grow mt-auto">
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider">{insightsToShow[3].type || "Article"}</span>
+                            {insightsToShow[3].category && (
+                              <>
+                                <span className="text-white/40">•</span>
+                                <span className="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase bg-white/20 text-white backdrop-blur-md border border-white/10">{insightsToShow[3].category}</span>
+                              </>
+                            )}
+                          </div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-orange-300 transition-colors leading-snug mb-2">{insightsToShow[3].title}</h3>
+                          <p className="text-white/70 text-sm line-clamp-2 leading-relaxed">{insightsToShow[3].excerpt}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 {/* View All Blogs Button */}
@@ -968,24 +1052,7 @@ export default function Home() {
             </div>
           )}
 
-          {/* New Hero Image Section Below Insights */}
-          <div className="relative w-full h-[50vh] md:h-[60vh] mt-20">
-            <Image
-              src="/images/src14.png"
-              alt="Mental wellbeing professionals"
-              fill
-              className="object-cover"
-            />
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40"></div>
 
-            {/* Centered Text */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4 text-center">
-              <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl tracking-tight leading-tight pt-32 pb-60 shadow-sm drop-shadow-md">
-                200+ peers verified, one integrated team, all focused on your care
-              </h2>
-            </div>
-          </div>
         </section>
 
 
@@ -1118,8 +1185,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* How We Can Help Section */}
-        <HowWeCanHelp />
+
         {/* FAQ Section */}
         <FAQ />
 
