@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { APP_SIGNIN_URL } from "@/lib/app-urls";
+import { APP_SIGNIN_URL, APP_BILLING_URL } from "@/lib/app-urls";
 
 interface NavigationProps {
   currentPath?: string;
@@ -120,10 +120,10 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
                 <ul className="flex items-center space-x-6 list-none m-0 p-0">
                   <li>
                     <Link
-                      href="/blogs"
-                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/blogs') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
+                      href="/billing"
+                      className={`text-sm font-medium transition-colors duration-200 ${isActivePath('/billing') ? 'text-orange-600 font-bold' : 'text-gray-600 hover:text-orange-600'}`}
                     >
-                      Insights
+                      Billing
                     </Link>
                   </li>
 
@@ -276,11 +276,11 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
 
               <li>
                 <Link
-                  href="/blogs"
+                  href="/billing"
                   className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Insights
+                  Billing
                 </Link>
               </li>
 

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, useRef, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import FAQ from "@/components/FAQ";
@@ -413,7 +414,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-orange-50">
+      <div className="min-h-screen bg-white">
         {/* Moving Quote Bar */}
         <div className="bg-gray-800 text-white py-2 px-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -455,6 +456,11 @@ export default function Home() {
         <Navigation currentPath="/" />
 
         {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
         <div className="relative w-full bg-white pt-12 pb-16 md:pt-16 md:pb-24 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -593,6 +599,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </motion.div>
 
         {/* Bottom full-width features bar with dark borders matching exactly */}
         <div className="w-full bg-white border-t border-b border-gray-200 py-6 select-none relative">
@@ -619,6 +626,12 @@ export default function Home() {
         </div>
 
         {/* Ground Reality Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
         <div className="relative w-full bg-white pt-20 pb-20 border-b border-gray-50">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             {/* Header text */}
@@ -721,8 +734,15 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </motion.div>
 
         {/* Statistics / Impact Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
         <div className="relative w-full bg-[#f8f9fa] py-20 lg:py-32 overflow-hidden border-b border-gray-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -735,7 +755,7 @@ export default function Home() {
                   Yet millions of students struggle in silence, waiting until stress becomes burnout, anxiety becomes overwhelming, and asking for help feels too late.
                 </p>
                 <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
-                  It doesn't have to.
+                  It doesn't have to be you!!.
                 </p>
 
                 <div>
@@ -821,10 +841,17 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </motion.div>
 
 
 
         {/* Personalized Care Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
         <section className="bg-white py-12 lg:py-16 overflow-hidden relative">
           {/* Far Left Decorative Gray Block */}
           {/* <div className="absolute top-1/2 -left-20 md:-left-10 -translate-y-1/2 w-[20%] sm:w-[15%] lg:w-[12%] h-[100%] bg-[#d9d9d9]/60 rounded-r-[50px] z-0 pointer-events-none hidden md:block"></div> */}
@@ -886,6 +913,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </motion.div>
 
 
 
@@ -893,6 +921,12 @@ export default function Home() {
         {/* Platform Features Section */}
         <PlatformFeatures />
 
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
         <section id="services" className="bg-white py-16 relative z-0">
 
           {/* Featured Blogs Section */}
@@ -1054,6 +1088,7 @@ export default function Home() {
 
 
         </section>
+        </motion.div>
 
 
         <MentalHealthConcerns />
@@ -1187,7 +1222,14 @@ export default function Home() {
 
 
         {/* FAQ Section */}
-        <FAQ />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <FAQ />
+        </motion.div>
 
         {/* Footer */}
         <Footer />

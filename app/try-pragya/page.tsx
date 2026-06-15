@@ -185,15 +185,65 @@ export default function TryPragyaPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800 overflow-hidden font-sans">
+        <div className="flex flex-col min-h-screen bg-white text-gray-800 overflow-hidden font-sans">
             {/* Top Navigation matches site context */}
             <div className="z-20 bg-white border-b border-gray-100 shadow-sm relative">
                 <Navigation currentPath="/try-pragya" />
             </div>
 
-            <div className="flex-1 flex w-full max-w-[1600px] mx-auto overflow-hidden">
+            <div className="flex-1 flex flex-col md:flex-row w-full max-w-[1600px] mx-auto overflow-hidden relative">
+                {/* Mobile Header (Visible only on small screens) */}
+                <div className="md:hidden w-full relative shrink-0 z-20 overflow-hidden" style={{ backgroundColor: '#eddfd3' }}>
+                    <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+                        <button
+                            onClick={resetChat}
+                            title="Reset Chat"
+                            className="p-2 text-gray-500 hover:text-orange-500 rounded-full bg-white/40 backdrop-blur-md hover:bg-white transition-colors border border-white/40 shadow-sm"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        </button>
+                        <button
+                            onClick={handleEndAndSummarize}
+                            disabled={isLoading || !hasStarted || messages.length === 0}
+                            title="End & Summarize"
+                            className={`p-2 rounded-full transition-colors border shadow-sm backdrop-blur-md ${isLoading || !hasStarted || messages.length === 0
+                                ? "text-gray-400 bg-white/30 border-white/20 cursor-not-allowed"
+                                : "text-white bg-orange-500 border-orange-400 hover:bg-orange-600"
+                            }`}
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                        </button>
+                    </div>
+
+                    <div className="flex px-5 pt-10 pb-8 items-center justify-between relative z-10 max-w-lg mx-auto">
+                        <div className="relative w-[150px] h-[150px] shrink-0 -ml-6 z-10">
+                            <Image
+                                src={`/bot_expressions/${botExpression}.jpg`}
+                                alt="Pragya Avatar"
+                                fill
+                                className="object-cover scale-[1.15]"
+                                sizes="150px"
+                                priority
+                                unoptimized
+                                style={{ maskImage: 'radial-gradient(circle, black 60%, transparent 80%)', WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 80%)' }}
+                            />
+                        </div>
+                        <div className="bg-white p-5 rounded-3xl rounded-tl-sm shadow-[0_8px_30px_rgb(0,0,0,0.1)] flex-1 -ml-4 relative z-30 border border-white">
+                             <h1 className="text-[17px] font-bold text-[#4a2e5d] mb-1.5 flex items-center gap-1.5">
+                                Hey Attrangi! <span className="text-lg">👋</span>
+                             </h1>
+                             <p className="text-[13px] text-gray-600 leading-relaxed font-medium pr-2">I'm here to listen, support and help you feel better.</p>
+                             <div className="absolute bottom-3 right-4 text-[#d9b8f2]">
+                                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                             </div>
+                        </div>
+                    </div>
+                    {/* Chat container top overlap */}
+                    <div className="absolute bottom-0 left-0 right-0 h-6 bg-white rounded-t-[24px] z-20"></div>
+                </div>
+
                 {/* Left Sidebar */}
-                <div className="w-[360px] md:w-[400px] bg-white/90 backdrop-blur-md border-r border-gray-200 flex flex-col items-center py-8 px-6 shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-10 relative">
+                <div className="hidden md:flex w-[360px] md:w-[400px] bg-white/90 backdrop-blur-md border-r border-gray-200 flex-col items-center py-8 px-6 shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-10 relative">
                     <h1 className="text-xl font-bold text-gray-800 tracking-wide mb-8">Hey Attrangi</h1>
 
                     {/* Bot Avatar Container */}
@@ -251,7 +301,7 @@ export default function TryPragyaPage() {
                 </div>
 
                 {/* Main Content Area */}
-                <div className={`flex-1 flex justify-center bg-[#fafcfd] relative overflow-y-auto ${isLimitReached ? 'overflow-hidden' : ''}`}>
+                <div className={`flex-1 flex justify-center bg-white relative overflow-y-auto ${isLimitReached ? 'overflow-hidden' : ''}`}>
                     {isLimitReached && (
                         <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/30 flex items-center justify-center p-6 animate-in fade-in duration-500">
                             <div className="bg-white/90 backdrop-blur-xl p-10 rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.1)] border border-white/50 text-center max-w-md w-full scale-in-center">
@@ -283,8 +333,8 @@ export default function TryPragyaPage() {
                     )}
                     {!hasStarted ? (
                         /* Pre-chat Setup Layout */
-                        <div className="w-full max-w-xl px-8 flex flex-col justify-center h-full min-h-[700px] animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out py-12">
-                            <h2 className="text-[28px] font-bold text-gray-800 mb-8 tracking-tight ml-1">How can I help you today?</h2>
+                        <div className="w-full max-w-xl px-4 md:px-8 flex flex-col justify-center h-full min-h-[min(100%,700px)] animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out py-8 md:py-12 overflow-y-auto">
+                            <h2 className="text-[24px] md:text-[28px] font-bold text-gray-800 mb-6 md:mb-8 tracking-tight md:ml-1 text-center md:text-left">How can I help you today?</h2>
 
                             <div className="space-y-4">
                                 {CHAT_MODES.map((mode) => (
@@ -318,9 +368,9 @@ export default function TryPragyaPage() {
                         </div>
                     ) : (
                         /* Active Chat Layout */
-                        <div className="w-full max-w-4xl flex flex-col h-[90vh] my-auto bg-white rounded-3xl md:border md:border-gray-100 md:shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden animate-in fade-in zoom-in-95 duration-500">
+                        <div className="w-full max-w-4xl flex flex-col h-full md:h-[90vh] md:my-auto bg-white md:rounded-3xl md:border md:border-gray-100 md:shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden animate-in fade-in zoom-in-95 duration-500">
                             {/* Chat Messages */}
-                            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent bg-[#fafcfd]">
+                            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent bg-white">
                                 {messages.map((msg, idx) => (
                                     <div
                                         key={idx}

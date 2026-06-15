@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
     CloudRain,
     Brain,
@@ -194,7 +195,13 @@ const MentalHealthConcerns = () => {
     return (
         <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10"
+                >
                     <div>
                         <div className="inline-flex items-center gap-2 bg-orange-50 rounded-full px-4 py-1.5 text-xs font-bold text-orange-600 uppercase tracking-wide mb-4">
                             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
@@ -211,32 +218,40 @@ const MentalHealthConcerns = () => {
                         <Search className="w-4 h-4 text-orange-500" />
                         View all conditions
                     </Link>
-                </div>
+                </motion.div>
 
                 {/* Horizontal Scroll Container */}
                 <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     {allConcerns.map((concern, index) => (
-                        <Link
+                        <motion.div
                             key={index}
-                            href={`/conditions/${concern.slug}`}
-                            className={`snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[350px] group relative ${concern.theme.bg} ${concern.theme.hoverBg} rounded-[2rem] p-6 sm:p-8 transition-all duration-300 border ${concern.theme.border} hover:shadow-lg flex flex-col items-start overflow-hidden`}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[350px] flex"
                         >
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/60 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm mb-6">
-                                {concern.icon}
-                            </div>
-
-                            <div className="flex-1 relative z-10 flex flex-col items-start text-left w-full h-full">
-                                <h3 className={`${concern.theme.title} font-bold text-xl sm:text-2xl mb-3 transition-colors`}>
-                                    {concern.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed mb-8 flex-grow">
-                                    {concern.description}
-                                </p>
-                                <div className={`mt-auto inline-flex items-center px-5 py-2.5 rounded-full ${concern.theme.btnBg} ${concern.theme.btnText} text-sm font-bold transition-transform duration-300 group-hover:-translate-y-0.5`}>
-                                    Learn More <ArrowRight className="w-4 h-4 ml-1.5" />
+                            <Link
+                                href={`/conditions/${concern.slug}`}
+                                className={`w-full group relative ${concern.theme.bg} ${concern.theme.hoverBg} rounded-[2rem] p-6 sm:p-8 transition-all duration-300 border ${concern.theme.border} hover:shadow-lg flex flex-col items-start overflow-hidden`}
+                            >
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/60 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm mb-6">
+                                    {concern.icon}
                                 </div>
-                            </div>
-                        </Link>
+
+                                <div className="flex-1 relative z-10 flex flex-col items-start text-left w-full h-full">
+                                    <h3 className={`${concern.theme.title} font-bold text-xl sm:text-2xl mb-3 transition-colors`}>
+                                        {concern.title}
+                                    </h3>
+                                    <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed mb-8 flex-grow">
+                                        {concern.description}
+                                    </p>
+                                    <div className={`mt-auto inline-flex items-center px-5 py-2.5 rounded-full ${concern.theme.btnBg} ${concern.theme.btnText} text-sm font-bold transition-transform duration-300 group-hover:-translate-y-0.5`}>
+                                        Learn More <ArrowRight className="w-4 h-4 ml-1.5" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </motion.div>
                     ))}
                 </div>
             </div>
