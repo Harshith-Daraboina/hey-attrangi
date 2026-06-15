@@ -755,7 +755,7 @@ export default function Home() {
                   Yet millions of students struggle in silence, waiting until stress becomes burnout, anxiety becomes overwhelming, and asking for help feels too late.
                 </p>
                 <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
-                  It doesn't have to.
+                  It doesn't have to be you!!.
                 </p>
 
                 <div>
