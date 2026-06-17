@@ -66,13 +66,19 @@ export default function Footer() {
               
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-white text-[#ea7e3b] px-5 py-2.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-orange-50 transition-colors shadow-sm">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
-                  Download for iOS
+                <button disabled className="bg-white/90 text-[#ea7e3b] px-5 py-2 rounded-full font-bold flex items-center justify-center sm:justify-start gap-3 shadow-sm cursor-not-allowed whitespace-nowrap">
+                  <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.82 3.59-.8 1.48.06 2.65.62 3.4 1.54-3.01 1.63-2.51 5.37.44 6.64-1.01 2.39-1.92 4.19-2.51 4.79zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                  <div className="flex flex-col text-left leading-tight">
+                    <span className="text-sm">Download for iOS</span>
+                    <span className="text-[10px] opacity-70 font-medium">Coming Soon</span>
+                  </div>
                 </button>
-                <button className="bg-transparent border border-white text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition-colors">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                  Download for Android
+                <button disabled className="bg-transparent border border-white/70 text-white/90 px-5 py-2 rounded-full font-bold flex items-center justify-center sm:justify-start gap-3 cursor-not-allowed whitespace-nowrap">
+                  <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341l1.834-3.176a.2.2 0 0 0-.072-.27.195.195 0 0 0-.265.07l-1.875 3.248a8.318 8.318 0 0 0-10.29 0L5.05 11.965a.195.195 0 0 0-.265-.07.2.2 0 0 0-.072.27l1.834 3.176C3.992 16.737 2.193 19.345 2 22.428h20c-.193-3.083-1.992-5.691-4.477-7.087zM8.196 19.043c-.496 0-.898-.401-.898-.898s.402-.898.898-.898.898.401.898.898-.402.898-.898.898zm7.608 0c-.496 0-.898-.401-.898-.898s.402-.898.898-.898.898.401.898.898-.402.898-.898.898z"/></svg>
+                  <div className="flex flex-col text-left leading-tight">
+                    <span className="text-sm">Download for Android</span>
+                    <span className="text-[10px] opacity-70 font-medium">Coming Soon</span>
+                  </div>
                 </button>
               </div>
             </div>

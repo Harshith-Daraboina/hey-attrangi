@@ -644,70 +644,33 @@ export default function Home() {
               </h2>
             </div>
             {/* Feature Cards Grid */}
-            <div className="relative w-full mb-14 px-4 sm:px-6 lg:px-8">
-              {/* Desktop View */}
-              <div className="hidden md:grid grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+            <div className="relative w-full mb-12 max-w-5xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 {/* Card 1: Reactive Counseling */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-10 text-left flex flex-col justify-center min-h-[220px] transition-all duration-300">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    Reactive Counseling
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed max-w-[280px] select-none">
-                    Support begins only when students reach crisis points.
-                  </p>
+                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4 shrink-0">
+                    <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">Reactive Counseling</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">Support begins only when students reach crisis points.</p>
                 </div>
 
                 {/* Card 2: No Continuity */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-10 text-left flex flex-col justify-center min-h-[220px] transition-all duration-300">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    No Continuity
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed max-w-[280px] select-none">
-                    No structured care between therapy sessions.
-                  </p>
+                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center mb-4 shrink-0">
+                    <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">No Continuity</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">No structured care between therapy sessions.</p>
                 </div>
 
                 {/* Card 3: Limited Visibility */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-10 text-left flex flex-col justify-center min-h-[220px] transition-all duration-300">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    Limited Visibility
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed max-w-[280px] select-none">
-                    Institutions lack data to act early or strategically.
-                  </p>
-                </div>
-              </div>
-
-              {/* Mobile View with Stacked Layout */}
-              <div className="grid grid-cols-1 gap-6 md:hidden max-w-sm mx-auto">
-                {/* Card 1: Reactive Counseling */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-8 text-left flex flex-col justify-center min-h-[180px]">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    Reactive Counseling
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed select-none">
-                    Support begins only when students reach crisis points.
-                  </p>
-                </div>
-
-                {/* Card 2: No Continuity */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-8 text-left flex flex-col justify-center min-h-[180px]">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    No Continuity
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed select-none">
-                    No structured care between therapy sessions.
-                  </p>
-                </div>
-
-                {/* Card 3: Limited Visibility */}
-                <div className="bg-[#eceff1] border border-slate-200/40 rounded-[32px] p-8 text-left flex flex-col justify-center min-h-[180px]">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight select-none">
-                    Limited Visibility
-                  </h3>
-                  <p className="text-gray-600 text-sm font-medium leading-relaxed select-none">
-                    Institutions lack data to act early or strategically.
-                  </p>
+                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-4 shrink-0">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">Limited Visibility</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">Institutions lack data to act early or strategically.</p>
                 </div>
               </div>
             </div>
@@ -754,8 +717,8 @@ export default function Home() {
                 <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-8" style={{ fontFamily: "Georgia, serif" }}>
                   Yet millions of students struggle in silence, waiting until stress becomes burnout, anxiety becomes overwhelming, and asking for help feels too late.
                 </p>
-                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
-                  It doesn't have to be you!!.
+                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#FF6B00] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
+                  It doesn't have to be you.
                 </p>
 
                 <div>
@@ -776,7 +739,7 @@ export default function Home() {
               {/* Right Column: Mobile Mockup */}
               <div className="relative flex justify-center lg:justify-end items-center mt-12 lg:mt-0 select-none">
                 {/* Mobile Mockup (iPhone Container) */}
-                <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/18.5] bg-[#8a4e23] rounded-[44px] p-2.5 shadow-2xl border-4 border-[#3d210e] ring-1 ring-gray-900/10 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300 z-10 mr-4 sm:mr-8 lg:mr-16">
+                <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/18.5] bg-[#0c111d] rounded-[44px] p-2.5 shadow-2xl border-4 border-[#1f2937] ring-1 ring-gray-900/10 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300 z-10 mr-4 sm:mr-8 lg:mr-16">
                   {/* Screen Inside iPhone */}
                   <div className="relative w-full h-full bg-[#faf9f6] rounded-[36px] p-4 flex flex-col overflow-hidden">
                     {/* Dynamic Island Notch */}
@@ -803,9 +766,9 @@ export default function Home() {
                     <div className="flex-1 flex flex-col gap-3 overflow-y-auto scrollbar-none pb-4">
 
                       {/* Search Bar Mockup */}
-                      <div className="bg-white rounded-full shadow-sm border border-gray-100 p-2.5 flex items-center justify-between mb-2">
-                        <span className="text-xs text-gray-400 font-medium ml-2">Ask me anything</span>
-                        <div className="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center">
+                      <div className="bg-white rounded-full shadow-sm border border-orange-100 p-2.5 flex items-center justify-between mb-2">
+                        <span className="text-xs text-gray-400 font-medium ml-2">How are you feeling?</span>
+                        <div className="w-6 h-6 rounded-full bg-[#FF6B00] flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>
@@ -813,24 +776,37 @@ export default function Home() {
                       </div>
 
                       <div className="grid grid-cols-2 gap-2 mb-2">
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 flex flex-col items-center justify-center text-center gap-2">
-                          <span className="text-orange-500">📅</span>
-                          <span className="text-[10px] font-bold text-gray-600">Create an event</span>
+                        <div className="bg-orange-50 rounded-xl shadow-sm border border-orange-100 p-3 flex flex-col items-center justify-center text-center gap-2">
+                          <span className="text-orange-500 text-lg">📝</span>
+                          <span className="text-[10px] font-bold text-orange-900">Take Mind Check</span>
                         </div>
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 flex flex-col items-center justify-center text-center gap-2">
-                          <span className="text-blue-500">⏰</span>
-                          <span className="text-[10px] font-bold text-gray-600">Set a reminder</span>
+                        <div className="bg-orange-50 rounded-xl shadow-sm border border-orange-100 p-3 flex flex-col items-center justify-center text-center gap-2">
+                          <span className="text-orange-500 text-lg">💬</span>
+                          <span className="text-[10px] font-bold text-orange-900">Chat with Pragya</span>
                         </div>
                       </div>
 
-                      <div className="bg-purple-50 rounded-2xl shadow-sm border border-purple-100 p-3 mb-2">
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="w-6 h-6 rounded-full bg-purple-200 flex items-center justify-center">
-                            <span className="text-purple-600 text-xs">🧘</span>
-                          </div>
-                          <span className="text-gray-400 text-xs">✕</span>
+                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 mb-2 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-orange-100 flex flex-shrink-0 items-center justify-center">
+                          <span className="text-orange-600 text-lg">📊</span>
                         </div>
-                        <h4 className="text-xs font-bold text-purple-900 leading-tight">Prep for your day<br />with a daily check-in</h4>
+                        <div>
+                          <h4 className="text-xs font-bold text-gray-800 leading-tight">View Daily Insights</h4>
+                          <p className="text-[9px] text-gray-500 mt-0.5">Track your mental wellness</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 mb-2 flex items-center gap-3 group cursor-pointer hover:border-blue-200 transition-colors">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 transition-colors flex flex-shrink-0 items-center justify-center">
+                          <span className="text-blue-500 text-lg">📹</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-xs font-bold text-gray-800 leading-tight">Therapy Session</h4>
+                          <p className="text-[9px] text-blue-500 font-medium mt-0.5">Starts in 10 mins</p>
+                        </div>
+                        <div className="bg-blue-500 hover:bg-blue-600 text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg shadow-sm transition-colors">
+                          Join
+                        </div>
                       </div>
 
                     </div>

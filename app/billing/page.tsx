@@ -2,16 +2,18 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Link from "next/link";
+import { APP_SIGNIN_URL } from "@/lib/app-urls";
 
 export default function BillingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafcfd] font-sans text-gray-800">
+    <div className="flex flex-col min-h-screen bg-[#FAF7F5] font-sans text-gray-800">
       <div className="z-20 bg-white border-b border-gray-100 shadow-sm relative">
         <Navigation currentPath="/billing" />
       </div>
 
       <main className="flex-1 flex justify-center pt-16 pb-24 px-4 sm:px-6">
-        <div className="w-full max-w-[1000px] bg-white rounded-[32px] shadow-[0_4px_40px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        <div className="w-full max-w-[1000px] bg-white rounded-[32px] shadow-[0_8px_40px_rgba(255,107,0,0.08)] border border-orange-100/50 overflow-hidden">
           {/* Header */}
           <div className="p-8 md:p-12 pb-8 border-b border-gray-50">
             <h1 className="text-[2rem] md:text-[2.5rem] font-bold text-[#0c1421] tracking-tight mb-2">
@@ -30,7 +32,11 @@ export default function BillingPage() {
             
             {/* Essential Plan */}
             <div className="p-8 md:p-10 flex flex-col h-full">
-              <h2 className="text-2xl font-bold text-[#0c1421] mb-4">Essential</h2>
+              <h2 className="text-2xl font-bold text-[#0c1421] mb-2">Essential</h2>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-lg font-medium text-gray-400 line-through decoration-1">₹149</span>
+                <span className="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wide">Save 67%</span>
+              </div>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-[2.5rem] font-bold text-[#0c1421] leading-none">₹49</span>
                 <span className="text-gray-500 font-medium">/mo</span>
@@ -56,9 +62,14 @@ export default function BillingPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-bold py-3.5 rounded-full transition-all shadow-sm">
-                Current Plan
-              </button>
+              <div className="flex flex-col items-center gap-4">
+                <Link href={APP_SIGNIN_URL} className="w-full text-center bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-bold py-3.5 rounded-full transition-all shadow-sm block">
+                  Buy Now
+                </Link>
+                <span className="text-[#FF6B00] font-bold text-sm">
+                  Exclusive Offers Inside
+                </span>
+              </div>
             </div>
 
             {/* Premium Plan (Recommended) */}
@@ -71,12 +82,16 @@ export default function BillingPage() {
                 </span>
               </div>
 
-              <h2 className="text-2xl font-bold text-[#0c1421] mb-4">Premium</h2>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-[2.5rem] font-bold text-[#0c1421] leading-none">₹299</span>
-                <span className="text-gray-500 font-medium">/mo</span>
+              <h2 className="text-2xl font-bold text-[#0c1421] mb-2">Premium</h2>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-lg font-medium text-gray-400 line-through decoration-1">₹599</span>
+                <span className="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wide">Save 67%</span>
               </div>
-              <p className="text-gray-500 font-medium text-sm mb-6">Billed monthly</p>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-[2.5rem] font-bold text-[#0c1421] leading-none">₹199</span>
+                <span className="text-gray-500 font-medium">/sem</span>
+              </div>
+              <p className="text-gray-500 font-medium text-sm mb-6">Billed per semester</p>
               
               <p className="text-gray-500 text-[15px] leading-relaxed mb-8 flex-1">
                 Enhanced access, more credits, and premium support.
@@ -98,9 +113,9 @@ export default function BillingPage() {
               </div>
 
               <div className="flex flex-col items-center gap-4">
-                <button className="w-full bg-[#FF6B00] hover:bg-orange-600 text-white font-bold py-3.5 rounded-full transition-all shadow-md hover:-translate-y-0.5">
+                <Link href={APP_SIGNIN_URL} className="w-full text-center block bg-[#FF6B00] hover:bg-orange-600 text-white font-bold py-3.5 rounded-full transition-all shadow-md hover:-translate-y-0.5">
                   Upgrade to Premium
-                </button>
+                </Link>
                 <button className="text-[#0c1421] font-bold text-sm hover:underline">
                   View Premium pricing ›
                 </button>
@@ -135,9 +150,9 @@ export default function BillingPage() {
               </div>
 
               <div className="flex flex-col items-center gap-4">
-                <button className="w-full bg-[#0a192f] hover:bg-black text-white font-bold py-3.5 rounded-full transition-all shadow-sm">
+                <Link href={APP_SIGNIN_URL} className="w-full text-center block bg-[#0a192f] hover:bg-black text-white font-bold py-3.5 rounded-full transition-all shadow-sm">
                   Contact Sales
-                </button>
+                </Link>
                 <button className="text-[#0c1421] font-bold text-sm hover:underline">
                   View Org pricing ›
                 </button>

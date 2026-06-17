@@ -30,6 +30,21 @@ export default async function TestPage({ params }: TestPageProps) {
             case 'autism':
                 testData = (await import('@/public/src/autism/aq_structured.json')).default || await import('@/public/src/autism/aq_structured.json');
                 break;
+            case 'ocd':
+                testData = {
+                    scale: "OCD Symptoms Check (OCI-R)",
+                    response_scale: { "0": "Not at all", "1": "A little", "2": "Moderately", "3": "A lot", "4": "Extremely" },
+                    questions: [
+                        { id: 1, text: "I have saved up so many things that they get in the way.", domain: "Hoarding" },
+                        { id: 2, text: "I check things more often than necessary.", domain: "Checking" },
+                        { id: 3, text: "I get upset if objects are not arranged properly.", domain: "Ordering" },
+                        { id: 4, text: "I feel compelled to count while I am doing things.", domain: "Neutralizing" },
+                        { id: 5, text: "I find it difficult to touch an object when I know it has been touched by strangers or certain people.", domain: "Washing" },
+                        { id: 6, text: "I find it difficult to control my own thoughts.", domain: "Obsessing" }
+                    ],
+                    scoring: { method: "sum" }
+                };
+                break;
             case 'personality':
                 testData = {
                     scale: "Big Five Personality Test",
