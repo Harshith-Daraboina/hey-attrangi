@@ -63,9 +63,40 @@ export default function Home() {
                   >
                     Start Mind Check →
                   </Link>
-                  <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 transition-colors text-lg">
-                    How It Works
-                  </button>
+                  <div className="relative group">
+                    <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 transition-colors text-lg text-center cursor-help">
+                      How It Works
+                    </button>
+                    {/* Hover Modal / Tooltip */}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[320px] sm:w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-2xl text-left relative">
+                        {/* Triangle pointing up */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white border-t border-l border-slate-100 rotate-45"></div>
+                        <div className="relative z-10">
+                          <h4 className="font-bold text-lg text-slate-800 mb-2">
+                            About Mind Matrix
+                          </h4>
+                          <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                            A safe, private space designed to help you pause and reflect on your mental well-being.
+                          </p>
+                          <ul className="space-y-2 text-sm text-slate-600">
+                            <li className="flex items-start gap-2">
+                              <span className="text-orange-500 font-bold">✓</span>
+                              <span>Scientifically-backed self assessments</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-orange-500 font-bold">✓</span>
+                              <span>Completely private and anonymous</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-orange-500 font-bold">✓</span>
+                              <span>Personalized insights, not a clinical diagnosis</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Social Proof */}

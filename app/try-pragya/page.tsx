@@ -248,9 +248,6 @@ export default function TryPragyaPage() {
 
                     {/* Bot Avatar Container */}
                     <div className="relative w-[320px] h-[320px] rounded-[2.5rem] shadow-[0_20px_50px_rgba(249,107,19,0.15)] mb-8 overflow-hidden group border border-orange-50/50">
-                        <div className="absolute top-5 left-5 z-30 bg-orange-50/80 backdrop-blur-md p-2.5 rounded-[12px] shadow-sm">
-                            <svg className="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24"><path d="M10.8 4.2a1 1 0 011.05.53l.9 1.8A1 1 0 0013.8 7h2.4a2 2 0 012 2v2.4a1 1 0 00.53.9l1.8.9a1 1 0 010 1.8l-1.8.9a1 1 0 00-.53.9v2.4a2 2 0 01-2 2h-2.4a1 1 0 00-.9.53l-.9 1.8a1 1 0 01-1.8 0l-.9-1.8a1 1 0 00-.9-.53H6a2 2 0 01-2-2v-2.4a1 1 0 00-.53-.9l-1.8-.9a1 1 0 010-1.8l1.8-.9A1 1 0 004 8.6V6a2 2 0 012-2h2.4a1 1 0 00.9-.53l.9-1.8A1 1 0 0110.8 4.2z" /></svg>
-                        </div>
                         <div className="relative w-full h-full transform transition-transform duration-700 ease-out group-hover:scale-105">
                             <Image
                                 src={`/bot_expressions/${botExpression}.jpg`}
@@ -457,12 +454,6 @@ export default function TryPragyaPage() {
                 </div>
             </div>
 
-            {/* Absolute positioned User settings icon top right - mimicking screenshot UI but light themed */}
-            <div className="absolute top-24 right-10 hidden lg:block z-50">
-                <button className="w-12 h-12 rounded-full bg-white border border-gray-200 hover:border-orange-300 flex items-center justify-center text-gray-500 hover:text-orange-500 transition-all shadow-md hover:shadow-lg">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-                </button>
-            </div>
         </div>
     );
 }

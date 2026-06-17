@@ -76,16 +76,7 @@ export default function AboutPage() {
 
       </div>
 
-      {/* Background decoration image - Outside card */}
-      <div className="absolute right-20 top-[600px] w-[560px] h-[560px] md:w-[800px] md:h-[800px] opacity-80 z-0 hidden lg:block pointer-events-none">
-        <Image
-          src="/images/assets2.png"
-          alt="Background decoration"
-          fill
-          className="object-contain"
-          sizes="(max-width: 1024px) 0px, 800px"
-        />
-      </div>
+
 
       {/* Founder Message Section - Floating Design */}
       <div className="relative mt-48 mb-20 z-40">
@@ -354,7 +345,7 @@ export default function AboutPage() {
                 <div className="relative w-full h-full">
                   <div className="relative w-full h-64 overflow-hidden">
                     <Image
-                      src="/images/team4.png"
+                      src="/images/team4.jpeg"
                       alt="Support Team"
                       fill
                       className="object-cover"
@@ -393,7 +384,7 @@ export default function AboutPage() {
                 <div className="relative w-full h-full">
                   <div className="relative w-full h-64 overflow-hidden">
                     <Image
-                      src="/images/team1-2.jpg"
+                      src="/images/team1.jpeg"
                       alt="Advocacy Team"
                       fill
                       className="object-cover"
@@ -412,7 +403,7 @@ export default function AboutPage() {
                 <div className="relative w-full h-full">
                   <div className="relative w-full h-64 overflow-hidden">
                     <Image
-                      src="/images/team5.jpg"
+                      src="/images/kalyan.jpeg"
                       alt="Media Outreach and Research Lead"
                       fill
                       className="object-cover"

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { APP_SIGNIN_URL } from "@/lib/app-urls";
 import {
   MessageSquare,
   LayoutDashboard,
@@ -50,7 +51,7 @@ const features = [
     shortTitle: "Dashboard",
     description: "A centralized hub to track your wellness journey, celebrate your progress, and stay on top of your mental health goals.",
     buttonText: "View Dashboard",
-    buttonLink: "/patient/dashboard",
+    buttonLink: APP_SIGNIN_URL,
     capabilities: [
       "Personalized greetings",
       "Today's mood snapshot",
@@ -67,7 +68,7 @@ const features = [
     shortTitle: "Journal",
     description: "Express yourself freely in a safe space. Our AI analyzes your entries to provide actionable insights and emotional tracking over time.",
     buttonText: "Start Journaling",
-    buttonLink: "/patient/journal",
+    buttonLink: APP_SIGNIN_URL,
     capabilities: [
       "Rich text journal editor",
       "Interactive mood wheel",
@@ -84,7 +85,7 @@ const features = [
     shortTitle: "Therapy",
     description: "Seamlessly connect with professionals through our secure video platform, enhanced with AI-driven notes and insights.",
     buttonText: "Book Session",
-    buttonLink: "/patient/appointments",
+    buttonLink: APP_SIGNIN_URL,
     capabilities: [
       "Secure video call interface",
       "Live emotion timeline",
@@ -101,7 +102,7 @@ const features = [
     shortTitle: "Insights",
     description: "Transform your data into clarity. Understand the correlation between your habits, stress levels, and academic performance.",
     buttonText: "View Insights",
-    buttonLink: "/patient/insights",
+    buttonLink: APP_SIGNIN_URL,
     capabilities: [
       "Mood trend analysis",
       "Burnout risk scoring",
@@ -118,7 +119,7 @@ const features = [
     shortTitle: "For Institutions",
     description: "Empower your counseling department with population-level insights, early risk detection, and seamless student management.",
     buttonText: "Partner with us",
-    buttonLink: "/contact",
+    buttonLink: APP_SIGNIN_URL,
     capabilities: [
       "Total students supported",
       "High-risk student alerts",
