@@ -174,12 +174,20 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
             {/* Right Side Actions */}
             <div className="hidden md:flex items-center space-x-3">
               {/* Try Pragya Button */}
-              <Link
-                href="/try-pragya"
-                className="bg-white text-orange-600 border border-orange-500 px-5 py-2.5 rounded-full font-bold text-sm shadow-sm hover:bg-orange-50 transition-colors whitespace-nowrap"
-              >
-                Try Pragya
-              </Link>
+              <div className="relative">
+                <Link
+                  href="/try-pragya"
+                  className="bg-white text-orange-600 border border-orange-500 px-5 py-2.5 rounded-full font-bold text-sm shadow-sm hover:bg-orange-50 transition-colors whitespace-nowrap inline-block relative z-10"
+                >
+                  Try Pragya
+                </Link>
+                {/* Clicking Animation / Cursor */}
+                <div className="absolute -bottom-4 -right-3 z-20 pointer-events-none animate-bounce" style={{ animationDuration: '2s' }}>
+                  <svg className="w-7 h-7 text-orange-500 drop-shadow-md transform -rotate-12" fill="currentColor" stroke="white" strokeWidth="1" viewBox="0 0 24 24">
+                    <path d="M6 3l14 9-6 2 4 7-3 2-4-7-5 4z" />
+                  </svg>
+                </div>
+              </div>
               {/* Get Started Button */}
               <Link
                 href={APP_SIGNIN_URL}
@@ -318,13 +326,21 @@ export default function Navigation({ currentPath = "/" }: NavigationProps) {
               </li>
 
               <li>
-                <Link
-                  href="/try-pragya"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full block bg-white text-orange-600 border border-orange-500 px-6 py-3 mb-3 rounded-xl font-bold text-sm shadow-sm text-center"
-                >
-                  Try Pragya
-                </Link>
+                <div className="relative mb-3">
+                  <Link
+                    href="/try-pragya"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full block bg-white text-orange-600 border border-orange-500 px-6 py-3 rounded-xl font-bold text-sm shadow-sm text-center relative z-10"
+                  >
+                    Try Pragya
+                  </Link>
+                  {/* Clicking Animation / Cursor */}
+                  <div className="absolute -bottom-4 -right-2 z-20 pointer-events-none animate-bounce" style={{ animationDuration: '2s' }}>
+                    <svg className="w-7 h-7 text-orange-500 drop-shadow-md transform -rotate-12" fill="currentColor" stroke="white" strokeWidth="1" viewBox="0 0 24 24">
+                      <path d="M6 3l14 9-6 2 4 7-3 2-4-7-5 4z" />
+                    </svg>
+                  </div>
+                </div>
                 <Link
                   href={APP_SIGNIN_URL}
                   className="block bg-orange-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg text-center"

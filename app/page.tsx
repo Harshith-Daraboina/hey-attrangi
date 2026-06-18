@@ -639,61 +639,35 @@ export default function Home() {
               <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 inline-block">
                 GROUND REALITY
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111827] leading-[1.15] tracking-tight">
-                When students face mental health challenges, institutions are forced into one of three gaps.
+              <h2 className="text-3xl sm:text-4xl md:text-[42px] font-serif font-bold text-[#111827] leading-[1.2] tracking-tight">
+                When students face mental health challenges, institutions are forced into one of <span className="text-[#ff6000]">three gaps.</span>
               </h2>
             </div>
-            {/* Feature Cards Grid */}
-            <div className="relative w-full mb-12 max-w-5xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                {/* Card 1: Reactive Counseling */}
-                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4 shrink-0">
-                    <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">Reactive Counseling</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">Support begins only when students reach crisis points.</p>
-                </div>
-
-                {/* Card 2: No Continuity */}
-                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center mb-4 shrink-0">
-                    <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">No Continuity</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">No structured care between therapy sessions.</p>
-                </div>
-
-                {/* Card 3: Limited Visibility */}
-                <div className="bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md rounded-2xl p-6 text-left flex flex-col justify-start transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-4 shrink-0">
-                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 tracking-tight">Limited Visibility</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">Institutions lack data to act early or strategically.</p>
-                </div>
-              </div>
+            {/* Feature Cards Grid (Replaced with Image) */}
+            <div className="relative w-full mb-8 max-w-5xl mx-auto px-4 sm:px-6">
+              <Image 
+                src="/images/paths.png" 
+                alt="Three Gaps" 
+                width={1200} 
+                height={600} 
+                className="w-full h-auto object-contain mx-auto" 
+              />
             </div>
-
-            {/* Footer Text */}
-            <div className="flex items-center justify-center gap-2 mb-14 text-center">
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-orange-200 text-orange-400 text-sm font-bold bg-orange-50">!</span>
-              <p className="text-sm sm:text-base font-bold text-slate-500 tracking-wide">
-                None of these lead to sustainable outcomes.
-              </p>
-            </div>
-
-            {/* Continuous Care Banner Section */}
-            <div className="max-w-5xl mx-auto text-center px-4 mb-8">
-              <div className="inline-flex items-center justify-center gap-3 bg-[#fff7ed] border border-[#ffedd5] rounded-2xl px-6 py-4 md:px-10 md:py-5 mb-6 max-w-full">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-orange-300 bg-orange-50 text-orange-500 text-xl font-bold">✦</span>
-                <h3 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-extrabold text-[#111827] leading-tight select-none">
-                  Attrangi replaces fragmented support with <span className="text-[#ff6000]">continuous care.</span>
-                </h3>
+            
+            {/* Outcomes Pill */}
+            <div className="flex flex-col items-center justify-center mt-2 mb-8">
+              <div className="inline-flex items-center justify-center gap-3 bg-white border border-orange-100 shadow-[0_2px_10px_rgba(0,0,0,0.03)] rounded-full px-6 py-3 mb-6">
+                <span className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full border border-orange-300 text-orange-400 text-xs font-bold bg-orange-50/50">!</span>
+                <p className="text-sm sm:text-[15px] font-bold text-[#334155]">
+                  None of these lead to sustainable outcomes.
+                </p>
               </div>
-              <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Attrangi works alongside existing counseling systems to provide preventive, scalable, and structured mental health support.
-              </p>
+              {/* Three dots */}
+              <div className="flex justify-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-200"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-200"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-200"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -711,13 +685,13 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Column: Text Content */}
               <div className="flex flex-col justify-center max-w-2xl">
-                <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold text-[#2d3a4b] leading-[1.1] tracking-tight mb-6" style={{ fontFamily: "Georgia, serif" }}>
+                <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold text-[#111827] leading-[1.1] tracking-tight mb-6">
                   75% of mental health conditions begin before age 25.
                 </h2>
-                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#94a3b8] leading-[1.25] mb-8" style={{ fontFamily: "Georgia, serif" }}>
+                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#64748b] leading-[1.25] tracking-tight mb-8">
                   Yet millions of students struggle in silence, waiting until stress becomes burnout, anxiety becomes overwhelming, and asking for help feels too late.
                 </p>
-                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-[#FF6B00] leading-[1.25] mb-10" style={{ fontFamily: "Georgia, serif" }}>
+                <p className="text-2xl sm:text-3xl md:text-[2.2rem] font-extrabold text-[#FF6B00] leading-[1.25] tracking-tight mb-10">
                   It doesn't have to be you.
                 </p>
 
@@ -738,80 +712,144 @@ export default function Home() {
 
               {/* Right Column: Mobile Mockup */}
               <div className="relative flex justify-center lg:justify-end items-center mt-12 lg:mt-0 select-none">
-                {/* Mobile Mockup (iPhone Container) */}
-                <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/18.5] bg-[#0c111d] rounded-[44px] p-2.5 shadow-2xl border-4 border-[#1f2937] ring-1 ring-gray-900/10 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300 z-10 mr-4 sm:mr-8 lg:mr-16">
-                  {/* Screen Inside iPhone */}
-                  <div className="relative w-full h-full bg-[#faf9f6] rounded-[36px] p-4 flex flex-col overflow-hidden">
-                    {/* Dynamic Island Notch */}
-                    <div className="w-20 h-5 bg-[#000000] rounded-full mx-auto mb-4 flex-shrink-0 z-20 shadow-sm"></div>
+                {/* Decorative Background Waves */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[160%] aspect-square z-0 pointer-events-none">
+                  {/* Background lighter peach wave */}
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute w-full h-full text-[#ffedd5] opacity-80 transform scale-[1.2] translate-x-[15%] translate-y-[10%]">
+                    <path fill="currentColor" d="M42.7,-73.4C56.6,-66.1,70.1,-55.9,78.5,-41.8C86.9,-27.7,90.2,-9.7,87.6,7.6C85,24.9,76.5,41.4,64.1,53.4C51.7,65.4,35.4,72.9,18.4,78.1C1.4,83.3,-16.3,86.2,-31.6,81C-46.9,75.8,-59.8,62.5,-69.3,47.7C-78.8,32.9,-84.9,16.5,-84.5,0.3C-84.1,-15.9,-77.2,-31.8,-66.5,-44.6C-55.8,-57.4,-41.3,-67.1,-27.1,-74.1C-12.9,-81.1,1,-85.4,14.6,-84.2C28.2,-83,41.4,-76.3,42.7,-73.4Z" transform="translate(100 100)" />
+                  </svg>
+                  {/* Foreground darker peach wave */}
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute w-full h-full text-[#fed7aa] opacity-60 transform scale-[1.0] translate-x-[25%] translate-y-[25%]">
+                    <path fill="currentColor" d="M47.5,-73.1C59.9,-61.8,67.4,-44.9,73.1,-27.5C78.8,-10.1,82.7,7.8,77.7,23.3C72.7,38.8,58.8,51.9,43.2,60.8C27.6,69.7,10.3,74.4,-5.9,71.7C-22.1,69,-37.2,58.9,-49.5,46.1C-61.8,33.3,-71.3,17.8,-74.7,1.1C-78.1,-15.6,-75.4,-33.5,-65.4,-47.4C-55.4,-61.3,-38.1,-71.2,-21.3,-74.9C-4.5,-78.6,11.8,-76.1,27.1,-71.4C42.4,-66.7,56.7,-59.8,47.5,-73.1Z" transform="translate(100 100)" />
+                  </svg>
+                </div>
+
+                {/* Mobile Mockup (iPhone Container) 3D */}
+                <div 
+                  className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[9/18.5] z-10 mr-4 sm:mr-8 lg:mr-16 rounded-[44px] shadow-[-20px_20px_40px_rgba(0,0,0,0.25)]"
+                  style={{
+                    transform: 'perspective(1200px) rotateX(12deg) rotateY(-18deg) rotateZ(6deg)',
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  {/* Solid Metal Extrusion (Box Thickness) */}
+                  <div className="absolute inset-0 rounded-[44px] bg-[#374151]" style={{ transform: 'translateZ(-16px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#4b5563]" style={{ transform: 'translateZ(-15px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#4b5563]" style={{ transform: 'translateZ(-14px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#4b5563]" style={{ transform: 'translateZ(-13px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#6b7280]" style={{ transform: 'translateZ(-12px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#6b7280]" style={{ transform: 'translateZ(-11px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#6b7280]" style={{ transform: 'translateZ(-10px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#9ca3af]" style={{ transform: 'translateZ(-9px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#9ca3af]" style={{ transform: 'translateZ(-8px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#d1d5db]" style={{ transform: 'translateZ(-7px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#d1d5db]" style={{ transform: 'translateZ(-6px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#e5e7eb]" style={{ transform: 'translateZ(-5px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#e5e7eb]" style={{ transform: 'translateZ(-4px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#f3f4f6]" style={{ transform: 'translateZ(-3px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#f3f4f6]" style={{ transform: 'translateZ(-2px)' }}></div>
+                  <div className="absolute inset-0 rounded-[44px] bg-[#f9fafb]" style={{ transform: 'translateZ(-1px)' }}></div>
+
+                  {/* Front Face (Black Glass Bezel) */}
+                  <div className="absolute inset-0 bg-[#111111] rounded-[44px] p-[6px]" style={{ transform: 'translateZ(0px)', transformStyle: 'preserve-3d' }}>
+                    {/* Screen Inside iPhone */}
+                    <div className="relative w-full h-full bg-[#faf9f6] rounded-[38px] p-4 flex flex-col overflow-hidden">
+                      {/* Dynamic Island Notch */}
+                      <div className="w-24 h-7 bg-[#000000] rounded-full mx-auto mb-4 flex-shrink-0 z-20 relative mt-0 shadow-[inset_0_-1px_3px_rgba(255,255,255,0.2)]"></div>
 
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-6 relative z-20">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
                           <Image src="/images/student.png" alt="User" width={32} height={32} className="object-cover" />
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 bg-white px-2 py-1 rounded-full shadow-sm">
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" /></svg>
-                        <span>72° Partly Cloudy</span>
+                      <div className="flex flex-col items-center justify-center bg-white px-2.5 py-1 rounded-2xl shadow-sm border border-gray-50">
+                        <span className="text-[10px] font-bold text-gray-800 flex items-center gap-1">
+                          ⛅ 72°
+                        </span>
+                        <span className="text-[8px] font-medium text-gray-400 leading-none">Partly Cloudy</span>
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-[#111827] mb-4">
-                      Hey Attrangi
+                    <h3 className="text-xl font-bold text-[#111827] mb-4 flex items-center gap-1.5 relative z-20">
+                      Hey Attrangi <span className="text-[#FF6B00] text-lg">🌿</span>
                     </h3>
 
                     {/* App Content Blocks */}
                     <div className="flex-1 flex flex-col gap-3 overflow-y-auto scrollbar-none pb-4">
 
                       {/* Search Bar Mockup */}
-                      <div className="bg-white rounded-full shadow-sm border border-orange-100 p-2.5 flex items-center justify-between mb-2">
+                      <div className="bg-white rounded-full shadow-sm border border-gray-100 p-2.5 flex items-center justify-between mb-2 relative z-20">
                         <span className="text-xs text-gray-400 font-medium ml-2">How are you feeling?</span>
-                        <div className="w-6 h-6 rounded-full bg-[#FF6B00] flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-[#FF6B00] flex items-center justify-center shadow-sm shadow-orange-500/30">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-2 mb-2">
-                        <div className="bg-orange-50 rounded-xl shadow-sm border border-orange-100 p-3 flex flex-col items-center justify-center text-center gap-2">
-                          <span className="text-orange-500 text-lg">📝</span>
-                          <span className="text-[10px] font-bold text-orange-900">Take Mind Check</span>
+                      <div className="grid grid-cols-2 gap-2 mb-2 relative z-20">
+                        <div className="bg-[#fffdfa] rounded-2xl shadow-sm border border-orange-50 p-3.5 flex flex-col justify-center text-center gap-1 hover:border-orange-100 transition-colors cursor-pointer">
+                          <div className="w-8 h-8 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-50 mb-1.5">
+                            <span className="text-orange-500 text-sm">📝</span>
+                          </div>
+                          <span className="text-[11px] font-bold text-[#111827]">Take Mind Check</span>
+                          <span className="text-[8px] text-gray-400 font-medium leading-tight">Understand your current state</span>
                         </div>
-                        <div className="bg-orange-50 rounded-xl shadow-sm border border-orange-100 p-3 flex flex-col items-center justify-center text-center gap-2">
-                          <span className="text-orange-500 text-lg">💬</span>
-                          <span className="text-[10px] font-bold text-orange-900">Chat with Pragya</span>
-                        </div>
-                      </div>
-
-                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 mb-2 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-orange-100 flex flex-shrink-0 items-center justify-center">
-                          <span className="text-orange-600 text-lg">📊</span>
-                        </div>
-                        <div>
-                          <h4 className="text-xs font-bold text-gray-800 leading-tight">View Daily Insights</h4>
-                          <p className="text-[9px] text-gray-500 mt-0.5">Track your mental wellness</p>
+                        <div className="bg-[#fffdfa] rounded-2xl shadow-sm border border-orange-50 p-3.5 flex flex-col justify-center text-center gap-1 hover:border-orange-100 transition-colors cursor-pointer">
+                          <div className="w-8 h-8 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-50 mb-1.5">
+                            <span className="text-orange-500 text-sm">💬</span>
+                          </div>
+                          <span className="text-[11px] font-bold text-[#111827]">Chat with Pragya</span>
+                          <span className="text-[8px] text-gray-400 font-medium leading-tight">Talk it out with your AI companion</span>
                         </div>
                       </div>
 
-                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 mb-2 flex items-center gap-3 group cursor-pointer hover:border-blue-200 transition-colors">
-                        <div className="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 transition-colors flex flex-shrink-0 items-center justify-center">
-                          <span className="text-blue-500 text-lg">📹</span>
+                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3.5 mb-2 flex items-center gap-3 relative z-20">
+                        <div className="w-10 h-10 rounded-xl bg-[#fdfaf5] border border-orange-50 flex flex-shrink-0 items-center justify-center">
+                          <span className="text-orange-400 text-lg">📊</span>
                         </div>
                         <div className="flex-1">
-                          <h4 className="text-xs font-bold text-gray-800 leading-tight">Therapy Session</h4>
+                          <h4 className="text-[11px] font-bold text-[#111827] leading-tight">View Daily Insights</h4>
+                          <p className="text-[9px] text-gray-500 mt-0.5 font-medium">Track your mental wellness over time</p>
+                        </div>
+                        <div className="ml-auto text-orange-400 pr-1">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                        </div>
+                      </div>
+
+                      <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-sm border border-gray-100 p-3.5 mb-2 flex items-center gap-3 group cursor-pointer hover:border-blue-200 transition-colors relative z-20">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 group-hover:bg-blue-100 transition-colors flex flex-shrink-0 items-center justify-center">
+                          <span className="text-blue-500 text-lg">🛋️</span>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-[11px] font-bold text-[#111827] leading-tight">Therapy Session</h4>
                           <p className="text-[9px] text-blue-500 font-medium mt-0.5">Starts in 10 mins</p>
                         </div>
-                        <div className="bg-blue-500 hover:bg-blue-600 text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg shadow-sm transition-colors">
+                        <div className="bg-orange-100 hover:bg-orange-200 text-orange-600 text-[10px] font-bold px-3.5 py-1.5 rounded-full shadow-sm transition-colors">
                           Join
                         </div>
                       </div>
 
                     </div>
+
+                      {/* Bottom Landscape Artwork */}
+                      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10 opacity-90 rounded-b-[36px] overflow-hidden">
+                        <svg viewBox="0 0 320 120" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[120%] text-[#ffe3cd]">
+                          <path fill="currentColor" opacity="0.6" d="M0,80 C60,40 100,100 160,80 C220,60 280,100 320,60 L320,120 L0,120 Z"></path>
+                          <path fill="currentColor" opacity="0.9" d="M0,100 C80,60 140,110 200,80 C260,50 300,90 320,80 L320,120 L0,120 Z"></path>
+                          <path fill="#e6f2eb" opacity="0.7" d="M-20,120 C40,70 120,90 180,60 C240,30 300,80 340,70 L340,120 L-20,120 Z"></path>
+                          <path fill="#c7e6c9" opacity="0.6" d="M-40,120 C30,90 100,110 150,80 C200,50 250,90 350,80 L350,120 L-40,120 Z"></path>
+                        </svg>
+                        <div className="absolute bottom-2 left-6 text-green-600/40 text-2xl transform -rotate-12">🌿</div>
+                        <div className="absolute bottom-4 right-8 text-orange-500/60 text-2xl transform rotate-12">🍂</div>
+                        <div className="absolute bottom-6 left-1/3 text-yellow-500/30 text-xl transform rotate-45">🌾</div>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
+                  </div>
 
               </div>
             </div>
@@ -833,58 +871,23 @@ export default function Home() {
           {/* <div className="absolute top-1/2 -left-20 md:-left-10 -translate-y-1/2 w-[20%] sm:w-[15%] lg:w-[12%] h-[100%] bg-[#d9d9d9]/60 rounded-r-[50px] z-0 pointer-events-none hidden md:block"></div> */}
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left Side - Main Image with Background Ellipses */}
-              <div className="relative min-h-[400px] flex justify-center lg:justify-start items-center overflow-visible lg:-ml-24 xl:-ml-32">
-                <div className="relative w-full max-w-[500px] h-[500px] md:h-[600px] z-20">
-
-                  {/* Background Ellipse 1 (Light Peach) */}
-                  <div className="absolute top-[50%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] max-w-[650px] max-h-[650px] z-[-2] pointer-events-none">
-                    <Image
-                      src="/home/Ellipse.png"
-                      alt=""
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-
-                  {/* Background Ellipse 2 (Dark Orange) */}
-                  <div className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] max-w-[550px] max-h-[550px] z-[-1] pointer-events-none">
-                    <Image
-                      src="/home/Ellipse-2.png"
-                      alt=""
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-
-                  {/* Foreground Image */}
-                  <Image
-                    src="/home/image.png"
-                    alt="Student using mental healthcare platform"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
+            <div className="flex flex-col items-center gap-8 lg:gap-16">
+              {/* Heading Section */}
+              <div className="relative z-10 text-center max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-[#ff6000] leading-tight">
+                  Continuous care that fits student life &<br className="hidden md:block" />supports the systems around them.
+                </h2>
               </div>
 
-              {/* Right Side - Content */}
-              <div className="space-y-8 lg:pl-8 relative z-10">
-                <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-[#ff6000] leading-tight">
-                  Continuous care that fits student life &<br />supports the systems around them.
-                </h2>
-
-                {/* Points Box */}
-                <div className="bg-[#faeedd] rounded-[24px] p-8 md:p-10 shadow-sm border border-orange-50">
-                  <ul className="space-y-3 list-disc pl-5 text-gray-800 text-base md:text-[17px] font-medium leading-relaxed marker:text-gray-800">
-                    <li className="pl-2">Continuous emotional engagement and early risk detection</li>
-                    <li className="pl-2">Structured support between therapy sessions</li>
-                    <li className="pl-2">Therapist marketplace with scalable access</li>
-                    <li className="pl-2">Guided wellness tasks and adherence tracking</li>
-                    <li className="pl-2">Privacy-safe reporting aligned with institutional governance</li>
-                  </ul>
-                </div>
+              {/* Image Section */}
+              <div className="relative w-full max-w-6xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] z-20">
+                <Image
+                  src="/images/thinker2.png"
+                  alt="Student reflecting on mental healthcare"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
             </div>
           </div>
