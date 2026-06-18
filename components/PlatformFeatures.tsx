@@ -30,7 +30,7 @@ const features = [
   {
     id: "ai-companion",
     icon: MessageSquare,
-    title: "AI Companion (Pragya AI)",
+    title: "Virtual Companion",
     shortTitle: "Pragya AI",
     description: "Your personal, 24/7 mental health companion that listens, reflects, and helps you navigate your daily emotional landscape.",
     buttonText: "Meet Pragya",

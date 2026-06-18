@@ -302,136 +302,160 @@ export default function AboutPage() {
           {/* Team Members Grid */}
           <div className="relative w-full">
             <div className="flex flex-wrap justify-center gap-6 px-4">
-              {/* Team Member 1 - Dr. Sandesh Palhke */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 1 - Dr. Sandesh Sanjeev Phalke */}
+              <a href="https://www.linkedin.com/in/sandesh-phalke-ph-d-63658b137/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/founder2.png"
-                      alt="Dr. Sandesh Palhke"
+                      alt="Dr. Sandesh Sanjeev Phalke"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Dr. Sandesh Palhke</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Designer behavioural Therapist </p>
-                    <p className="text-xs text-gray-500 mt-1">Founder, Attrangi</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Dr. Sandesh Sanjeev Phalke</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold">Founder</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              {/* Team Member 2 */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 2 - Bharath */}
+              <a href="https://www.linkedin.com/in/bharath-reddy-medasani-839b8b327/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/team2.png"
-                      alt="Research Team"
+                      alt="Bharath"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">M.Bharat Reddy</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Tech Expert | Researcher</p>
-                    <p className="text-xs text-gray-500 mt-1">CEO & Co-Founder</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Bharath</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold">Cofounder & CEO</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              {/* Team Member 3 */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 3 - Charan */}
+              <a href="https://www.linkedin.com/in/charan-dusary-6023172a1/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/team4.jpeg"
-                      alt="Support Team"
+                      alt="Charan"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Charan</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Frontend Developer & UI/UX Designer</p>
-                    <p className="text-xs text-gray-500 mt-1">Creating seamless user experiences</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Charan</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold">Cofounder & CFO</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-
-              {/* Team Member 4 */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 4 - Lakshmi Prasad */}
+              <a href="https://www.linkedin.com/in/lakshmi-prasad-doddi-26a30029a/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/team3.png"
-                      alt="Tech Team"
+                      alt="Lakshmi Prasad"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Lakshmi Prasad</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Developers & UX</p>
-                    <p className="text-xs text-gray-500 mt-1">Creating accessible platforms</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Lakshmi Prasad</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold mb-1">Product Designer</p>
+                    <p className="text-xs text-gray-500">Cofounder & CPO</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              {/* Team Member 5 */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 5 - Harshith */}
+              <a href="https://www.linkedin.com/in/harshith-daraboina-14105a2b2/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/team1.jpeg"
-                      alt="Advocacy Team"
+                      alt="Harshith"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">D.Harshith</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Tech Lead</p>
-                    <p className="text-xs text-gray-500 mt-1">Lived experience leadership</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Harshith</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold">Cofounder & CTO</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              {/* Team Member 6 */}
-              <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden">
+              {/* Team Member 6 - Kalyan */}
+              <a href="https://www.linkedin.com/in/kalyan-jakkoju-5b6694312/" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 w-72 md:w-80 cursor-pointer overflow-hidden block">
                 <div className="relative w-full h-full">
-                  <div className="relative w-full h-64 overflow-hidden">
+                  <div className="relative w-full h-64 overflow-hidden bg-gray-50">
                     <Image
                       src="/images/kalyan.jpeg"
-                      alt="Media Outreach and Research Lead"
+                      alt="Kalyan Jakkoju"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5 text-center">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Kalyan Jakkoju</h3>
-                    <p className="text-sm text-orange-600 font-semibold">Media Outreach & Research Lead</p>
-                    <p className="text-xs text-gray-500 mt-1">Driving awareness through evidence-based storytelling</p>
+                  <div className="p-5 text-center flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Kalyan Jakkoju</h3>
+                      <div className="text-[#0A66C2] opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19 0H5C2.238 0 0 2.238 0 5v14c0 2.762 2.238 5 5 5h14c2.762 0 5-2.238 5-5V5c0-2.762-2.238-5-5-5zM7.119 20.452H3.56V9h3.559v11.452zM5.34 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM20.452 20.452h-3.558v-5.569c0-1.328-.027-3.037-1.852-3.037-1.854 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.047c.476-.902 1.636-1.852 3.369-1.852 3.603 0 4.271 2.37 4.271 5.456v6.287z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600 font-semibold">Cofounder & CMO</p>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
-
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-            <button className="bg-white text-gray-900 px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-lg">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-              Book a Call
-            </button>
-            <button className="bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-orange-700 transition-colors shadow-lg">
-              Get in Touch
-            </button>
-          </div>
         </div>
+
 
       </section>
 
