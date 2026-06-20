@@ -465,7 +465,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Left Column: Content */}
-              <div className="lg:col-span-7 flex flex-col justify-center">
+              <div className="lg:col-span-7 flex flex-col justify-center min-w-0">
                 {/* Pill Badge */}
                 <div className="inline-flex items-center gap-2 bg-[#E9ECEF] text-gray-600 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6 w-fit">
                   <span className="w-2 h-2 rounded-full bg-[#FF6B00]"></span>
@@ -473,7 +473,7 @@ export default function Home() {
                 </div>
 
                 {/* Main Heading */}
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#111827] leading-[1.12] tracking-tight mb-6">
+                <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-[42px] xl:text-[56px] 2xl:text-6xl font-extrabold text-[#111827] leading-[1.12] tracking-tight mb-6">
                   Mental health support
                   <br />
                   shouldn't start in{" "}

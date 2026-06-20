@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
+import { APP_SIGNIN_URL } from "@/lib/app-urls";
 
 interface ChatMessage {
     role: "user" | "assistant";
@@ -381,7 +382,7 @@ export default function TryPragyaPage() {
                                     </p>
                                     <div className="space-y-4">
                                         <a
-                                            href="/login"
+                                            href={APP_SIGNIN_URL}
                                             className="block w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-1 active:scale-[0.98]"
                                         >
                                             Log In / Sign Up
@@ -507,7 +508,7 @@ export default function TryPragyaPage() {
                                                 {remainingChats !== null ? `${remainingChats} chats remaining today` : ""}
                                             </span>
                                             {remainingChats !== null && remainingChats <= 1 && (
-                                                <a href="/login" className="text-[12px] text-orange-600 font-bold hover:underline">
+                                                <a href={APP_SIGNIN_URL} className="text-[12px] text-orange-600 font-bold hover:underline">
                                                     Login for unlimited chats
                                                 </a>
                                             )}

@@ -84,35 +84,42 @@ export default function Footer() {
             </div>
 
             {/* Banner Mockup Image */}
-            <div className="w-full sm:w-2/5 lg:w-1/2 relative h-64 sm:h-auto overflow-hidden sm:absolute sm:right-0 sm:top-0 sm:bottom-0 mt-8 sm:mt-0 flex justify-center sm:justify-end items-end sm:items-center px-8 sm:px-0 sm:pr-8">
+            <div className="w-full sm:w-2/5 lg:w-1/2 relative h-64 sm:h-auto overflow-hidden sm:absolute sm:right-0 sm:top-0 sm:bottom-0 mt-8 sm:mt-0 flex justify-center sm:justify-end items-end sm:items-center px-8 sm:px-0 sm:pr-8 lg:pr-12">
               {/* CSS Phone Mockup representing the app */}
-              <div className="w-[180px] h-[360px] bg-white rounded-t-[32px] sm:rounded-[32px] shadow-2xl relative border-[6px] border-black overflow-hidden translate-y-12 sm:translate-y-0 sm:rotate-6 sm:translate-x-4">
+              <div className="w-[200px] h-[400px] bg-[#fdfaf6] rounded-t-[40px] sm:rounded-[40px] shadow-2xl relative border-[7px] border-black overflow-hidden translate-y-12 sm:translate-y-0 sm:rotate-[8deg] sm:translate-x-4">
                 {/* Dynamic island notch */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-full z-20"></div>
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[70px] h-5 bg-black rounded-full z-20"></div>
+                
                 {/* App Header */}
-                <div className="bg-[#fcf8f2] pt-10 pb-4 px-4 h-full relative">
-                  <div className="flex justify-between items-center mb-4">
-                    <div className="w-8 h-8 rounded-full bg-orange-200"></div>
-                    <div className="w-16 h-4 bg-gray-200 rounded-full"></div>
+                <div className="bg-transparent pt-12 pb-4 px-4 h-full relative flex flex-col">
+                  {/* Top user/action row */}
+                  <div className="flex justify-between items-center mb-5 px-0.5">
+                    <div className="w-9 h-9 rounded-full bg-[#ffd4a8]"></div>
+                    <div className="w-16 h-3.5 bg-[#e2e8f0] rounded-full"></div>
                   </div>
-                  <div className="space-y-3">
-                    <div className="w-3/4 h-6 bg-gray-800 rounded-lg"></div>
-                    <div className="w-full h-20 bg-white rounded-xl shadow-sm border border-gray-100 p-3">
-                      <div className="w-1/2 h-3 bg-gray-200 rounded mb-2"></div>
-                      <div className="w-full h-2 bg-gray-100 rounded mb-1"></div>
-                      <div className="w-4/5 h-2 bg-gray-100 rounded"></div>
+                  
+                  {/* Dark Banner */}
+                  <div className="w-full h-10 bg-[#212b36] rounded-[14px] mb-5"></div>
+                  
+                  {/* Cards */}
+                  <div className="flex flex-col gap-3.5 flex-1">
+                    <div className="w-full bg-white rounded-2xl shadow-sm border border-gray-100 p-3.5 flex flex-col gap-2.5">
+                      <div className="w-12 h-2.5 bg-[#e2e8f0] rounded-full"></div>
+                      <div className="w-full h-2 bg-[#f1f5f9] rounded-full"></div>
+                      <div className="w-5/6 h-2 bg-[#f1f5f9] rounded-full"></div>
                     </div>
-                    <div className="w-full h-20 bg-white rounded-xl shadow-sm border border-gray-100 p-3">
-                      <div className="w-1/3 h-3 bg-orange-200 rounded mb-2"></div>
-                      <div className="w-full h-2 bg-gray-100 rounded mb-1"></div>
-                      <div className="w-2/3 h-2 bg-gray-100 rounded"></div>
+                    <div className="w-full bg-white rounded-2xl shadow-sm border border-gray-100 p-3.5 flex flex-col gap-2.5">
+                      <div className="w-12 h-2.5 bg-[#ffd4a8] rounded-full"></div>
+                      <div className="w-full h-2 bg-[#f1f5f9] rounded-full"></div>
+                      <div className="w-2/3 h-2 bg-[#f1f5f9] rounded-full"></div>
                     </div>
                   </div>
+                  
                   {/* Bottom nav */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-100 flex justify-around items-center px-4">
-                    <div className="w-6 h-6 bg-orange-500 rounded-full"></div>
-                    <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
-                    <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-[68px] bg-white border-t border-gray-100 flex justify-center items-center gap-5 px-4 rounded-b-[33px]">
+                    <div className="w-8 h-8 bg-[#FF6B00] rounded-full"></div>
+                    <div className="w-8 h-8 bg-[#e2e8f0] rounded-full"></div>
+                    <div className="w-8 h-8 bg-[#e2e8f0] rounded-full"></div>
                   </div>
                 </div>
               </div>
